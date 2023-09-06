@@ -1,0 +1,26 @@
+/*
+ * Reusable Components Style
+ */
+
+.button{
+	background: #e7edf1;
+	display: inline-block;
+	padding: 10px 25px;
+	border-radius: 5px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.3);
+	color: #8e9ca5;
+	transition: .3s ease;
+
+	&.back{margin-bottom: 30px;}
+
+	img{margin-right: 10px;}
+
+	&:hover{
+		box-shadow: inset 0 0 100px $accent-color;
+		color: white;
+	}
+
+	&.white{
+		background: white;
+	}
+}

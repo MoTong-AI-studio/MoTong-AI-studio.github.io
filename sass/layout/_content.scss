@@ -1,0 +1,377 @@
+.fullwidth-block{
+	padding: 50px 0;
+}
+
+.section-title{
+	@include em(30);
+	font-weight: 300;
+	margin-bottom: 30px;
+}
+
+.feature{
+	margin-bottom: 30px;
+	text-align: center;
+	border: 1px solid #e1e8ec;
+	border-radius: 10px;
+	padding: 30px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	.feature-image{margin-bottom: 20px;}
+	.feature-title{
+		@include em(30);
+		font-weight: 300;
+	}
+	p{
+		@include em(16);
+		margin-bottom: 30px;
+	}
+}
+
+.post{
+	position: relative;
+	margin-bottom: 30px;
+
+	.featured-image{
+		margin-bottom: 20px;
+		img{
+			max-width: 100%;
+			border-radius: 5px;
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+	}
+
+	.entry-title{
+		@include em(24);
+		font-weight: 300;
+		margin: 0 0 10px;
+	}
+	.date{
+		display: block;
+		margin-bottom: 30px;
+		@include em(11);
+	}
+
+	&:after{
+		content:" ";
+		display: block;
+		margin-top: 30px;
+		width: 22px;
+		height: 11px;
+		background: url(images/arrow-long.png);
+	}
+}
+
+.cta{
+	text-align: center;
+	color: white;
+
+	.cta-title{
+		@include em(60);
+		font-weight: 300;
+	}
+	p{@include em(24)}
+	.button{@include em(18)}
+}
+
+.subscribe-form{
+	display: table;
+	margin: 0 auto;
+
+	h2{
+		@include em(24);
+		font-weight: 300;
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 20px 0 0;
+	}
+	form{
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+
+		input[type="text"],input[type="email"]{
+			width: 500px;
+			max-width: 100%;
+			padding: 20px 100px 20px 20px;
+
+			&:hover,&:focus{ border-color: $accent-color }
+		}
+		input[type="submit"]{
+			position: absolute;
+			top:0px;
+			bottom:0px;
+			right:0px;
+			background:linear-gradient(#69c7b7,#69acc6);
+			color: white;
+			box-shadow: none;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border: none;
+			transition: .3s ease;
+
+			&:hover{
+				box-shadow: inset 0 0 0 200px #69c7b7;
+			}
+
+		}
+	}
+}
+
+.team{
+	text-align: center;
+	margin-bottom: 30px;
+
+	.team-image{
+		width: 160px;
+		height: 160px;
+		border-radius: 50%;
+		display: inline-block;
+		margin-bottom: 10px;
+	}
+	.team-name{
+		@include em(16);
+		font-weight: 400;
+	}
+
+	.social-links{
+		a{
+			background: white;
+			border: none;
+			box-shadow: 0 1px 1px rgba(0,0,0,.2);
+		}
+	}
+}
+
+.checked-box{
+	border: 1px solid $secondary-color;
+	padding: 30px;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	margin-bottom: 30px;
+	padding-left: 70px;
+	position: relative;
+
+	&:before{
+		content:"\f00c";
+		font-family: "FontAwesome";
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border: 1px solid $secondary-color;
+		display: block;
+		position: absolute;
+		left: 20px;
+		top: 30px;
+		color: $accent-color;
+		text-align: center;
+		line-height: 2;
+	}
+
+	h3{
+		font-weight: 300;
+		color: $accent-color;
+		margin-bottom: 10px;
+	}
+}
+
+ol.circle{
+	list-style: none;
+	counter-reset: circled;
+
+	
+	li{
+		padding-left: 90px;
+		position: relative;
+		min-height: 70px;
+		margin-bottom: 30px;
+
+		&:before{
+			counter-increment: circled;
+			content: counter(circled);
+			width: 70px;
+			height: 70px;
+			border: 4px solid $accent-color;
+			display: block;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 2;
+			@include em(30);
+			font-weight: 400;
+			position: absolute;
+			top:0;
+			left:0;
+			color: $accent-color;
+		}
+
+		h3{
+			@include em(16);
+			font-weight: 400;
+			color: $accent-color;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.testimonial-list{
+	list-style: none;
+
+	li{
+		padding-left: 40px;
+		position: relative;
+		margin-bottom: 30px;
+
+		&:before{
+			content:" ";
+			width:21px;
+			height: 18px;
+			background: url(images/quote.png) no-repeat;
+			display: block;
+			position: absolute;
+			top:0;
+			left:0;
+
+		}
+
+		blockquote{
+			margin: 0;
+			p{
+				@include em(15);
+				font-style:italic;
+			}
+			cite{
+				font-weight: 400;
+				font-style: normal;
+			}
+		}
+	}
+}
+
+.boxed-icon{
+	border-radius: 5px;
+	border: 1px solid $secondary-color;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	padding: 30px 30px 30px 170px;
+	position:relative;
+	margin-bottom: 30px;
+
+	@media screen and (max-width: 640px){
+		padding-left: 30px;
+	}
+
+	.icon{
+		position: absolute;
+		left: 30px;
+		top: 30px;
+
+		@media screen and (max-width: 640px){
+			position: relative;
+			left:0;
+			top:0;
+			margin: 0 auto 20px;
+			display: block;
+			text-align: center;
+		}
+	}
+
+	h3{
+		font-weight: 300;
+		@include em(30);
+	}
+
+}
+
+.project-list{
+	margin: 0 -15px;
+
+	.project{
+		float: left;
+		width: 33.3333%;
+		padding: 0 15px;
+		text-align: center;
+		margin-bottom: 30px;
+
+		&:nth-child(3n+1){
+			clear: both
+		}
+
+		@media screen and (max-width:990px){
+			width: 50%;
+			
+			&:nth-child(3n+1){ clear: none }			
+			&:nth-child(2n+1){ clear: both }			
+		}
+
+		@media screen and (max-width:480px){
+			width: 100%;
+			
+			&:nth-child(2n+1){ clear: none }			
+		}
+
+		.project-content{
+			border: 1px solid darken($secondary-color,5%);
+			border-radius: 5px;
+			padding: 20px;
+			box-shadow: 0 1px 2px rgba(0,0,0,.1);
+		}
+
+		.project-image{
+			margin-bottom: 20px;
+			img{
+				display: block;
+				max-width: 100%;
+				width: 100%;
+				height: auto;
+			}
+		}
+		.project-title{
+			@include em(18);
+			font-weight: 300;
+		}
+	}
+}
+figure{
+	margin-bottom: 30px;
+	img{
+		display: block;
+		max-width: 100%;
+		height: auto;
+		border-radius: 5px;
+	}
+}
+.project-info{
+	list-style: none;
+	margin-bottom: 30px;
+
+	li{
+		padding: 10px 0;
+		border-bottom:1px solid $secondary-color;
+
+		&:last-child{border-bottom: none}
+	}
+}
+
+.map{
+	min-height: 300px;
+	margin-bottom: 30px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.boxed-content{
+	border: 1px solid darken($secondary-color, 5%);
+	padding: 20px;
+	margin-bottom:30px;
+}
+.contact-form{
+	input:not([type="submit"]),textarea{
+		width: 100%;
+	}
+	textarea{
+		min-height: 150px;
+	}
+	input[type="submit"]{
+		background:linear-gradient(#69c7b7,#69acc6);
+		color: white;
+	}
+	.text-right{text-align: right;}
+}
