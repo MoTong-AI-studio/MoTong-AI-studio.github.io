@@ -1721,6 +1721,6 @@ figure {
     .arrow-list.has-border li:last-child {
       border-bottom: none; }
 .map_png{
-  height: 800px;
-  width: 1200px;
+  height: 80%;
+  width: 100%;
 }
