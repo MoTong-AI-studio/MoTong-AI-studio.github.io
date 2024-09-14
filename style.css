@@ -1551,7 +1551,7 @@ ol.circle {
       content: " ";
       width: 21px;
       height: 18px;
-      background: url(images/quote.png) no-repeat;
+      background: url(decorate/quote.png) no-repeat;
       display: block;
       position: absolute;
       top: 0;
@@ -1705,7 +1705,7 @@ figure {
 
 .arrow-list {
   list-style: none;
-  list-style-image: url(images/arrow.png);
+  list-style-image: url(decorate/arrow.png);
   margin-left: 20px;
   margin-bottom: 30px; }
   .arrow-list li {
