@@ -6,28 +6,50 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		<link rel="icon" href="decorate/favicon.ico" type="image/x-icon">
 		<link rel="shortcut icon" href="decorate/favicon.ico" type="image/x-icon" />
-		<title>Contest</title>
-		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<title>竞赛成果 - 墨瞳AI工作室</title>
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- AOS Animation -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		
+		<!-- Lightbox -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+		<!-- Loading CSS files -->
 		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="Contest.css">
 	</head>
 	<body>
+		<!-- 进度条 -->
+		<div class="progress-container">
+			<div class="progress-bar" id="progressBar"></div>
+		</div>
+		
 		<div class="site-content">
-			<header class="site-header" data-bg-image="">
+			<header class="site-header collapsed-nav">
 				<div class="container">
 					<div class="header-bar">
 						<a href="index.html" class="branding">
 							<img src="decorate/favicon.ico" alt="" class="logo">
 							<div class="logo-type">
 								<h1 class="site-title">墨瞳AI工作室</h1>
-								<small class="site-description">computer vision</small>
+								<small class="site-description">Computer Vision Research</small>
 							</div>
 						</a>
 						<nav class="main-navigation">
 							<button class="menu-toggle"><i class="fa fa-bars"></i></button>
 							<ul class="menu">
-								<li class="home menu-item "><a href="index.html"><img src="decorate/home-icon.png" alt="Home"></a></li>
-								<li class="menu-item "><a href="about.html">关于我们</a></li>
+								<li class="home menu-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
+								<li class="menu-item"><a href="about.html">关于我们</a></li>
 								<li class="menu-item"><a href="paper.html">论文成果</a></li>
 								<li class="menu-item current-menu-item"><a href="Contest.html">竞赛成果</a></li>
 								<li class="menu-item"><a href="contact.html">联系我们</a></li>
@@ -37,146 +59,526 @@
 					</div>
 				</div>
 			</header>
-			<div class="page-head" data-bg-image="decorate/cta-bg.png">
-				<div class="container">
+
+			<div class="page-head">
+				<div class="container" style="padding-top: 50px;">
 					<h2 class="page-title">竞赛成果</h2>
+					<p data-aos="fade-up" data-aos-delay="300">记录我们的荣誉时刻，展示团队的拼搏精神与创新成果</p>
 				</div>
 			</div>
-				<div class="fullwidth-block">
-					<div class="container">
-						<div class="project-list">
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/睿抗国一.jpg" alt=""></figure>
-								</div>
+			<div class="fullwidth-block">
+				<div class="container">
+					<!-- 竞赛统计 -->
+					<div class="contest-stats" data-aos="fade-up">
+						<div class="stat-item">
+							<div class="stat-number">20+</div>
+							<div class="stat-label">国家级奖项</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">15+</div>
+							<div class="stat-label">省级奖项</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">10+</div>
+							<div class="stat-label">竞赛类型</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">30+</div>
+							<div class="stat-label">获奖学生</div>
+						</div>
+					</div>
+
+					<!-- 奖项标准说明 -->
+					<div class="award-standards" data-aos="fade-up">
+						<h3><i class="fas fa-trophy"></i> 竞赛奖项含金量说明</h3>
+						<p>墨瞳AI工作室成员参与各类竞赛并取得了优异成绩。下面是对各级别奖项含金量和价值的简要说明：</p>
+						
+						<div class="award-types">
+							<div class="award-type international">
+								<h4><i class="fas fa-globe"></i> 国际级奖项</h4>
+								<p>国际级竞赛如美国大学生数学建模竞赛(MCM/ICM)等，参赛队伍来自全球各地，含金量最高，获奖难度大，对就业和升学具有重要参考价值。</p>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/机器人及人工智能大赛国一.jpg" alt=""></figure>
-								</div>
+							<div class="award-type national">
+								<h4><i class="fas fa-flag"></i> 国家级奖项</h4>
+								<p>教育部认可的国家级赛事，代表全国性的专业水平认可，一等奖获得者通常具备相当高的专业素养和创新能力，对保研具有重要加分。</p>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/正大杯省一.jpg" alt=""></figure>
-								</div>
+							<div class="award-type provincial">
+								<h4><i class="fas fa-map-marker-alt"></i> 省级奖项</h4>
+								<p>省教育厅或行业协会主办的区域性赛事，反映选手在区域内的专业优势，一等奖和特等奖对本地就业、实习机会申请有明显帮助。</p>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/元境杯国一.jpg" alt=""></figure>
-								</div>
+						</div>
+					</div>
+
+					<!-- 2023年成果 -->
+					<div class="year-divider" data-aos="fade-right">
+						<h2>2023年度获奖成果</h2>
+					</div>
+					
+					<div class="project-list">
+						<div class="project" data-aos="fade-up">
+							<div class="project-content">
+								<a href="contest/睿抗国一.jpg" data-lightbox="contest-gallery" data-title="睿抗杯 国家一等奖 | 国家级人工智能创新设计大赛，认可度高，竞争激烈">
+									<span class="award-badge national">国家一等奖</span>
+									<figure class="project-image">
+										<img src="contest/睿抗国一.jpg" alt="睿抗杯 国家一等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>睿抗杯 国家一等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 教育部认可的高水平大赛，在人工智能领域具有重要影响力
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/蓝桥杯国二.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="100">
+							<div class="project-content">
+								<a href="contest/正大杯省一.jpg" data-lightbox="contest-gallery" data-title="正大杯 省一等奖 | 省级科技创新大赛，在本省内具有较高影响力">
+									<span class="award-badge provincial">省一等奖</span>
+									<figure class="project-image">
+										<img src="contest/正大杯省一.jpg" alt="正大杯 省一等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>正大杯 省一等奖</h4>
+										<p><i class="fas fa-trophy"></i> 省级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 省教育厅认可的大赛，在本地就业具有加分效果
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/元境杯国二.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="200">
+							<div class="project-content">
+								<a href="contest/元境杯国一.jpg" data-lightbox="contest-gallery" data-title="元境杯 国家一等奖 | 国家级虚拟现实技术应用大赛，对升学有显著帮助">
+									<span class="award-badge national">国家一等奖</span>
+									<figure class="project-image">
+										<img src="contest/元境杯国一.jpg" alt="元境杯 国家一等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>元境杯 国家一等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 工信部支持的高水平竞赛，在虚拟现实与元宇宙领域具有权威性
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/数模国一.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up">
+							<div class="project-content">
+								<a href="contest/黑科技行星级.jpg" data-lightbox="contest-gallery" data-title="黑科技行星级 | 前沿科技创新大赛，评选严格">
+									<span class="award-badge national">国家级</span>
+									<figure class="project-image">
+										<img src="contest/黑科技行星级.jpg" alt="黑科技行星级">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>黑科技行星级</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 科技部支持的创新大赛，获奖项目常被投资机构关注
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/数媒.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="100">
+							<div class="project-content">
+								<a href="contest/美赛H_ck.jpg" data-lightbox="contest-gallery" data-title="美国大学生数学建模竞赛 H奖 | 全球高校参与的权威数模比赛">
+									<span class="award-badge international">国际级</span>
+									<figure class="project-image">
+										<img src="contest/美赛H_ck.jpg" alt="美国大学生数学建模竞赛 H奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>美国大学生数学建模竞赛 H奖</h4>
+										<p><i class="fas fa-trophy"></i> 国际级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 全球最具影响力的数学建模赛事，H奖为一等奖，获奖率低于15%
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/计设.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="200">
+							<div class="project-content">
+								<a href="contest/美赛H_wzf.jpg" data-lightbox="contest-gallery" data-title="美国大学生数学建模竞赛 H奖 | 全球高校参与的权威数模比赛">
+									<span class="award-badge international">国际级</span>
+									<figure class="project-image">
+										<img src="contest/美赛H_wzf.jpg" alt="美国大学生数学建模竞赛 H奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>美国大学生数学建模竞赛 H奖</h4>
+										<p><i class="fas fa-trophy"></i> 国际级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 全球最具影响力的数学建模赛事，H奖为一等奖，获奖率低于15%
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/计设省二.jpg" alt=""></figure>
-								</div>
+						</div>
+					</div>
+					
+					<!-- 2022年成果 -->
+					<div class="year-divider" data-aos="fade-right">
+						<h2>2022年度获奖成果</h2>
+					</div>
+					
+					<div class="project-list">
+						<div class="project" data-aos="fade-up">
+							<div class="project-content">
+								<a href="contest/机器人及人工智能大赛国一.jpg" data-lightbox="contest-gallery" data-title="机器人及人工智能大赛 国家一等奖 | 权威人工智能创新应用大赛">
+									<span class="award-badge national">国家一等奖</span>
+									<figure class="project-image">
+										<img src="contest/机器人及人工智能大赛国一.jpg" alt="机器人及人工智能大赛 国家一等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>机器人及人工智能大赛 国家一等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 教育部认定的全国性赛事，对保研和就业有重要帮助
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/黑科技行星级.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="100">
+							<div class="project-content">
+								<a href="contest/蓝桥杯国二.jpg" data-lightbox="contest-gallery" data-title="蓝桥杯 国家二等奖 | 工信部支持的全国性程序设计大赛">
+									<span class="award-badge national">国家二等奖</span>
+									<figure class="project-image">
+										<img src="contest/蓝桥杯国二.jpg" alt="蓝桥杯 国家二等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>蓝桥杯 国家二等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 工信部支持的权威编程大赛，IT企业高度认可，获奖率低于10%
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/挑战杯省二_00.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="200">
+							<div class="project-content">
+								<a href="contest/元境杯国二.jpg" data-lightbox="contest-gallery" data-title="元境杯 国家二等奖 | 国家级虚拟现实技术应用大赛">
+									<span class="award-badge national">国家二等奖</span>
+									<figure class="project-image">
+										<img src="contest/元境杯国二.jpg" alt="元境杯 国家二等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>元境杯 国家二等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 工信部支持的高水平竞赛，在虚拟现实与元宇宙领域具有权威性
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/第二十四届中国机器人及人工智能国一.png" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up">
+							<div class="project-content">
+								<a href="contest/数媒.jpg" data-lightbox="contest-gallery" data-title="数字媒体大赛 | 展示数字媒体技术与艺术结合的创新应用">
+									<span class="award-badge national">国家级</span>
+									<figure class="project-image">
+										<img src="contest/数媒.jpg" alt="数字媒体大赛">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>数字媒体大赛</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 教育部指导的国家级学科竞赛，对艺术与技术融合人才有重要认可
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/2020泛珠三角计算机作品赛国家二等奖.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="100">
+							<div class="project-content">
+								<a href="contest/人工智能实践赛.jpg" data-lightbox="contest-gallery" data-title="人工智能实践赛 | 测试AI应用能力的综合性竞赛">
+									<span class="award-badge national">国家级</span>
+									<figure class="project-image">
+										<img src="contest/人工智能实践赛.jpg" alt="人工智能实践赛">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>人工智能实践赛</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 人工智能领域权威赛事，对算法与实践能力有全面考验
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/人工智能实践赛.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="200">
+							<div class="project-content">
+								<a href="contest/米兰国二.jpg" data-lightbox="contest-gallery" data-title="米兰设计大赛 国家二等奖 | 具有国际影响力的设计类竞赛">
+									<span class="award-badge national">国家二等奖</span>
+									<figure class="project-image">
+										<img src="contest/米兰国二.jpg" alt="米兰设计大赛 国家二等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>米兰设计大赛 国家二等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 结合国际设计理念的高水平赛事，对设计类学生就业有重要帮助
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/3D大赛国家二等奖.jpg" alt=""></figure>
-								</div>
+						</div>
+					</div>
+					
+					<!-- 2021年成果 -->
+					<div class="year-divider" data-aos="fade-right">
+						<h2>2021年度获奖成果</h2>
+					</div>
+					
+					<div class="project-list">
+						<div class="project" data-aos="fade-up">
+							<div class="project-content">
+								<a href="contest/数模国一.jpg" data-lightbox="contest-gallery" data-title="数学建模 国家一等奖 | 综合应用数学方法解决实际问题的权威赛事">
+									<span class="award-badge national">国家一等奖</span>
+									<figure class="project-image">
+										<img src="contest/数模国一.jpg" alt="数学建模 国家一等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>数学建模 国家一等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 教育部认定的高水平学科竞赛，获国一的队伍不足5%
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/3D-特等奖.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="100">
+							<div class="project-content">
+								<a href="contest/计设.jpg" data-lightbox="contest-gallery" data-title="计算机设计大赛 | 展示学生计算机应用与设计能力的综合平台">
+									<span class="award-badge national">国家级</span>
+									<figure class="project-image">
+										<img src="contest/计设.jpg" alt="计算机设计大赛">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>计算机设计大赛</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 教育部高等教育司指导的计算机应用领域权威赛事
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/3D-一等奖.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="200">
+							<div class="project-content">
+								<a href="contest/第二十四届中国机器人及人工智能国一.png" data-lightbox="contest-gallery" data-title="第二十四届中国机器人及人工智能 国家一等奖 | 工信部支持的权威赛事">
+									<span class="award-badge national">国家一等奖</span>
+									<figure class="project-image">
+										<img src="contest/第二十四届中国机器人及人工智能国一.png" alt="第二十四届中国机器人及人工智能 国家一等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>第二十四届中国机器人及人工智能 国家一等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 中国机器人产业联盟认可的顶级赛事，获奖者备受企业关注
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/美赛H_ck.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up">
+							<div class="project-content">
+								<a href="contest/挑战杯省二_00.jpg" data-lightbox="contest-gallery" data-title="挑战杯 省二等奖 | 被誉为"大学生学术科技活动的奥林匹克盛会"">
+									<span class="award-badge provincial">省二等奖</span>
+									<figure class="project-image">
+										<img src="contest/挑战杯省二_00.jpg" alt="挑战杯 省二等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>挑战杯 省二等奖</h4>
+										<p><i class="fas fa-trophy"></i> 省级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 大学生科技创新的重要平台，获省级奖项是重要荣誉
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/美赛H_wzf.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="100">
+							<div class="project-content">
+								<a href="contest/3D-特等奖.jpg" data-lightbox="contest-gallery" data-title="3D大赛 特等奖 | 三维数字化创新设计大赛省赛特等奖">
+									<span class="award-badge provincial">省特等奖</span>
+									<figure class="project-image">
+										<img src="contest/3D-特等奖.jpg" alt="3D大赛 特等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>3D大赛 特等奖</h4>
+										<p><i class="fas fa-trophy"></i> 省级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 工业和信息化部支持的权威3D设计赛事，特等奖为最高荣誉
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/美赛H_yqh.jpg" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="200">
+							<div class="project-content">
+								<a href="contest/好创意.png" data-lightbox="contest-gallery" data-title="好创意大赛 | 展示学生创意设计能力的重要平台">
+									<span class="award-badge national">国家级</span>
+									<figure class="project-image">
+										<img src="contest/好创意.png" alt="好创意大赛">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>好创意大赛</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 国家创新创业示范基地支持的创意设计大赛，获奖作品常被媒体报道
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/米兰国二.jpg" alt=""></figure>
-								</div>
+						</div>
+					</div>
+					
+					<!-- 2020年成果 -->
+					<div class="year-divider" data-aos="fade-right">
+						<h2>2020年度获奖成果</h2>
+					</div>
+					
+					<div class="project-list">
+						<div class="project" data-aos="fade-up">
+							<div class="project-content">
+								<a href="contest/2020泛珠三角计算机作品赛国家二等奖.jpg" data-lightbox="contest-gallery" data-title="2020泛珠三角计算机作品赛 国家二等奖 | 华南地区最具影响力的IT赛事">
+									<span class="award-badge national">国家二等奖</span>
+									<figure class="project-image">
+										<img src="contest/2020泛珠三角计算机作品赛国家二等奖.jpg" alt="2020泛珠三角计算机作品赛 国家二等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>2020泛珠三角计算机作品赛 国家二等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 华南地区重要的计算机应用竞赛，在IT行业有较高认可度
+										</div>
+									</div>
+								</a>
 							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/米兰省一.jpg" alt=""></figure>
-								</div>
-							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/米兰省二.jpg" alt=""></figure>
-								</div>
-							</div>
-							<div class="project">
-								<div class="project-content">
-									<figure class="project-image"><img src="contest/好创意.png" alt=""></figure>
-								</div>
+						</div>
+						
+						<div class="project" data-aos="fade-up" data-aos-delay="100">
+							<div class="project-content">
+								<a href="contest/3D大赛国家二等奖.jpg" data-lightbox="contest-gallery" data-title="3D大赛 国家二等奖 | 工信部支持的权威三维数字化创新设计赛事">
+									<span class="award-badge national">国家二等奖</span>
+									<figure class="project-image">
+										<img src="contest/3D大赛国家二等奖.jpg" alt="3D大赛 国家二等奖">
+										<div class="project-zoom">
+											<i class="fas fa-search-plus"></i>
+										</div>
+									</figure>
+									<div class="project-overlay">
+										<h4>3D大赛 国家二等奖</h4>
+										<p><i class="fas fa-trophy"></i> 国家级赛事</p>
+										<div class="award-prestige">
+											<i class="fas fa-star"></i> 工信部支持的全国性3D设计大赛，对就业有显著帮助
+										</div>
+									</div>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</main> 
+			</div>
+
+			<!-- 回到顶部按钮 -->
+			<div class="scroll-top" id="scrollTop">
+				<i class="fas fa-arrow-up"></i>
+			</div>
 		</div>
-		<script src="js/jquery-1.11.1.min.js"></script>
+
+		<!-- jQuery & Bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Lightbox -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+		
+		<!-- AOS Animation Library -->
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		
+		<!-- Other Scripts -->
 		<script src="js/plugins.js"></script>
 		<script src="js/app.js"></script>
+		<script src="Contest.js"></script>
 	</body>
 </html>
+

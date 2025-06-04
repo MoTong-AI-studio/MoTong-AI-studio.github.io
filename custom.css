@@ -1,0 +1,321 @@
+#news-section:before {
+  height: 0 !important;
+}
+
+/* 轮播图推进镜头感动效 */
+.hero .slides li {
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s ease;
+  transform-origin: center center;
+  background-size: cover !important;
+  background-position: center center !important;
+  opacity: 0;
+  z-index: 1;
+}
+
+.hero .slides li.flex-active-slide {
+  opacity: 1;
+  z-index: 2;
+  animation: kenburns 15s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+
+/* 轮播图内容动画效果 */
+.hero .slide-content {
+  opacity: 0;
+  transform: translateY(30px);
+  z-index: 2;
+  position: relative;
+}
+
+.hero .flex-active-slide .slide-content {
+  animation: fadeInUp 1.2s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+.hero .slide-content .slide-title {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.hero .flex-active-slide .slide-content .slide-title {
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 1s;
+}
+
+.hero .slide-content p {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero .flex-active-slide .slide-content p {
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 1.3s;
+}
+
+.hero .slide-content .button {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero .flex-active-slide .slide-content .button {
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 1.6s;
+}
+
+/* 镜头推进动画效果 */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+    filter: brightness(0.9);
+  }
+  25% {
+    background-position: center top !important;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: right center !important;
+    filter: brightness(1.05);
+  }
+  75% {
+    background-position: center center !important;
+    filter: brightness(1.1);
+  }
+  100% {
+    transform: scale(1.1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 添加轮播图背景遮罩效果 */
+.hero .slides li:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+  z-index: 1;
+  opacity: 0.7;
+  transition: opacity 0.5s ease;
+}
+
+.hero .slides li.flex-active-slide:after {
+  opacity: 0.5;
+}
+
+/* 现代化轮播图指示器样式 - 点状设计 */
+.hero .flex-control-nav {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  left: 0;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.hero .flex-control-nav li {
+  display: inline-block;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.hero .flex-control-nav li a {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+  text-indent: -9999px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1);
+}
+
+.hero .flex-control-nav li a.flex-active {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.3);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+.hero .flex-control-nav li a:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+/* 优化圆点指示器点击效果 */
+.hero .flex-control-nav li a:active {
+  transform: scale(0.9);
+  transition: all 0.1s ease;
+}
+
+/* 添加左右导航按钮 */
+.hero .flex-direction-nav {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 10;
+  list-style: none;
+  pointer-events: none;
+}
+
+.hero .flex-direction-nav li {
+  margin: 0;
+  pointer-events: auto;
+}
+
+.hero .flex-direction-nav a {
+  width: 54px;
+  height: 54px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-decoration: none;
+  font-size: 0;
+  color: #fff;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  opacity: 0;
+  transform: translateX(0);
+}
+
+.hero:hover .flex-direction-nav a {
+  opacity: 1;
+}
+
+.hero:hover .flex-direction-nav a.flex-prev {
+  transform: translateX(10px);
+}
+
+.hero:hover .flex-direction-nav a.flex-next {
+  transform: translateX(-10px);
+}
+
+.hero .flex-direction-nav a:before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.hero .flex-direction-nav a.flex-prev:before {
+  transform: rotate(-135deg);
+  right: 18px;
+}
+
+.hero .flex-direction-nav a.flex-next:before {
+  transform: rotate(45deg);
+  left: 18px;
+}
+
+.hero .flex-direction-nav a:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1) !important;
+}
+
+.hero .flex-direction-nav a:hover:before {
+  border-color: #fff;
+}
+
+/* 添加导航按钮点击效果 */
+.hero .flex-direction-nav a.clicked {
+  transform: scale(0.9) !important;
+  transition: all 0.1s ease;
+}
+
+/* 平板和移动端的响应式调整 */
+@media (max-width: 768px) {
+  .hero .flex-control-nav {
+    bottom: 20px;
+    gap: 12px;
+  }
+  
+  .hero .flex-control-nav li a {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .hero .flex-direction-nav {
+    padding: 0 15px;
+  }
+  
+  .hero .flex-direction-nav a {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .hero .flex-direction-nav a.flex-prev:before {
+    right: 16px;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .hero .flex-direction-nav a.flex-next:before {
+    left: 16px;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* 轮播图淡入淡出效果 */
+.hero .slides li {
+  transition: opacity 0.8s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.hero .slides li:first-child {
+  position: relative;
+  display: block;
+}
+
+/* 增强轮播切换效果 */
+.hero.animating .slides li.flex-active-slide {
+  animation: zoomInOut 0.8s ease-out forwards;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1.05);
+    filter: brightness(0.9);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+} 

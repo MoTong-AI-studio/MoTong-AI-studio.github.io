@@ -6,48 +6,49 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		<link rel="icon" href="decorate/favicon.ico" type="image/x-icon">
 		<link rel="shortcut icon" href="decorate/favicon.ico" type="image/x-icon" />
-		<title>paper</title>
+		<title>论文成果 - 墨瞳AI工作室</title>
 
-		<!-- Loading third party fonts -->
-		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="bootstrap.min.css" rel="stylesheet">
-		<script src="js/bootstrap.min.js"></script>
-
-		<!-- Loading main css file -->
-		<link rel="stylesheet" href="style.css">
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		
-		<!--[if lt IE 9]>
-		<script src="js/ie-support/html5.js"></script>
-		<script src="js/ie-support/respond.js"></script>
-		<![endif]-->
-		<style>
-			.custom-link {
-			  font-size: 30px;
-			}
-		  </style>
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- AOS Animation -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+		<!-- Loading main css files -->
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="paper.css">
 	</head>
 
-
 	<body>
+		<!-- 进度条 -->
+		<div class="progress-container">
+			<div class="progress-bar" id="progressBar"></div>
+		</div>
 		
 		<div class="site-content">
-			<header class="site-header" data-bg-image="">
+			<header class="site-header collapsed-nav">
 				<div class="container">
 					<div class="header-bar">
 						<a href="index.html" class="branding">
 							<img src="decorate/favicon.ico" alt="" class="logo">
 							<div class="logo-type">
 								<h1 class="site-title">墨瞳AI工作室</h1>
-								<small class="site-description">computer vision</small>
+								<small class="site-description">Computer Vision Research</small>
 							</div>
 						</a>
 
 						<nav class="main-navigation">
 							<button class="menu-toggle"><i class="fa fa-bars"></i></button>
 							<ul class="menu">
-								<li class="home menu-item "><a href="index.html"><img src="decorate/home-icon.png" alt="Home"></a></li>
-								<li class="menu-item "><a href="about.html">关于我们</a></li>
+								<li class="home menu-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
+								<li class="menu-item"><a href="about.html">关于我们</a></li>
 								<li class="menu-item current-menu-item"><a href="paper.html">论文成果</a></li>
 								<li class="menu-item"><a href="Contest.html">竞赛成果</a></li>
 								<li class="menu-item"><a href="contact.html">联系我们</a></li>
@@ -59,281 +60,486 @@
 				</div>
 			</header>
 
-			<div class="page-head" data-bg-image="decorate/cta-bg.png">
-				<div class="container">
-					<h2 class="page-title">论文成果</h2>
-					<!-- <small>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit consequuntur magni </small> -->
+			<div class="page-head">
+				<div class="container" style="padding-top: 50px;">
+					<h2 class="page-title">学术研究成果</h2>
+					<p data-aos="fade-up" data-aos-delay="300">探索视觉智能的前沿，突破人工智能的边界</p>
 				</div>
 			</div>
 			
 				<div class="fullwidth-block">
 					<div class="container">
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
-								<div class="row g-0">
-									<div class="col-md-4">
-										<img src="paper/yqh1.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
-									</div>
-									<div class="col-md-8">
-										<div class="card-body">
-											<h3 class="card-title">Textual Prompt Guided Image Restoration</h3>
-											<p class="card-text">Qiuhai Yan, Kang Chen, Aiwen Jiang, Long Peng, Qiaosi Yi, Chunjie Zhang</p>
-											<a href="https://arxiv.org/abs/2312.06162" class="icon" target="_blank">https://arxiv.org/abs/2312.06162</a>
-										</div>
-									</div>
-								</div>
+					<!-- 过滤和排序区域 -->
+					<div class="filter-controls" data-aos="fade-up">
+						<div class="row justify-content-center">
+							<div class="col-md-5">
+								<select class="form-select" id="paperCategory">
+									<option value="all" selected>所有研究领域</option>
+									<option value="image-restoration">图像恢复</option>
+									<option value="image-dehazing">图像去雾</option>
+									<option value="image-deraining">图像去雨</option>
+									<option value="style-transfer">风格迁移</option>
+									<option value="super-resolution">超分辨率</option>
+									<option value="other">其他领域</option>
+								</select>
+							</div>
+							<div class="col-md-5">
+								<select class="form-select" id="paperSort">
+									<option value="date-desc" selected>最新发表优先</option>
+									<option value="date-asc">最早发表优先</option>
+									<option value="title-asc">标题字母升序</option>
+									<option value="title-desc">标题字母降序</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<button type="button" class="btn btn-primary w-100" id="clearFilters">
+									重置筛选
+								</button>
 							</div>
 						</div>
-
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+					</div>
+					
+					<div class="row papers-container" id="papersContainer">
+						<!-- 论文卡片 -->
+						<div class="col-lg-12 paper-item" data-category="image-restoration" data-date="2023-12-10" data-aos="fade-up">
+							<a href="https://arxiv.org/abs/2312.06162" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/wzf1.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/yqh1.png" class="img-fluid rounded-start" alt="Textual Prompt Guided Image Restoration">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
-											<h3 class="card-title">Self-supervised multi-scale pyramid fusion networks for realistic bokeh effect rendering</h3>
-											<p class="card-text">Zhifeng Wang, Aiwen Jiang, Chunjie zhang, Hanxi LI, Bo Liu</p>
-											<a href="https://www.sciencedirect.com/science/article/abs/pii/S1047320322001110" class="icon" target="_blank">https://www.sciencedirect.com/science/article/abs/pii/S1047320322001110</a>
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像恢复</span>
+											<h3 class="card-title">Textual Prompt Guided Image Restoration</h3>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Qiuhai Yan, Kang Chen, Aiwen Jiang, Long Peng, Qiaosi Yi, Chunjie Zhang
+												</p>
+												<div class="abstract">
+													本文提出了一种基于文本提示的图像恢复方法，通过引入语言模型的语义指导能力，有效地提升了图像恢复的质量。我们的方法能够根据文本描述中的语义信息，针对性地恢复图像中的不同区域，同时保持整体一致性。实验结果表明，我们的方法在多种图像恢复任务中取得了先进的性能。该方法不仅能够处理常见的图像恢复问题，还能根据文本描述进行特定区域的增强和优化，为图像恢复领域引入了新的控制维度。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2023-12-10</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: arXiv preprint</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
+						</div>
+
+						<div class="col-lg-12 paper-item" data-category="image-restoration" data-date="2022-06-15" data-aos="fade-up" data-aos-delay="100">
+							<a href="https://www.sciencedirect.com/science/article/abs/pii/S1047320322001110" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
+								<div class="row g-0">
+									<div class="col-md-4">
+											<div class="paper-image-container">
+												<img src="paper/wzf1.png" class="img-fluid rounded-start" alt="Self-supervised multi-scale pyramid fusion networks for realistic bokeh effect rendering">
+												<div class="overlay-gradient"></div>
+											</div>
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 散景渲染</span>
+											<h3 class="card-title">Self-supervised multi-scale pyramid fusion networks for realistic bokeh effect rendering</h3>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Zhifeng Wang, Aiwen Jiang, Chunjie zhang, Hanxi LI, Bo Liu
+												</p>
+												<div class="abstract">
+													本研究提出了一种自监督多尺度金字塔融合网络，用于实现真实的散景效果渲染。我们利用多尺度特征提取和金字塔结构融合，有效地捕捉图像中的深度信息和空间关系，从而生成自然且真实的散景效果。该方法无需真实的散景对作为训练数据，大大降低了数据采集的难度。通过自监督学习策略，网络能够从单张图像中提取各种尺度的特征信息，并通过精心设计的融合机制重建具有真实感散景效果的图像。实验结果表明，我们的方法在视觉质量和定量评估上优于现有的监督学习方法。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2022-06-15</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: Journal of Visual Communication and Image Representation</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
 						</div>
 						  
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="image-restoration" data-date="2022-09-20" data-aos="fade-up" data-aos-delay="200">
+							<a href="https://link.springer.com/chapter/10.1007/978-3-031-18916-6_18" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/wzf2.jpg" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/wzf2.jpg" class="img-fluid rounded-start" alt="A Dense Prediction ViT Network for Single Image Bokeh Rendering">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> Vision Transformer</span>
+												<span class="paper-tag"><i class="fas fa-tag"></i> 散景渲染</span>
 											<h3 class="card-title">A Dense Prediction ViT Network for Single Image Bokeh Rendering</h3>
-											<p class="card-text">Zhifeng Wang, Aiwen Jiang</p>
-											<a href="https://link.springer.com/chapter/10.1007/978-3-031-18916-6_18" class="icon" target="_blank">https://link.springer.com/chapter/10.1007/978-3-031-18916-6_18</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Zhifeng Wang, Aiwen Jiang
+												</p>
+												<div class="abstract">
+													本文首次将Vision Transformer应用于单图像散景渲染任务，提出了一种密集预测ViT网络。通过结合Transformer的全局建模能力和密集预测的局部细节恢复能力，我们的方法能够生成具有逼真景深效果的高质量散景图像。实验结果表明，该方法在视觉质量和定量评估上都优于现有的卷积神经网络方法。通过全局注意力机制，我们的模型能够更好地理解场景深度关系，从而更准确地区分前景和背景，实现更自然的散景效果。此外，我们还提出了一种新的损失函数，进一步提高了渲染结果的真实感和自然度。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2022-09-20</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: ECCV 2022</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="image-deraining" data-date="2021-12-01" data-aos="fade-up" data-aos-delay="100">
+							<a href="https://www.sciencedirect.com/science/article/abs/pii/S0923596521002204" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/peng1.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/peng1.png" class="img-fluid rounded-start" alt="Ensemble single image deraining network">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像去雨</span>
+												<span class="paper-tag"><i class="fas fa-tag"></i> 集成学习</span>
 											<h3 class="card-title">Ensemble single image deraining network via progressive structural boosting constraints</h3>
-											<p class="card-text">Long Peng, Aiwen Jiang, Haoran Wei, Bo Liu, Mingwen Wang</p>
-											<a href="https://www.sciencedirect.com/science/article/abs/pii/S0923596521002204" class="icon" target="_blank">https://www.sciencedirect.com/science/article/abs/pii/S0923596521002204</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Long Peng, Aiwen Jiang, Haoran Wei, Bo Liu, Mingwen Wang
+												</p>
+												<div class="abstract">
+													本文提出了一种基于渐进式结构增强约束的单图像去雨集成网络。通过引入结构保持约束和多阶段渐进式学习策略，有效地解决了现有去雨方法在保持图像结构和纹理细节方面的局限性。我们的方法通过多个子网络的集成决策，在多种复杂雨天场景中都表现出优异的去雨效果和结构保持能力。实验表明，相比于单一网络结构，我们的集成方法能够更好地处理不同密度和类型的雨线，同时有效避免过度平滑和细节丢失的问题。该方法在多个基准数据集上都取得了当前最先进的性能。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2021-12-01</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: Signal Processing: Image Communication</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 						
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="image-dehazing" data-date="2021-06-28" data-aos="fade-up" data-aos-delay="150">
+							<a href="https://ieeexplore.ieee.org/abstract/document/9473023" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/yiqs1.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/yiqs1.png" class="img-fluid rounded-start" alt="Efficient and accurate multi-scale topological network">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像去雾</span>
 											<h3 class="card-title">Efficient and accurate multi-scale topological network for single image dehazing</h3>
-											<p class="card-text">Qiaosi Yi, Juncheng Li, Faming Fang, Aiwen Jiang, Guixu Zhang</p>
-											<a href="https://ieeexplore.ieee.org/abstract/document/9473023" class="icon" target="_blank">https://ieeexplore.ieee.org/abstract/document/9473023</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Qiaosi Yi, Juncheng Li, Faming Fang, Aiwen Jiang, Guixu Zhang
+												</p>
+												<div class="abstract">
+													本文提出了一种高效且准确的多尺度拓扑网络用于单图像去雾。通过引入拓扑结构感知模块和多尺度特征融合机制，该方法能够有效地处理不同类型和密度的雾霾，同时保持图像的拓扑结构和边缘信息。与现有方法相比，我们的网络在计算效率和去雾质量方面都取得了显著进步。实验表明，该方法能够在保持图像自然性的同时有效去除雾霾影响，并在多个公开数据集上取得了最先进的性能。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2021-06-28</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: IEEE Transactions on Multimedia</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 						
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="style-transfer" data-date="2021-04-15" data-aos="fade-up" data-aos-delay="200">
+							<a href="https://link.springer.com/article/10.1007/s00521-020-05630-y" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/panjc1.jpg" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/panjc1.jpg" class="img-fluid rounded-start" alt="Object-aware video style transfer network">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 风格迁移</span>
+												<span class="paper-tag"><i class="fas fa-tag"></i> 视频处理</span>
 											<h3 class="card-title">Deliberation on object-aware video style transfer network with long–short temporal and depth-consistent constraints</h3>
-											<p class="card-text">Yunxin Liu, Aiwen Jiang, Jiancheng Pan, Jianming Liu,  Jihua Ye</p>
-											<a href="https://link.springer.com/article/10.1007/s00521-020-05630-y" class="icon" target="_blank">https://link.springer.com/article/10.1007/s00521-020-05630-y</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Yunxin Liu, Aiwen Jiang, Jiancheng Pan, Jianming Liu, Jihua Ye
+												</p>
+												<div class="abstract">
+													本文针对视频风格迁移中的时间一致性问题，提出了一种基于对象感知的视频风格迁移网络，结合长短时序约束和深度一致性约束。我们的方法能够识别视频中的对象，并在风格迁移过程中保持对象的一致性，同时考虑场景深度信息，生成时间上连贯且视觉上稳定的风格化视频。该方法解决了传统视频风格迁移中常见的闪烁和时间不连续问题，为视频艺术创作提供了新的可能性。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2021-04-15</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: Neural Computing and Applications</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 						
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="image-dehazing" data-date="2021-01-01" data-aos="fade-up" data-aos-delay="100">
+							<a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ipr2.12013" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/yiqs2.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/yiqs2.png" class="img-fluid rounded-start" alt="MSNet">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像去雾</span>
 											<h3 class="card-title">MSNet: A novel end‐to‐end single image dehazing network with multiple inter‐scale dense skip‐connections</h3>
-											<p class="card-text">Qiaosi Yi, Aiwen Jiang, Xiaolin Deng, Changhong Liu</p>
-											<a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ipr2.12013" class="icon" target="_blank">https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ipr2.12013</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Qiaosi Yi, Aiwen Jiang, Xiaolin Deng, Changhong Liu
+												</p>
+												<div class="abstract">
+													本文提出了一种名为MSNet的端到端单图像去雾网络，其特点是采用多尺度密集跳跃连接结构。这种设计能够在不同尺度下有效融合特征，增强网络对雾霾场景中细节和结构的恢复能力。实验表明，MSNet在各种复杂雾霾场景下都能生成清晰、自然的去雾结果，并在多个基准数据集上取得了优异的性能。通过多尺度特征的有效利用，我们的方法解决了传统去雾方法在处理不同密度雾霾时的适应性问题。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2021-01-01</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: IET Image Processing</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="image-dehazing" data-date="2020-03-23" data-aos="fade-up" data-aos-delay="150">
+							<a href="https://ieeexplore.ieee.org/abstract/document/9039631" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/yiqs3.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/yiqs3.png" class="img-fluid rounded-start" alt="Progressive back-traced dehazing network">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像去雾</span>
 											<h3 class="card-title">Progressive back-traced dehazing network based on multi-resolution recurrent reconstruction</h3>
-											<p class="card-text">Qiaosi Yi, Aiwen Jiang, Juncheng Li, Jianyi Wan, Mingwen Wang</p>
-											<a href="https://ieeexplore.ieee.org/abstract/document/9039631" class="icon" target="_blank">https://ieeexplore.ieee.org/abstract/document/9039631</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Qiaosi Yi, Aiwen Jiang, Juncheng Li, Jianyi Wan, Mingwen Wang
+												</p>
+												<div class="abstract">
+													本文提出了一种基于多分辨率循环重建的渐进式回溯去雾网络。该方法通过建立回溯机制，从粗到细逐步精炼去雾结果，同时利用多分辨率重建模块捕获不同尺度下的图像特征。这种渐进式学习策略能够有效地处理不同密度的雾霾，并在保持图像细节的同时去除雾霾影响。我们的方法在各种真实和合成数据集上都展现出了优异的性能，同时具有较低的计算复杂度，适合实际应用场景。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2020-03-23</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: IEEE Access</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="image-deraining" data-date="2020-02-12" data-aos="fade-up" data-aos-delay="200">
+							<a href="https://ieeexplore.ieee.org/abstract/document/9001158" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/peng2.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/peng2.png" class="img-fluid rounded-start" alt="Cumulative rain density sensing network">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像去雨</span>
 											<h3 class="card-title">Cumulative rain density sensing network for single image derain</h3>
-											<p class="card-text">Long Peng, Aiwen Jiang, Qiaosi Yi, Mingwen Wang</p>
-											<a href="https://ieeexplore.ieee.org/abstract/document/9001158" class="icon" target="_blank">https://ieeexplore.ieee.org/abstract/document/9001158</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Long Peng, Aiwen Jiang, Qiaosi Yi, Mingwen Wang
+												</p>
+												<div class="abstract">
+													本文提出了一种累积雨密度感知网络用于单图像去雨。与现有方法不同，我们的网络能够自适应地估计图像中的雨密度分布，并根据雨密度信息调整去雨策略。通过引入累积雨密度感知机制，该方法能够有效地处理不同密度和类型的雨线，在保持图像背景细节的同时去除雨水干扰。实验结果表明，我们的方法在多种复杂雨天场景下都表现出优异的去雨效果，具有较强的实用性和鲁棒性。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2020-02-12</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: IEEE Signal Processing Letters</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 					
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="other" data-date="2019-07-14" data-aos="fade-up" data-aos-delay="100">
+							<a href="https://ieeexplore.ieee.org/abstract/document/8851704" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/yiqs4.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/yiqs4.png" class="img-fluid rounded-start" alt="Static Crowd Scene Analysis">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 人群分析</span>
 											<h3 class="card-title">Static Crowd Scene Analysis via Deep Network with Multi-branch Dilated Convolution Blocks</h3>
-											<p class="card-text">Haoran Liu, Aiwen Jiang, Qiaosi Yi, Xiaolin Deng, Jianyi Wan, Mingwen Wang</p>
-											<a href="https://ieeexplore.ieee.org/abstract/document/8851704" class="icon" target="_blank">https://ieeexplore.ieee.org/abstract/document/8851704</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Haoran Liu, Aiwen Jiang, Qiaosi Yi, Xiaolin Deng, Jianyi Wan, Mingwen Wang
+												</p>
+												<div class="abstract">
+													本文针对静态人群场景分析任务，提出了一种基于多分支扩张卷积块的深度网络。通过引入不同扩张率的卷积分支，该网络能够捕获多尺度人群特征，有效地处理人群密度变化大、分布不均匀的场景。实验结果表明，我们的方法在人群计数和密度估计任务上取得了优于现有方法的性能。此外，我们提出的扩张卷积结构能够有效扩大感受野，同时保持计算效率，为人群分析提供了新的解决方案。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2019-07-14</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: International Joint Conference on Neural Networks (IJCNN)</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="super-resolution" data-date="2019-03-01" data-aos="fade-up" data-aos-delay="150">
+							<a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-ipr.2018.6057" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/meikf1.jpg" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/meikf1.jpg" class="img-fluid rounded-start" alt="Deep residual refining">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像超分辨率</span>
 											<h3 class="card-title">Deep residual refining based pseudo‐multi‐frame network for effective single image super‐resolution</h3>
-											<p class="card-text">Kangfu Mei, Aiwen Jiang, Juncheng Li, Bo Liu, Jihua Ye, Mingwen Wang</p>
-											<a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-ipr.2018.6057" class="icon" target="_blank">https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-ipr.2018.6057</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Kangfu Mei, Aiwen Jiang, Juncheng Li, Bo Liu, Jihua Ye, Mingwen Wang
+												</p>
+												<div class="abstract">
+													本文提出了一种基于深度残差精炼的伪多帧网络，用于高效的单图像超分辨率重建。我们的方法创新性地将单帧输入转化为多个伪帧表示，通过残差学习机制精炼各个伪帧的特征，并最终融合重建高分辨率图像。这种伪多帧策略有效地增强了网络对图像细节和纹理的恢复能力，同时保持了计算效率。与传统方法相比，我们的网络能够更好地恢复图像细节，减少伪影，提高视觉质量。实验结果表明，该方法在多个公开数据集上取得了优异的性能。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2019-03-01</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: IET Image Processing</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
-						<div>
-							<div class="card mb-3" style="max-width: 80%; margin: 0 auto;">
+						<div class="col-lg-12 paper-item" data-category="image-dehazing" data-date="2018-12-02" data-aos="fade-up" data-aos-delay="200">
+							<a href="https://link.springer.com/chapter/10.1007/978-3-030-20887-5_13" class="paper-link" target="_blank">
+								<div class="card mb-3 paper-card">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="paper/meikf2.png" class="img-fluid rounded-start" alt="..." style="width: 300px; height: 150px;">
+											<div class="paper-image-container">
+												<img src="paper/meikf2.png" class="img-fluid rounded-start" alt="Progressive feature fusion network">
+												<div class="overlay-gradient"></div>
+											</div>
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
+												<span class="paper-tag"><i class="fas fa-tag"></i> 图像去雾</span>
 											<h3 class="card-title">Progressive feature fusion network for realistic image dehazing</h3>
-											<p class="card-text">Kangfu Mei, Aiwen Jiang, Juncheng Li, Mingwen Wang</p>
-											<a href="https://link.springer.com/chapter/10.1007/978-3-030-20887-5_13" class="icon" target="_blank">https://link.springer.com/chapter/10.1007/978-3-030-20887-5_13</a>
+												<p class="card-text">
+													<i class="fas fa-users"></i> Kangfu Mei, Aiwen Jiang, Juncheng Li, Mingwen Wang
+												</p>
+												<div class="abstract">
+													本文提出了一种渐进式特征融合网络，用于实现真实的图像去雾效果。该网络通过多阶段渐进式学习框架，逐步融合低级和高级特征，同时保持图像的颜色和结构一致性。我们的方法能够自适应地处理不同程度的雾霾场景，在保持图像自然度的同时有效去除雾霾。在多个公开数据集上的实验结果证明了该方法的有效性。此外，我们还提出了一种新的评估指标，更好地反映去雾结果的视觉质量和与真实图像的一致性。
+												</div>
+												<span class="abstract-toggle">展开</span>
+												<div class="paper-info">
+													<span><i class="far fa-calendar-alt"></i> 发表时间: 2018-12-02</span>
+													<span><i class="fas fa-book"></i> 期刊/会议: ACCV 2018</span>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!--
-						<div class="boxed-icon">
-							<a href="https://www.sciencedirect.com/science/article/abs/pii/S0923596521002204" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Peng L, Jiang A, Wei H, et al. Ensemble single image deraining network via progressive structural boosting constraints[J]. Signal Processing: Image Communication, 2021, 99: 116460.</p>
+							</a>
 						</div>
 						
-						<div class="boxed-icon">
-							<a href="https://ieeexplore.ieee.org/abstract/document/9473023" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Yi Q, Li J, Fang F, et al. Efficient and accurate multi-scale topological network for single image dehazing[J]. IEEE Transactions on Multimedia, 2021, 24: 3114-3128.</p>
+						<!-- 无搜索结果提示 -->
+						<div class="no-results" id="noResults">
+							<i class="fas fa-search"></i>
+							<h3>未找到匹配的论文</h3>
+							<p>请尝试调整搜索条件或查看其他类别的论文</p>
+							<button class="btn btn-primary mt-3" id="resetSearch">重置搜索</button>
 						</div>
-						<div class="boxed-icon">
-							<a href="https://link.springer.com/article/10.1007/s00521-020-05630-y" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Liu Y, Jiang A, Pan J, et al. Deliberation on object-aware video style transfer network with long–short temporal and depth-consistent constraints[J]. Neural Computing and Applications, 2021, 33(14): 8845-8856.</p>
 						</div>
-						<div class="boxed-icon">
-							<a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ipr2.12013" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Yi Q, Jiang A, Deng X, et al. MSNet: A novel end‐to‐end single image dehazing network with multiple inter‐scale dense skip‐connections[J]. IET Image Processing, 2021, 15(1): 143-154.</p>
 						</div>
-						<div class="boxed-icon">
-							<a href="https://ieeexplore.ieee.org/abstract/document/9039631" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Yi Q, Jiang A, Li J, et al. Progressive back-traced dehazing network based on multi-resolution recurrent reconstruction[J]. IEEE Access, 2020, 8: 54514-54521.</p>
-						</div>
-						<div class="boxed-icon">
-							<a href="https://ieeexplore.ieee.org/abstract/document/9001158" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Peng L, Jiang A, Yi Q, et al. Cumulative rain density sensing network for single image derain[J]. IEEE Signal Processing Letters, 2020, 27: 406-410.</p>
-						</div>
-						<div class="boxed-icon">
-							<a href="https://ieeexplore.ieee.org/abstract/document/8851704" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Liu H, Jiang A, Yi Q, et al. Static Crowd Scene Analysis via Deep Network with Multi-branch Dilated Convolution Blocks[C]//2019 International Joint Conference on Neural Networks (IJCNN). IEEE, 2019: 1-7.</p>
-						</div>
-						<div class="boxed-icon">
-							<a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-ipr.2018.6057" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Mei K, Jiang A, Li J, et al. Deep residual refining based pseudo‐multi‐frame network for effective single image super‐resolution[J]. IET Image Processing, 2019, 13(4): 591-599.</p>
-						</div>
-						<div class="boxed-icon">
-							<a href="https://link.springer.com/chapter/10.1007/978-3-030-20887-5_13" class="icon" target="_blank"><img src="images/OIP-C.jpg" alt="" width="20px"></a>
-							<p>Mei K, Jiang A, Li J, et al. Progressive feature fusion network for realistic image dehazing[C]//Computer Vision–ACCV 2018: 14th Asian Conference on Computer Vision, Perth, Australia, December 2–6, 2018, Revised Selected Papers, Part I 14. Springer International Publishing, 2019: 203-215.</p>
-						</div>-->
 					</div>
 				</div>
 			
-
-				<!-- <div class="fullwidth-block" data-bg-color="#edf2f4">
-					<div class="container">
-						<div class="subscribe-form">
-							<h2>Join our newsletter</h2>
-							<form action="#">
-								<input type="text" placeholder="Enter your email">
-								<input type="submit" value="Subscribe">
-							</form>
+		<!-- 浮动分类标签 -->
+		<div class="floating-tags d-none d-xl-flex">
+			<div class="tag-item active" data-filter="all">
+				<i class="fas fa-th-list"></i> 所有领域
+			</div>
+			<div class="tag-item" data-filter="image-restoration">
+				<i class="fas fa-image"></i> 图像恢复
+			</div>
+			<div class="tag-item" data-filter="image-dehazing">
+				<i class="fas fa-cloud-sun"></i> 图像去雾
+			</div>
+			<div class="tag-item" data-filter="image-deraining">
+				<i class="fas fa-cloud-rain"></i> 图像去雨
+			</div>
+			<div class="tag-item" data-filter="style-transfer">
+				<i class="fas fa-palette"></i> 风格迁移
+			</div>
+			<div class="tag-item" data-filter="super-resolution">
+				<i class="fas fa-expand"></i> 超分辨率
+			</div>
+			<div class="tag-item" data-filter="other">
+				<i class="fas fa-ellipsis-h"></i> 其他领域
 						</div>
 					</div>
-				</div> -->
 
-			</main> <!-- .main-content -->
-
-
+		<!-- 回到顶部按钮 -->
+		<div class="scroll-top" id="scrollTop">
+			<i class="fas fa-arrow-up"></i>
 		</div>
 
-		<script src="js/jquery-1.11.1.min.js"></script>
+		<!-- jQuery & Bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- AOS Animation Library -->
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		
+		<!-- Other Scripts -->
 		<script src="js/plugins.js"></script>
 		<script src="js/app.js"></script>
-		
+		<script src="paper.js"></script>
 	</body>
-
 </html>
