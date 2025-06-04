@@ -10,10 +10,13 @@
 			$(".mobile-navigation").slideToggle();
 		});
 
-		$(".hero").flexslider({
-			directionNav: false,
-			controlNav: true,
-		});
+		// 检查是否已由custom-effects.js初始化
+		if (!window.heroInitialized) {
+			$(".hero").flexslider({
+				directionNav: false,
+				controlNav: true,
+			});
+		}
 
 		var map = $(".map");
 		var latitude = map.data("latitude");
