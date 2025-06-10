@@ -12,8 +12,27 @@ $(document).ready(function() {
     window.onscroll = function() {
         updateProgressBar();
         scrollFunction();
+        handleNavBarScroll(); // 添加导航栏滚动样式变化处理
         updateFloatingNav();
     };
+    
+    // 导航栏滚动样式变化
+    function handleNavBarScroll() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.querySelector(".site-header").style.backgroundColor = "rgba(255, 255, 255, 0.95)";
+            document.querySelector(".site-header").style.boxShadow = "0 2px 15px rgba(0, 0, 0, 0.1)";
+            document.querySelector(".header-bar").style.backgroundColor = "transparent";
+            document.querySelector(".header-bar").style.boxShadow = "none";
+        } else {
+            document.querySelector(".site-header").style.backgroundColor = "rgba(255, 255, 255, 0)";
+            document.querySelector(".site-header").style.boxShadow = "none";
+            document.querySelector(".header-bar").style.backgroundColor = "rgba(255, 255, 255, 0.45)";
+            document.querySelector(".header-bar").style.boxShadow = "0 1px 5px rgba(0, 0, 0, 0.15)";
+        }
+    }
+    
+    // 页面加载时初始化导航栏样式
+    handleNavBarScroll();
     
     // 监听窗口大小变化，自动调整卡片高度
     $(window).resize(function() {
@@ -32,6 +51,11 @@ $(document).ready(function() {
     
     // 调整指定部分的卡片高度
     function adjustCardsInSection(sectionId) {
+        // 跳过指导老师部分的卡片高度调整
+        if (sectionId === '#teacher-section') {
+            return;
+        }
+        
         // 重置卡片高度
         $(sectionId + ' .team').css('height', '');
         

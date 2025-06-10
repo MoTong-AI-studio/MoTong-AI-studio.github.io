@@ -5,6 +5,14 @@ $(document).ready(function() {
         once: true
     });
     
+    // 克隆主导航到移动导航
+    $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
+    
+    // 菜单按钮点击事件
+    $(".menu-toggle").click(function() {
+        $(".mobile-navigation").slideToggle();
+    });
+    
     // 页面滚动进度条
     window.onscroll = function() {
         updateProgressBar();

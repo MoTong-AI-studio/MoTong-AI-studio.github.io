@@ -6,6 +6,14 @@ $(document).ready(function() {
         offset: 100
     });
     
+    // 克隆主导航到移动导航
+    $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
+    
+    // 菜单按钮点击事件
+    $(".menu-toggle").click(function() {
+        $(".mobile-navigation").slideToggle();
+    });
+    
     // 页面滚动进度条
     window.onscroll = function() {
         updateProgressBar();
@@ -32,6 +40,57 @@ $(document).ready(function() {
     $("#scrollTop").click(function() {
         $("html, body").animate({ scrollTop: 0 }, 800);
     });
+    
+    // 统计数字动画
+    function animateStats() {
+        $('.stat-number').each(function() {
+            var $this = $(this);
+            var target = parseInt($this.text());
+            var suffix = $this.attr('data-suffix') || '';
+            
+            $({ Counter: 0 }).animate({
+                Counter: target
+            }, {
+                duration: 2000,
+                easing: 'swing',
+                step: function() {
+                    $this.text(Math.ceil(this.Counter));
+                },
+                complete: function() {
+                    $this.text(target);
+                }
+            });
+        });
+    }
+    
+    // 当统计区域进入视口时触发动画
+    if ('IntersectionObserver' in window) {
+        var statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    setTimeout(animateStats, 500);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statsObserver.observe(document.querySelector('.contest-stats'));
+    } else {
+        // 对于不支持IntersectionObserver的浏览器，直接执行动画
+        $(window).on('scroll', function() {
+            var $stats = $('.contest-stats');
+            if ($stats.length && $(window).scrollTop() + $(window).height() > $stats.offset().top) {
+                setTimeout(animateStats, 500);
+                $(window).off('scroll'); // 移除滚动监听，避免重复触发
+            }
+        });
+        
+        // 初始检查，如果统计区域已在视口中
+        if ($('.contest-stats').length && 
+            $(window).scrollTop() + $(window).height() > $('.contest-stats').offset().top) {
+            setTimeout(animateStats, 500);
+        }
+    }
     
     // 设置Lightbox选项
     lightbox.option({

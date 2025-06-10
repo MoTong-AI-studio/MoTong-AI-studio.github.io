@@ -7,6 +7,9 @@ $(document).ready(function() {
         once: true
     });
     
+    // 克隆主导航到移动导航
+    $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
+    
     // 初始化
     initializePage();
     
@@ -37,8 +40,32 @@ $(document).ready(function() {
         triggerExistingFileInput();
     };
     
-
+    // 检测移动设备
+    checkMobileDevice();
 });
+
+// 检测移动设备并添加相应类
+function checkMobileDevice() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        $('body').addClass('mobile-device');
+        
+        // 针对iOS设备优化
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        if (isIOS) {
+            $('body').addClass('ios-device');
+        }
+        
+        // 针对安卓设备优化
+        const isAndroid = /Android/.test(navigator.userAgent);
+        if (isAndroid) {
+            $('body').addClass('android-device');
+        }
+        
+        console.log(`检测到移动设备: ${isIOS ? 'iOS' : (isAndroid ? 'Android' : '其他')}`);
+    }
+}
 
 function initializePage() {
     // 设置默认图片
@@ -59,6 +86,9 @@ function initImageComparison() {
     const container = $('.comparison-image-container');
     let isDragging = false;
     
+    // 检测是否是触摸设备
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
     // 鼠标按下事件
     container.on('mousedown', function(e) {
         isDragging = true;
@@ -68,14 +98,34 @@ function initImageComparison() {
         e.preventDefault();
     });
     
-    // 触摸事件支持
+    // 触摸事件支持 - 优化触摸处理
     container.on('touchstart', function(e) {
         isDragging = true;
         const touch = e.originalEvent.touches[0];
         updateSliderPosition(touch);
         $(document).on('touchmove', handleTouchMove);
-        $(document).on('touchend', handleTouchEnd);
-        e.preventDefault();
+        $(document).on('touchend touchcancel', handleTouchEnd);
+        
+        // 在触摸设备上阻止默认行为可能会阻止滚动，所以只在确定是水平移动时才阻止
+        const touchX = touch.clientX;
+        const initialX = touchX;
+        
+        const touchMoveThreshold = function(e) {
+            const touchMove = e.originalEvent.touches[0];
+            const diffX = Math.abs(touchMove.clientX - initialX);
+            const diffY = Math.abs(touchMove.clientY - touch.clientY);
+            
+            // 如果水平移动大于垂直移动，阻止默认行为(页面滚动)
+            if (diffX > diffY && diffX > 10) {
+                e.preventDefault();
+            }
+            
+            // 一旦确定移动方向，移除这个临时监听器
+            $(document).off('touchmove', touchMoveThreshold);
+        };
+        
+        // 添加临时监听器来确定移动方向
+        $(document).on('touchmove', touchMoveThreshold);
     });
     
     function handleMouseMove(e) {
@@ -88,7 +138,7 @@ function initImageComparison() {
         if (isDragging) {
             const touch = e.originalEvent.touches[0];
             updateSliderPosition(touch);
-            e.preventDefault();
+            e.preventDefault(); // 此时我们确定是在操作滑块，可以安全地阻止默认行为
         }
     }
     
@@ -101,7 +151,7 @@ function initImageComparison() {
     function handleTouchEnd() {
         isDragging = false;
         $(document).off('touchmove', handleTouchMove);
-        $(document).off('touchend', handleTouchEnd);
+        $(document).off('touchend touchcancel', handleTouchEnd);
     }
     
     function updateSliderPosition(e) {
@@ -149,16 +199,16 @@ function initImageComparison() {
 function bindEvents() {
     // 移动端菜单切换
     $('.menu-toggle').on('click', function() {
-        $('.main-navigation .menu').toggleClass('active');
+        $('.main-navigation').toggleClass('toggled');
+        $('.mobile-navigation').slideToggle();
         $(this).toggleClass('active');
     });
     
     // 点击菜单项后关闭移动端菜单
-    $('.main-navigation .menu-item a').on('click', function() {
-        if ($(window).width() <= 768) {
-            $('.main-navigation .menu').removeClass('active');
-            $('.menu-toggle').removeClass('active');
-        }
+    $('.mobile-navigation .menu-item a').on('click', function() {
+        $('.mobile-navigation').slideUp();
+        $('.main-navigation').removeClass('toggled');
+        $('.menu-toggle').removeClass('active');
     });
     
     // 示例图片选择
@@ -476,7 +526,7 @@ function loadSampleImage($item) {
     // 重置容器样式
     resetImageContainer();
     
-    // 正确分配：背景显示原图，遮罩层显示处理后结果
+    // 正确分配：背景显示原图，遮罩层显示处理后的结果
     $originalImage.attr('src', originalSrc);
     $resultImage.attr('src', resultSrc);
     
@@ -555,8 +605,9 @@ function adjustImageContainer() {
     const imageRatio = imageWidth / imageHeight;
     
     // 设置合理的高度范围（响应式）
-    const isMobile = $(window).width() <= 768;
-    const isSmallScreen = $(window).width() <= 480;
+    const windowWidth = $(window).width();
+    const isMobile = windowWidth <= 768;
+    const isSmallScreen = windowWidth <= 480;
     
     let minHeight, maxHeight;
     if (isSmallScreen) {
@@ -613,9 +664,10 @@ function adjustImageContainer() {
     console.log(`裁剪程度: ${idealHeight > maxHeight ? '轻微垂直裁剪' : '完整显示'}`);
     
     // 容器尺寸调整完成后，修正遮罩层内图片宽度
-    setTimeout(() => {
+    // 使用RAF确保平滑渲染
+    requestAnimationFrame(() => {
         fixOverlayImageWidth();
-    }, 50);
+    });
 }
 
 
@@ -780,6 +832,9 @@ function processImage() {
     const $loading = $('#loadingOverlay');
     const $originalImage = $('#original-image'); // 背景，显示原图
     const $resultImage = $('#result-image'); // 遮罩层，将显示处理后的图片
+    const $container = $('.comparison-image-container');
+    const $slider = $('#comparisonSlider');
+    const $overlay = $('#comparisonOverlay');
     
     // 禁用按钮
     $btn.prop('disabled', true);
@@ -787,6 +842,9 @@ function processImage() {
     
     // 显示加载动画
     $loading.addClass('active');
+    
+    // 暂时禁用滑块动画，避免加载时出现过渡效果
+    $container.addClass('slider-no-animation');
     
     // 获取当前的原图（从背景层获取）
     const currentOriginalSrc = $originalImage.attr('src');
@@ -801,64 +859,53 @@ function processImage() {
         
         // 结果图片加载完成后调整容器
         $resultImage.off('load.process').on('load.process', function() {
-            setTimeout(() => {
+            // 使用RAF确保浏览器有时间处理新图像
+            requestAnimationFrame(() => {
                 adjustImageContainer();
                 // 容器调整后修正遮罩层图片宽度
                 fixOverlayImageWidth();
-            }, 50);
+                
+                // 隐藏加载动画
+                $loading.removeClass('active');
+                
+                // 恢复按钮
+                $btn.prop('disabled', false);
+                $btn.find('span').text('立即生成');
+                
+                // 移除禁用动画类
+                $container.removeClass('slider-no-animation');
+                
+                // 设置滑块到中间位置以显示对比效果
+                $slider.css('left', '50%');
+                $overlay.css('width', '50%');
+                
+                // 显示成功提示
+                showNotification('图片处理完成！左侧为处理后效果，右侧为原图', 'success');
+                
+                // 滚动到结果区域
+                $('html, body').animate({
+                    scrollTop: $('.comparison-image-container').offset().top - 100
+                }, 800);
+                
+                // 不再调用动画提示函数
+                // animateSliderHint();
+            });
         });
-        
-        // 隐藏加载动画
-        $loading.removeClass('active');
-        
-        // 恢复按钮
-        $btn.prop('disabled', false);
-        $btn.find('span').text('立即生成');
-        
-        // 设置滑块到中间位置以显示对比效果
-        $('#comparisonSlider').css('left', '50%');
-        $('#comparisonOverlay').css('width', '50%');
-        
-        // 显示成功提示
-        showNotification('图片处理完成！左侧为处理后效果，右侧为原图', 'success');
-        
-        // 滚动到结果区域
-        $('html, body').animate({
-            scrollTop: $('.comparison-image-container').offset().top - 100
-        }, 800);
-        
-        // 添加提示动画
-        animateSliderHint();
-        
     }, 3000); // 模拟3秒处理时间
 }
 
-// 滑块提示动画
+// 滑块提示动画 - 完全禁用，不再显示动画
 function animateSliderHint() {
+    // 函数保留但不执行任何动画，仅保持固定在中间位置
     const $slider = $('#comparisonSlider');
     const $overlay = $('#comparisonOverlay');
     
-    // 演示左右对比效果：滑块左侧是处理后，右侧是原图
-    setTimeout(() => {
-        // 先向左滑动到20%，更多显示原图
-        $slider.css('left', '20%');
-        $overlay.css('width', '20%');
-        fixOverlayImageWidth();
-        
-        setTimeout(() => {
-            // 再向右滑动到80%，更多显示处理后图片
-            $slider.css('left', '80%');
-            $overlay.css('width', '80%');
-            fixOverlayImageWidth();
-            
-            setTimeout(() => {
-                // 最后回到中间位置，左右各一半
-                $slider.css('left', '50%');
-                $overlay.css('width', '50%');
-                fixOverlayImageWidth();
-            }, 500);
-        }, 500);
-    }, 500);
+    // 确保滑块在中间位置
+    $slider.css('left', '50%');
+    $overlay.css('width', '50%');
+    
+    // 确保图片对齐
+    fixOverlayImageWidth();
 }
 
 function simulateImageProcessing(originalSrc) {
@@ -877,10 +924,6 @@ function simulateImageProcessing(originalSrc) {
     // 否则返回原图（实际应用中这里会是处理后的图片）
     return originalSrc;
 }
-
-
-
-
 
 function showNotification(message, type = 'info') {
     // 创建通知元素
@@ -991,34 +1034,42 @@ $(document).ready(function() {
 
 // 响应式处理
 function handleResponsive() {
-    const isMobile = $(window).width() <= 768;
+    const windowWidth = $(window).width();
+    const isMobile = windowWidth <= 768;
+    const isSmallScreen = windowWidth <= 480;
     
     if (isMobile) {
-        // 移动端特殊处理
         $('.comparison-image-container').addClass('mobile-layout');
+        
+        if (isSmallScreen) {
+            $('.comparison-image-container').addClass('small-screen');
+        } else {
+            $('.comparison-image-container').removeClass('small-screen');
+        }
     } else {
-        $('.comparison-image-container').removeClass('mobile-layout');
+        $('.comparison-image-container').removeClass('mobile-layout small-screen');
+        $('.main-navigation').removeClass('toggled');
+        $('.mobile-navigation').hide();
     }
     
     // 响应式变化时重新调整图片容器
-    setTimeout(() => {
+    // 使用RAF确保平滑渲染
+    requestAnimationFrame(() => {
         adjustImageContainer();
-    }, 100);
+    });
 }
 
+// 优化resize事件处理，避免频繁调用
+let resizeTimer;
 $(window).resize(function() {
-    handleResponsive();
-    // 窗口大小变化时重新调整图片容器
-    setTimeout(() => {
-        adjustImageContainer();
-        // 容器调整后修正遮罩层图片宽度
-        fixOverlayImageWidth();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        handleResponsive();
+        requestAnimationFrame(() => {
+            adjustImageContainer();
+            fixOverlayImageWidth();
+        });
     }, 100);
-});
-
-// 初始化响应式
-$(document).ready(function() {
-    handleResponsive();
 });
 
 // 进度条功能
@@ -1027,6 +1078,7 @@ function initProgressBar() {
     window.onscroll = function() {
         updateProgressBar();
         scrollFunction();
+        updateHeaderStyle();
     };
     
     function updateProgressBar() {
@@ -1046,6 +1098,15 @@ function initProgressBar() {
             document.getElementById("scrollTop").classList.remove("active");
         }
     }
+    
+    // 导航栏滚动效果
+    function updateHeaderStyle() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.querySelector('.site-header').classList.add('scrolled');
+        } else {
+            document.querySelector('.site-header').classList.remove('scrolled');
+        }
+    }
 }
 
 // 修正遮罩层内图片宽度，确保与容器完全重叠
@@ -1056,6 +1117,14 @@ function fixOverlayImageWidth() {
     if ($container.length > 0 && $resultImage.length > 0) {
         const containerWidth = $container[0].getBoundingClientRect().width;
         $resultImage.css('width', containerWidth + 'px');
+        
+        // 确保结果图片定位准确
+        $resultImage.css({
+            'position': 'absolute',
+            'left': '0',
+            'top': '0'
+        });
+        
         console.log('遮罩层图片宽度已修正为:', containerWidth + 'px');
     }
-} 
+}

@@ -7,6 +7,9 @@ $(document).ready(function() {
         once: true
     });
     
+    // 克隆主导航到移动导航
+    $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
+    
     // 初始化
     initializePage();
     
@@ -149,16 +152,16 @@ function initImageComparison() {
 function bindEvents() {
     // 移动端菜单切换
     $('.menu-toggle').on('click', function() {
-        $('.main-navigation .menu').toggleClass('active');
+        $('.main-navigation').toggleClass('toggled');
+        $('.mobile-navigation').slideToggle();
         $(this).toggleClass('active');
     });
     
     // 点击菜单项后关闭移动端菜单
-    $('.main-navigation .menu-item a').on('click', function() {
-        if ($(window).width() <= 768) {
-            $('.main-navigation .menu').removeClass('active');
-            $('.menu-toggle').removeClass('active');
-        }
+    $('.mobile-navigation .menu-item a').on('click', function() {
+        $('.mobile-navigation').slideUp();
+        $('.main-navigation').removeClass('toggled');
+        $('.menu-toggle').removeClass('active');
     });
     
     // 示例图片选择
@@ -998,6 +1001,8 @@ function handleResponsive() {
         $('.comparison-image-container').addClass('mobile-layout');
     } else {
         $('.comparison-image-container').removeClass('mobile-layout');
+        $('.main-navigation').removeClass('toggled');
+        $('.mobile-navigation').hide();
     }
     
     // 响应式变化时重新调整图片容器
@@ -1027,6 +1032,7 @@ function initProgressBar() {
     window.onscroll = function() {
         updateProgressBar();
         scrollFunction();
+        updateHeaderStyle();
     };
     
     function updateProgressBar() {
@@ -1044,6 +1050,15 @@ function initProgressBar() {
             document.getElementById("scrollTop").classList.add("active");
         } else {
             document.getElementById("scrollTop").classList.remove("active");
+        }
+    }
+    
+    // 导航栏滚动效果
+    function updateHeaderStyle() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.querySelector('.site-header').classList.add('scrolled');
+        } else {
+            document.querySelector('.site-header').classList.remove('scrolled');
         }
     }
 }

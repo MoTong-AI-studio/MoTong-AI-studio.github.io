@@ -254,7 +254,8 @@ form textarea {
   resize: vertical; }
 form input[type="submit"], form button, form input[type="reset"] {
   border: none;
-  background-color: #69acc7; }
+  background-color: #69acc7;
+  color: white; }
 
 /*
  * Reusable Components Style
@@ -1140,7 +1141,7 @@ form input[type="submit"], form button, form input[type="reset"] {
   *zoom: 1;
   background: rgba(255, 255, 255, 0.45);  /* 设置背景颜色为半透明白色 */
   border-radius: 0;
-  padding: 0 30px;
+  padding: 0;  /* 移除水平内边距 */
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
   width: 100%; /* 确保header-bar占据整行 */ }
   .header-bar:after {
@@ -1160,7 +1161,7 @@ form input[type="submit"], form button, form input[type="reset"] {
 .branding {
   float: left;
   padding: 15px;
-  margin-left: 20px; /* 添加左侧边距 */ }
+  margin-left: 0; /* 移除左侧边距 */ }
   .branding .logo, .branding .logo-type {
     display: inline-block;
     vertical-align: middle; }
@@ -1187,7 +1188,7 @@ form input[type="submit"], form button, form input[type="reset"] {
 .main-navigation {
   *zoom: 1;
   float: right;
-  margin-right: 20px; /* 添加右侧边距，确保与右侧边缘有适当间距 */ }
+  margin-right: 0; /* 移除右侧边距 */ }
   .main-navigation:after {
     content: " ";
     clear: both;
@@ -1230,8 +1231,6 @@ form input[type="submit"], form button, form input[type="reset"] {
         display: none; } }
     .main-navigation .menu .menu-item {
       float: left; }
-      .main-navigation .menu .menu-item.home a {
-        padding: 28px 30px 31px; }
       .main-navigation .menu .menu-item a {
         font-size: 13px;
         font-size: 0.8666666667em;
@@ -2461,5 +2460,37 @@ figure {
 @media (max-width: 576px) {
   .floating-nav-item a {
     font-size: 0.8rem;
+  }
+}
+
+/* 导航栏特殊容器样式 */
+.site-header .container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 0;
+}
+
+.main-navigation {
+  float: right;
+}
+
+@media screen and (min-width: 991px) {
+  .main-navigation .menu-item:last-child a {
+    padding-right: 0;
+  }
+  
+  .header-bar {
+    padding-left: 20px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .main-navigation .menu-item:last-child a {
+    padding-right: 10px !important;
+  }
+  
+  .header-bar {
+    padding-left: 20px;
   }
 }

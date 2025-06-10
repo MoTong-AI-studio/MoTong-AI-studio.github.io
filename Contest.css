@@ -45,6 +45,13 @@ body {
     z-index: 1000;
     backdrop-filter: blur(10px);
     transition: all var(--transition-speed) ease;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
 }
 
 .header-bar {
@@ -52,6 +59,16 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 5px 0;
+    width: 100%;
+    margin: 0;
+}
+
+.site-header .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
 }
 
 .branding {
@@ -90,7 +107,12 @@ body {
 
 /* 导航菜单 */
 .main-navigation {
-    margin-right: -1100px;
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    padding-right: 0;
+    width: auto;
 }
 
 .main-navigation .menu {
@@ -98,21 +120,33 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+.main-navigation .menu-item:last-child a {
+    margin-right: 0;
+    padding-right: 10px !important;
+    position: relative;
+    right: 0;
 }
 
 .main-navigation .menu-item {
-    margin: 0 5px;
+    margin: 0 10px;
     position: relative;
 }
 
 .main-navigation .menu-item a {
-    padding: 10px 15px;
+    padding: 10px 20px;
     color: var(--dark-color);
     font-weight: 500;
     text-decoration: none;
     display: block;
     border-radius: 30px;
     transition: all var(--transition-speed);
+    min-width: 80px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .main-navigation .menu-item a:hover,
@@ -120,14 +154,48 @@ body {
     background: var(--gradient-bg);
     color: white;
     box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
 }
 
-.main-navigation .home a {
-    padding: 6px 10px;
+/* 为当前选中的菜单项添加特殊样式 */
+.main-navigation .current-menu-item a {
+    position: relative;
+    font-weight: 600;
 }
 
-.main-navigation .home a i {
-    font-size: 18px;
+/* 为当前选中的菜单项添加标记 */
+.main-navigation .current-menu-item a::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 增强导航菜单项悬停效果 */
+.main-navigation .menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.main-navigation .menu-item a:hover::after,
+.main-navigation .current-menu-item a::after {
+    width: 70%;
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 /* 页面头部 */
@@ -164,6 +232,7 @@ body {
     height: 100%;
     background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(46, 204, 113, 0.9));
     z-index: 1;
+    opacity: 0.85;
 }
 
 .page-head .container {
@@ -502,102 +571,448 @@ body {
 /* 响应式调整 - 适应不同屏幕 */
 @media (max-width: 1200px) {
     .project {
-        width: 32%;
+        flex: 0 0 calc(33.333% - 20px);
     }
     
     .project-image {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16/9;
+        height: 200px;
     }
     
     .award-type {
-        width: 100%;
-        margin-bottom: 10px;
+        flex: 0 0 calc(33.333% - 20px);
+    }
+    
+    /* 竞赛统计响应式调整 */
+    .stat-number {
+        font-size: 36px;
+    }
+    
+    .stat-label {
+        font-size: 15px;
     }
 }
 
 @media (max-width: 992px) {
     .container {
-        width: 95%;
-        padding: 0 10px;
+        max-width: 95%;
     }
     
     .project {
-        width: 48%;
+        flex: 0 0 calc(50% - 15px);
+    }
+    
+    .main-navigation .menu-item a {
+        min-width: 70px;
+    }
+    
+    /* 奖项说明响应式调整 */
+    .award-types {
+        gap: 15px;
+    }
+    
+    .award-type {
+        flex: 0 0 calc(50% - 10px);
+    }
+    
+    /* 竞赛统计响应式调整 */
+    .contest-stats {
+        padding: 20px 15px;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        flex: 0 0 calc(50% - 10px);
+        margin-bottom: 15px;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+    
+    .stat-number {
+        font-size: 32px;
     }
 }
 
 @media (max-width: 768px) {
     .project {
-        width: 48%;
+        flex: 0 0 100%;
     }
     
     .year-divider h2 {
-        font-size: 24px;
+        font-size: 20px;
+    }
+    
+    .main-navigation .menu-item a {
+        min-width: auto;
+        text-align: left;
+    }
+    
+    /* 调整竞赛卡片布局 */
+    .project {
+        margin-bottom: 20px;
+    }
+    
+    .project-image {
+        height: 180px;
+    }
+    
+    /* 奖项标准说明移动端布局 */
+    .award-types {
+        flex-direction: column;
+    }
+    
+    .award-type {
+        flex: 0 0 100%;
+    }
+    
+    /* 竞赛统计移动端布局 */
+    .contest-stats {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px 10px;
+    }
+    
+    .stat-item {
+        flex: 0 0 calc(50% - 10px);
+        padding: 10px 5px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+        margin-bottom: 5px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+    }
+    
+    /* 确保图片内容居中 */
+    .project-image img {
+        object-position: center;
+    }
+    
+    /* 缩小徽章大小 */
+    .award-badge {
+        font-size: 11px;
+        padding: 5px 10px;
+        right: 10px;
+        top: 10px;
+    }
+    
+    /* 提高覆盖层可读性 */
+    .project-overlay {
+        padding: 12px;
+    }
+    
+    .project-overlay h4 {
+        font-size: 16px;
     }
 }
 
 @media (max-width: 576px) {
     .container {
-        width: 92%;
-        padding: 0 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        max-width: 100%;
     }
     
     .project {
-        width: 100%;
         margin-bottom: 15px;
     }
     
     .project-image {
-        height: auto;
-        aspect-ratio: 16/9;
+        height: 160px;
     }
     
     .year-divider {
-        margin: 40px 0 20px;
+        margin: 30px 0 20px;
+    }
+    
+    /* 竞赛统计在小屏幕上单列显示 */
+    .contest-stats {
+        padding: 15px 10px;
+    }
+    
+    .stat-item {
+        flex: 0 0 100%;
+        margin-bottom: 15px;
+        padding: 8px 5px;
+    }
+    
+    .stat-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+        margin-bottom: 3px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+    }
+    
+    /* 提高图片加载速度 */
+    .project-image img {
+        object-fit: cover;
+        will-change: transform;
+    }
+    
+    /* 简化悬停效果，提高性能 */
+    .project:hover .project-image img {
+        transform: scale(1.05);
+    }
+    
+    /* 为触摸设备优化 */
+    .project-zoom {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .project:hover .project-zoom {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    /* 确保覆盖层文字在小屏幕上可读 */
+    .project-overlay h4 {
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .project-overlay p {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    
+    .award-prestige {
+        font-size: 11px;
     }
 }
 
-/* 竞赛统计 */
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .project-image {
+        height: 140px;
+    }
+    
+    .award-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+    
+    .year-divider h2 {
+        font-size: 18px;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+    }
+}
+
+/* 确保内容不会溢出 */
+.site-content {
+    overflow-x: hidden;
+}
+
+/* 改进加载性能 */
+img {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* 导航菜单包装器样式 */
+.main-navigation > div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-right: 0;
+}
+
+/* 移动导航样式 */
+.mobile-navigation {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 0 0 15px 15px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.mobile-navigation .menu {
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--dark-color);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.menu-toggle:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.menu-toggle:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 990px) {
+    .main-navigation > div {
+        display: none;
+    }
+    
+    .mobile-navigation .menu {
+        display: block;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* 移动端导航菜单样式 */
+    .main-navigation .menu-item {
+        margin: 0 3px;
+    }
+    
+    .main-navigation .menu-item a {
+        padding: 8px 12px;
+        min-width: auto;
+    }
+    
+    /* 禁用下划线动画效果和标记 */
+    .main-navigation .menu-item a::after,
+    .main-navigation .current-menu-item a::before {
+        display: none;
+    }
+    
+    /* 取消移动端的上浮效果 */
+    .main-navigation .menu-item a:hover,
+    .main-navigation .current-menu-item a {
+        transform: none;
+    }
+    
+    /* 优化移动端展开菜单 */
+    .mobile-navigation .menu .menu-item a {
+        padding: 12px 15px;
+        border-radius: 0;
+        border-left: 3px solid transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-navigation .menu .menu-item a:hover,
+    .mobile-navigation .menu .current-menu-item a {
+        background: rgba(52, 152, 219, 0.1);
+        color: var(--primary-color);
+        border-left: 3px solid var(--primary-color);
+    }
+}
+
+/* 竞赛统计样式 */
 .contest-stats {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 25px;
-    padding: 20px;
+    justify-content: space-between;
     background: white;
     border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
     box-shadow: var(--box-shadow);
     text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.contest-stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-bg);
+    animation: slidein 2s ease-in-out forwards;
+}
+
+@keyframes slidein {
+    to {
+        left: 0;
+    }
 }
 
 .stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex: 1;
+    padding: 15px;
+    position: relative;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.3s; }
+.stat-item:nth-child(2) { animation-delay: 0.5s; }
+.stat-item:nth-child(3) { animation-delay: 0.7s; }
+.stat-item:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes fadeUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
 }
 
 .stat-number {
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 700;
     background: var(--gradient-bg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    display: inline-block;
+    position: relative;
+}
+
+.stat-number::after {
+    content: attr(data-suffix);
+    font-size: 60%;
+    position: absolute;
+    top: 5px;
+    right: -15px;
 }
 
 .stat-label {
     font-size: 16px;
     color: var(--gray-color);
-}
-
-@media (max-width: 768px) {
-    .contest-stats {
-        flex-wrap: wrap;
-    }
-    
-    .stat-item {
-        width: 50%;
-        margin-bottom: 15px;
-    }
+    font-weight: 500;
+    position: relative;
 } 

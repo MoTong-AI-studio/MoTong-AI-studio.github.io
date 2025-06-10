@@ -45,6 +45,13 @@ body {
     z-index: 1000;
     backdrop-filter: blur(10px);
     transition: all var(--transition-speed) ease;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
 }
 
 .header-bar {
@@ -52,6 +59,16 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 5px 0;
+    width: 100%;
+    margin: 0;
+}
+
+.site-header .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
 }
 
 .branding {
@@ -90,7 +107,12 @@ body {
 
 /* 导航菜单 */
 .main-navigation {
-    margin-right: -1100px;
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    padding-right: 0;
+    width: auto;
 }
 
 .main-navigation .menu {
@@ -98,21 +120,33 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+.main-navigation .menu-item:last-child a {
+    margin-right: 0;
+    padding-right: 10px !important;
+    position: relative;
+    right: 0;
 }
 
 .main-navigation .menu-item {
-    margin: 0 5px;
+    margin: 0 10px;
     position: relative;
 }
 
 .main-navigation .menu-item a {
-    padding: 10px 15px;
+    padding: 10px 20px;
     color: var(--dark-color);
     font-weight: 500;
     text-decoration: none;
     display: block;
     border-radius: 30px;
     transition: all var(--transition-speed);
+    min-width: 80px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .main-navigation .menu-item a:hover,
@@ -120,14 +154,61 @@ body {
     background: var(--gradient-bg);
     color: white;
     box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
 }
 
-.main-navigation .home a {
-    padding: 6px 10px;
+/* 为当前选中的菜单项添加特殊样式 */
+.main-navigation .current-menu-item a {
+    position: relative;
+    font-weight: 600;
 }
 
-.main-navigation .home a i {
-    font-size: 18px;
+/* 为当前选中的菜单项添加标记 */
+.main-navigation .current-menu-item a::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 添加页面头部渐变遮罩效果 */
+.page-head::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(46, 204, 113, 0.9));
+    z-index: 1;
+    opacity: 0.85;
+}
+
+/* 增强导航菜单项悬停效果 */
+.main-navigation .menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.main-navigation .menu-item a:hover::after,
+.main-navigation .current-menu-item a::after {
+    width: 70%;
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 /* 页面头部 */
@@ -153,17 +234,6 @@ body {
     background-position: center;
     opacity: 0.8;
     z-index: 0;
-}
-
-.page-head::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(46, 204, 113, 0.9));
-    z-index: 1;
 }
 
 .page-head .container {
@@ -306,6 +376,13 @@ body {
     overflow: hidden;
 }
 
+/* 为指导老师卡片增加特殊样式 */
+#teacher-section .team {
+    height: auto;
+    min-height: 780px;
+    padding-bottom: 70px;
+}
+
 .team:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
@@ -408,6 +485,77 @@ body {
     color: #555;
     overflow-y: auto;
     max-height: 200px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(52, 152, 219, 0.5) rgba(237, 242, 244, 0.7);
+}
+
+/* 为指导老师卡片的wrap-text容器增加样式 */
+#teacher-section .wrap-text {
+    max-height: 150px;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: rgba(237, 242, 244, 0.5);
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#teacher-section .wrap-text:hover {
+    background-color: rgba(237, 242, 244, 0.8);
+}
+
+/* 添加滚动提示样式 */
+#teacher-section .wrap-text.has-more-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background: linear-gradient(to top, rgba(237, 242, 244, 0.9), transparent);
+    pointer-events: none;
+    border-radius: 0 0 8px 8px;
+}
+
+#teacher-section .wrap-text.has-more-content::before {
+    content: '\f078'; /* 下箭头图标 */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    color: rgba(52, 152, 219, 0.7);
+    font-size: 12px;
+    z-index: 1;
+    animation: bounce 1.5s infinite;
+    pointer-events: none;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* 自定义滚动条样式 */
+.wrap-text::-webkit-scrollbar {
+    width: 6px;
+}
+
+.wrap-text::-webkit-scrollbar-track {
+    background: rgba(237, 242, 244, 0.7);
+    border-radius: 10px;
+}
+
+.wrap-text::-webkit-scrollbar-thumb {
+    background: rgba(52, 152, 219, 0.5);
+    border-radius: 10px;
+}
+
+.wrap-text::-webkit-scrollbar-thumb:hover {
+    background: rgba(52, 152, 219, 0.7);
 }
 
 /* 针对毕业生卡片的特殊样式 */
@@ -420,7 +568,13 @@ body {
     .team, #graduate-section .team {
         height: auto;
         min-height: 380px;
-        padding-bottom: 60px;
+        padding: 20px 15px 60px;
+        margin-bottom: 20px;
+    }
+    
+    /* 为指导老师卡片在小屏幕上增加特殊样式 */
+    #teacher-section .team {
+        min-height: 680px;
     }
     
     .team .btn-email {
@@ -429,6 +583,216 @@ body {
         left: 50%;
         transform: translateX(-50%);
         width: 85%;
+    }
+    
+    /* 改进卡片内容布局 */
+    .team-image_teacher, .team-image_student {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    .team-name {
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    
+    /* 提高文本容器可用性 */
+    .wrap-text {
+        width: 100%;
+        max-height: 150px;
+        font-size: 13px;
+        line-height: 1.5;
+        padding-right: 5px;
+    }
+    
+    #teacher-section .wrap-text {
+        max-height: 120px;
+        padding: 8px;
+    }
+    
+    .wrap-text ul {
+        padding-left: 20px;
+    }
+    
+    .wrap-text li {
+        margin-bottom: 5px;
+    }
+    
+    .team .btn-email {
+        font-size: 13px;
+    }
+    
+    /* 调整页面标题 */
+    .page-title {
+        font-size: 36px;
+    }
+    
+    /* 调整分段标题 */
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    /* 调整照片展示区域 */
+    .featured-image img {
+        height: 200px;
+    }
+    
+    /* 确保内容不溢出 */
+    .site-content {
+        overflow-x: hidden;
+    }
+    
+    /* 主导航菜单调整 */
+    .main-navigation .menu-item a {
+        min-width: auto;
+        text-align: left;
+    }
+}
+
+@media (max-width: 576px) {
+    /* 小屏幕手机优化 */
+    .team, #graduate-section .team {
+        padding: 15px 12px 60px;
+        min-height: 350px;
+        margin-bottom: 15px;
+    }
+    
+    /* 特别为指导老师卡片优化 */
+    #teacher-section .team {
+        min-height: 650px;
+        padding: 15px 12px 60px;
+    }
+    
+    .team-image_teacher, .team-image_student {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+    
+    /* 指导老师照片特殊处理 */
+    #teacher-section .team-image_teacher {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .wrap-text {
+        font-size: 12px;
+        line-height: 1.4;
+        max-height: 120px;
+    }
+    
+    #teacher-section .wrap-text {
+        max-height: 100px;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    /* 更新滚动提示样式适应小屏幕 */
+    #teacher-section .wrap-text.has-more-content::after {
+        height: 20px;
+    }
+    
+    #teacher-section .wrap-text.has-more-content::before {
+        bottom: 3px;
+        right: 5px;
+        font-size: 10px;
+    }
+    
+    /* 调整页面头部 */
+    .page-head {
+        padding: 80px 0;
+    }
+    
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+    
+    .section-title:after {
+        width: 60px;
+        margin-top: 10px;
+    }
+    
+    /* 调整照片展示区域 */
+    .featured-image img {
+        height: 180px;
+    }
+    
+    /* 减小容器内边距 */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* 调整邮箱按钮 */
+    .team .btn-email {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    /* 调整滚动到顶部按钮 */
+    .scroll-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .team-image_teacher, .team-image_student {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .team-name {
+        font-size: 15px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .featured-image img {
+        height: 160px;
+    }
+    
+    /* 优化导航栏 */
+    .site-title {
+        font-size: 18px;
+    }
+    
+    .site-description {
+        font-size: 11px;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* 增强触摸设备体验 */
+@media (hover: none) {
+    .team:hover,
+    .post:hover {
+        transform: none;
+    }
+    
+    .team:active,
+    .post:active {
+        transform: translateY(-5px);
     }
 }
 
@@ -496,4 +860,655 @@ body {
     background: var(--gradient-bg);
     margin: 15px auto 0;
     border-radius: 2px;
-} 
+}
+
+@media screen and (min-width: 992px) {
+    .branding {
+        flex: 0 0 auto;
+    }
+    
+    .main-navigation {
+        flex: 1;
+    }
+}
+
+/* 导航菜单包装器样式 */
+.main-navigation > div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 990px) {
+    .main-navigation > div {
+        display: none;
+    }
+    
+    .mobile-navigation .menu {
+        display: block;
+    }
+    
+    /* 移动端导航菜单样式 */
+    .main-navigation .menu-item {
+        margin: 0 3px;
+    }
+    
+    .main-navigation .menu-item a {
+        padding: 8px 12px;
+        min-width: auto;
+    }
+    
+    /* 禁用下划线动画效果和标记 */
+    .main-navigation .menu-item a::after,
+    .main-navigation .current-menu-item a::before {
+        display: none;
+    }
+    
+    /* 取消移动端的上浮效果 */
+    .main-navigation .menu-item a:hover,
+    .main-navigation .current-menu-item a {
+        transform: none;
+    }
+    
+    /* 优化移动端展开菜单 */
+    .mobile-navigation .menu .menu-item a {
+        padding: 12px 15px;
+        border-radius: 0;
+        border-left: 3px solid transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-navigation .menu .menu-item a:hover,
+    .mobile-navigation .menu .current-menu-item a {
+        background: rgba(52, 152, 219, 0.1);
+        color: var(--primary-color);
+        border-left: 3px solid var(--primary-color);
+    }
+}
+
+@media (max-width: 992px) {
+    .main-navigation .menu-item a {
+        min-width: 70px;
+        padding: 8px 15px; /* 缩小内边距 */
+    }
+
+    .main-navigation .menu-item {
+        margin: 0 5px; /* 减小间距 */
+    }
+
+    /* 确保平板设备上的卡片布局合理 */
+    .team {
+        padding: 20px 15px;
+        height: auto;
+        min-height: 380px;
+    }
+    
+    /* 调整指导老师照片大小 */
+    .team-image_teacher {
+        width: 150px;
+        height: 150px;
+    }
+    
+    /* 调整浮动导航 */
+    .floating-nav {
+        padding: 12px;
+        left: 10px;
+    }
+    
+    .floating-nav-item a {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    /* 优化文本容器 */
+    .wrap-text {
+        max-height: 180px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    /* 确保容器宽度适应屏幕 */
+    .container {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .team, #graduate-section .team {
+        height: auto;
+        min-height: 380px;
+        padding: 20px 15px 60px;
+        margin-bottom: 20px;
+    }
+    
+    .team .btn-email {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85%;
+    }
+    
+    /* 改进卡片内容布局 */
+    .team-image_teacher, .team-image_student {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    .team-name {
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    
+    /* 提高文本容器可用性 */
+    .wrap-text {
+        width: 100%;
+        max-height: 150px;
+        font-size: 13px;
+        line-height: 1.5;
+        padding-right: 5px;
+    }
+    
+    .wrap-text ul {
+        padding-left: 20px;
+    }
+    
+    .wrap-text li {
+        margin-bottom: 5px;
+    }
+    
+    .team .btn-email {
+        font-size: 13px;
+    }
+    
+    /* 调整页面标题 */
+    .page-title {
+        font-size: 36px;
+    }
+    
+    /* 调整分段标题 */
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    /* 调整照片展示区域 */
+    .featured-image img {
+        height: 200px;
+    }
+    
+    /* 确保内容不溢出 */
+    .site-content {
+        overflow-x: hidden;
+    }
+    
+    /* 主导航菜单调整 */
+    .main-navigation .menu-item a {
+        min-width: auto;
+        text-align: left;
+    }
+}
+
+@media (max-width: 576px) {
+    /* 小屏幕手机优化 */
+    .team, #graduate-section .team {
+        padding: 15px 12px 60px;
+        min-height: 350px;
+        margin-bottom: 15px;
+    }
+    
+    .team-image_teacher, .team-image_student {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+    
+    .wrap-text {
+        font-size: 12px;
+        line-height: 1.4;
+        max-height: 120px;
+    }
+    
+    /* 调整页面头部 */
+    .page-head {
+        padding: 80px 0;
+    }
+    
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+    
+    .section-title:after {
+        width: 60px;
+        margin-top: 10px;
+    }
+    
+    /* 调整照片展示区域 */
+    .featured-image img {
+        height: 180px;
+    }
+    
+    /* 减小容器内边距 */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* 调整邮箱按钮 */
+    .team .btn-email {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    /* 调整滚动到顶部按钮 */
+    .scroll-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .team-image_teacher, .team-image_student {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .team-name {
+        font-size: 15px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .featured-image img {
+        height: 160px;
+    }
+    
+    /* 优化导航栏 */
+    .site-title {
+        font-size: 18px;
+    }
+    
+    .site-description {
+        font-size: 11px;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* 增强触摸设备体验 */
+@media (hover: none) {
+    .team:hover,
+    .post:hover {
+        transform: none;
+    }
+    
+    .team:active,
+    .post:active {
+        transform: translateY(-5px);
+    }
+}
+
+/* 照片展示样式 */
+.post {
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed);
+}
+
+.post:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.featured-image {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.post:hover .featured-image img {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.post:hover .image-overlay {
+    opacity: 1;
+}
+
+/* 分段标题样式 */
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    position: relative;
+    color: var(--dark-color);
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-bg);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+@media screen and (min-width: 992px) {
+    .branding {
+        flex: 0 0 auto;
+    }
+    
+    .main-navigation {
+        flex: 1;
+    }
+}
+
+/* 导航菜单包装器样式 */
+.main-navigation > div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 990px) {
+    .main-navigation > div {
+        display: none;
+    }
+    
+    .mobile-navigation .menu {
+        display: block;
+    }
+}
+
+/* 指导老师卡片新样式 */
+.teacher-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+}
+
+.teacher-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.teacher-header {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #eee;
+}
+
+.teacher-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    flex-shrink: 0;
+}
+
+.teacher-basic-info {
+    flex: 1;
+}
+
+.teacher-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.teacher-title {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.teacher-email {
+    display: inline-block;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.teacher-email:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.5);
+    transform: translateY(-3px);
+    color: white;
+}
+
+.teacher-email i {
+    margin-right: 8px;
+}
+
+.teacher-details {
+    padding: 30px;
+}
+
+.teacher-section {
+    margin-bottom: 25px;
+}
+
+.teacher-section:last-child {
+    margin-bottom: 0;
+}
+
+.teacher-section h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3498db;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.teacher-section h4 i {
+    margin-right: 10px;
+}
+
+.teacher-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.teacher-section ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.teacher-section ul li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.teacher-section p {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .teacher-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 15px;
+    }
+    
+    .teacher-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 150px;
+        height: 150px;
+    }
+    
+    .teacher-name {
+        font-size: 24px;
+    }
+    
+    .teacher-details {
+        padding: 20px 15px;
+    }
+    
+    .teacher-section h4 {
+        font-size: 17px;
+    }
+    
+    .teacher-section ul li {
+        font-size: 14px;
+    }
+    
+    .teacher-section p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .teacher-card {
+        border-radius: 12px;
+    }
+    
+    .teacher-header {
+        padding: 20px 10px;
+    }
+    
+    .teacher-image {
+        width: 120px;
+        height: 120px;
+        border-width: 3px;
+    }
+    
+    .teacher-name {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    
+    .teacher-title {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .teacher-email {
+        padding: 6px 15px;
+        font-size: 13px;
+    }
+    
+    .teacher-details {
+        padding: 15px 12px;
+    }
+    
+    .teacher-section {
+        margin-bottom: 20px;
+    }
+    
+    .teacher-section h4 {
+        font-size: 16px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+    
+    .teacher-section ul li {
+        font-size: 13px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    .teacher-section p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 375px) {
+    .teacher-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .teacher-name {
+        font-size: 20px;
+    }
+    
+    .teacher-title {
+        font-size: 13px;
+    }
+    
+    .teacher-email {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    
+    .teacher-section h4 {
+        font-size: 15px;
+    }
+    
+    .teacher-section ul li, 
+    .teacher-section p {
+        font-size: 12px;
+    }
+}
+
+ 
