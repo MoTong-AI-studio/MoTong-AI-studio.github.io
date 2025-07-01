@@ -6,13 +6,79 @@ $(document).ready(function() {
         offset: 100
     });
     
-    // 克隆主导航到移动导航
-    $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
+    // 移动端导航菜单功能 - 与about页面完全一致
+    function initMobileNavigation() {
+        // 智能菜单克隆，避免重复
+        if ($(".mobile-navigation .menu").length === 0) {
+            $(".main-navigation .menu").clone().appendTo(".mobile-navigation");
+        }
+        
+        // 动态设置移动端菜单位置
+        function updateMobileNavPosition() {
+            const headerHeight = $('.site-header').outerHeight() || 80;
+            $('.mobile-navigation').css('top', headerHeight + 'px');
+        }
+        
+        let mobileMenuOpen = false;
+        
+        // 菜单切换按钮点击事件
+        $(".menu-toggle").off('click').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (!mobileMenuOpen) {
+                // 打开菜单
+                updateMobileNavPosition();
+                $('.mobile-navigation').addClass('show');
+                $(this).addClass('active').attr('aria-expanded', 'true');
+                $('body').addClass('mobile-nav-open');
+                mobileMenuOpen = true;
+            } else {
+                // 关闭菜单
+                closeMobileMenu();
+            }
+        });
+        
+        // 关闭移动端菜单
+        function closeMobileMenu() {
+            $('.mobile-navigation').removeClass('show');
+            $('.menu-toggle').removeClass('active').attr('aria-expanded', 'false');
+            $('body').removeClass('mobile-nav-open');
+            mobileMenuOpen = false;
+        }
+        
+        // ESC键关闭菜单
+        $(document).off('keydown.mobileNav').on('keydown.mobileNav', function(e) {
+            if (e.key === 'Escape' && mobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+        
+        // 点击菜单外部关闭
+        $(document).off('click.mobileNav').on('click.mobileNav', function(e) {
+            if (mobileMenuOpen && !$(e.target).closest('.mobile-navigation, .menu-toggle').length) {
+                closeMobileMenu();
+            }
+        });
+        
+        // 窗口大小改变时更新位置
+        $(window).off('resize.mobileNav').on('resize.mobileNav', function() {
+            if (mobileMenuOpen) {
+                updateMobileNavPosition();
+            }
+        });
+        
+        // 菜单项点击后关闭菜单
+        $(document).off('click.mobileNavItem').on('click.mobileNavItem', '.mobile-navigation .menu-item a', function() {
+            setTimeout(closeMobileMenu, 100);
+        });
+        
+        // 初始化位置
+        updateMobileNavPosition();
+    }
     
-    // 菜单按钮点击事件
-    $(".menu-toggle").click(function() {
-        $(".mobile-navigation").slideToggle();
-    });
+    // 初始化移动端导航
+    initMobileNavigation();
     
     // 页面滚动进度条
     window.onscroll = function() {
@@ -144,5 +210,57 @@ $(document).ready(function() {
         setTimeout(function() {
             $('.project-image').removeClass('clicked');
         }, 600);
+    });
+    
+    // 移动端菜单键盘导航
+    $('.mobile-navigation .menu-item a').keydown(function(e) {
+        if (e.key === 'Tab') {
+            const $menuItems = $('.mobile-navigation .menu-item a');
+            const currentIndex = $menuItems.index(this);
+            
+            if (e.shiftKey) {
+                // Shift+Tab - 向上导航
+                if (currentIndex === 0) {
+                    e.preventDefault();
+                    $('.mobile-navigation .close-button').focus();
+                }
+            } else {
+                // Tab - 向下导航
+                if (currentIndex === $menuItems.length - 1) {
+                    e.preventDefault();
+                    $('.mobile-navigation .close-button').focus();
+                }
+            }
+        }
+    });
+    
+    // 关闭按钮键盘导航
+    $('.mobile-navigation .close-button').keydown(function(e) {
+        if (e.key === 'Tab') {
+            if (e.shiftKey) {
+                // Shift+Tab - 回到最后一个菜单项
+                e.preventDefault();
+                $('.mobile-navigation .menu-item a').last().focus();
+            } else {
+                // Tab - 回到第一个菜单项
+                e.preventDefault();
+                $('.mobile-navigation .menu-item a').first().focus();
+            }
+        }
+    });
+    
+    // 移动端菜单项点击后关闭菜单
+    $(document).on('click', '.mobile-navigation .menu-item a', function() {
+        // 延迟关闭，让页面跳转生效
+        setTimeout(closeMobileMenu, 100);
+    });
+    
+    // 确保焦点管理
+    $(document).on('shown.mobile-nav', function() {
+        $('.mobile-navigation .menu-item a').first().focus();
+    });
+    
+    $(document).on('hidden.mobile-nav', function() {
+        $('.menu-toggle').focus();
     });
 }); 

@@ -2,8 +2,11 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>雨雾去除 - 墨瞳AI工作室</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title> - 墨瞳AI工作室</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -44,7 +47,10 @@
                     </a>
 
                     <nav class="main-navigation">
-                        <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+                        <button class="menu-toggle" aria-label="切换导航菜单" aria-expanded="false" aria-controls="mobile-navigation">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            <span class="sr-only">菜单</span>
+                        </button>
                         <ul class="menu">
                             <li class="menu-item"><a href="index.html">主页</a></li>
                             <li class="menu-item"><a href="about.html">关于我们</a></li>
@@ -53,11 +59,13 @@
                             <li class="menu-item"><a href="contact.html">联系我们</a></li>
                         </ul>
                     </nav>
-
-                    <div class="mobile-navigation"></div>
                 </div>
             </div>
         </header>
+
+        <!-- 移动端菜单完全独立，放在导航栏外部 -->
+        <div class="mobile-navigation" id="mobile-navigation" role="navigation" aria-label="移动端导航菜单">
+        </div>
 
     <!-- 主要内容 -->
     <main class="main-content">
@@ -85,7 +93,7 @@
                 <div class="demo-container">
                     <div class="demo-header">
                         <h1 class="section-heading">效果展示</h1>
-                        <p>选择示例图片查看雨雾去除效果，或上传您自己的图片进行处理</p>
+                        <p>选择示例图片查看散景虚化效果，或上传您自己的图片进行处理</p>
                     </div>
 
                     <!-- 主要内容区域：左右分栏 -->
@@ -97,19 +105,19 @@
                                 <h3>示例图片</h3>
                                 <div class="sample-grid">
                                     <div class="sample-item active" data-original="decorate/project1.jpg" data-result="decorate/slider-1.jpg">
-                                        <img src="decorate/project1.jpg" alt="雨天街景">
+                                        <img src="decorate/project1.jpg" alt="雨天街景" loading="lazy">
                                         <span class="sample-label">雨天街景</span>
                                     </div>
                                     <div class="sample-item" data-original="decorate/project2.jpg" data-result="decorate/slider-2.jpg">
-                                        <img src="decorate/project2.jpg" alt="雾天风景">
+                                        <img src="decorate/project2.jpg" alt="雾天风景" loading="lazy">
                                         <span class="sample-label">雾天风景</span>
                                     </div>
                                     <div class="sample-item" data-original="decorate/project3.jpg" data-result="decorate/slider-3.jpg">
-                                        <img src="decorate/project3.jpg" alt="雨雾混合">
+                                        <img src="decorate/project3.jpg" alt="雨雾混合" loading="lazy">
                                         <span class="sample-label">雨雾混合</span>
                                     </div>
                                     <div class="sample-item" data-original="decorate/project4.jpg" data-result="decorate/slider-1.png">
-                                        <img src="decorate/project4.jpg" alt="夜间雨景">
+                                        <img src="decorate/project4.jpg" alt="夜间雨景" loading="lazy">
                                         <span class="sample-label">夜间雨景</span>
                                     </div>
                                 </div>
@@ -119,7 +127,7 @@
                             <div class="upload-section" data-aos="fade-up" data-aos-delay="200">
                                 <h3>上传图片</h3>
                                 <div class="upload-container">
-                                    <div class="upload-area" id="uploadArea">
+                                    <div class="upload-area" id="uploadArea" role="button" tabindex="0" aria-label="点击或拖拽图片上传">
                                         <div class="upload-content">
                                             <i class="fas fa-cloud-upload-alt"></i>
                                             <p>点击或拖拽图片到此处</p>
@@ -135,7 +143,7 @@
                         <!-- 右侧：图片对比展示 -->
                         <div class="right-panel" data-aos="fade-left">
                             <!-- 简化的图片对比容器 -->
-                            <div class="comparison-image-container" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="comparison-image-container" data-aos="zoom-in" data-aos-delay="400" role="img" aria-label="图片对比区域，可左右拖动查看对比效果">
                                 <!-- 背景图片（原图） -->
                                 <img id="original-image" src="decorate/project1.jpg" alt="原图" class="comparison-image original-image">
                                 
@@ -145,7 +153,7 @@
                                 </div>
                                 
                                 <!-- 分割线和滑块 -->
-                                <div class="comparison-slider" id="comparisonSlider" style="left: 50%;">
+                                <div class="comparison-slider" id="comparisonSlider" style="left: 50%;" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="对比滑块">
                                     <div class="slider-line"></div>
                                     <div class="slider-handle">
                                         <div class="handle-icon">
@@ -177,20 +185,21 @@
 
                             <!-- 操作按钮 -->
                             <div class="comparison-actions">
-                                <button class="action-btn reset-btn" id="resetSlider">
+                                <button class="action-btn reset-btn" id="resetSlider" aria-label="重置对比">
                                     <i class="fas fa-undo"></i>
                                     重置对比
                                 </button>
-                                <button class="process-btn" id="processBtn">
+                                <button class="process-btn" id="processBtn" aria-label="立即生成">
                                     <i class="fas fa-magic"></i>
                                     <span>立即生成</span>
                                 </button>
-                                <button class="action-btn fullscreen-btn" id="fullscreenBtn">
+                                <button class="action-btn fullscreen-btn" id="fullscreenBtn" aria-label="全屏查看">
                                     <i class="fas fa-expand"></i>
                                     全屏查看
                                 </button>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,7 +207,7 @@
     </div>
 
     <!-- 回到顶部按钮 -->
-    <div class="scroll-top" id="scrollTop">
+    <div class="scroll-top" id="scrollTop" role="button" aria-label="回到顶部">
         <i class="fas fa-arrow-up"></i>
     </div>
 

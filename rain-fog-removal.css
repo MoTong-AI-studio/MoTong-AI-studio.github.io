@@ -202,9 +202,8 @@
 .logo {
     width: 50px;
     height: 50px;
-    margin-right: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+    object-fit: contain; /* 防止图标变形 */
 }
 
 .site-title {
@@ -317,80 +316,188 @@
     margin-right: 0;
 }
 
-/* 移动导航样式 */
+/* 移动导航样式 - 与about页面保持一致 */
 .mobile-navigation {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed; /* 相对于视口定位，完全脱离导航栏约束 */
+    top: 0; /* 初始位置，会通过JavaScript动态调整 */
     left: 0;
     right: 0;
-    background: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    border-radius: 0 0 15px 15px;
-    max-height: 80vh;
-    overflow-y: auto;
     width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    z-index: 999; /* 降低层级，确保不覆盖导航栏 */
+    border-radius: 0 0 1rem 1rem;
+    transform: translateY(-100%); /* 初始隐藏在顶部 */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-top: 2px solid var(--primary-color);
+    /* 自适应高度，确保所有菜单项都可见 */
+    height: auto;
+    min-height: auto;
+    max-height: calc(100vh - 100px); /* 留出导航栏空间 */
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    /* 不使用padding-top，而是通过JavaScript动态设置top位置 */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mobile-navigation.show {
+    display: block;
+    transform: translateY(0); /* 滑入到导航栏下方的正确位置 */
+    opacity: 1;
 }
 
 .mobile-navigation .menu {
     display: flex;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 1rem 0; /* 适中的垂直内边距 */
     margin: 0;
     list-style: none;
+    gap: 0.25rem; /* 菜单项之间的小间距 */
+    /* 添加水平容器边距，与页面内容保持一致 */
+    max-width: 100%;
+    padding-left: 1.25rem; /* 与branding的margin-left保持一致 */
+    padding-right: 1.25rem;
 }
 
 .mobile-navigation .menu-item {
     margin: 0;
     width: 100%;
+    opacity: 0;
+    transform: translateY(-10px); /* 轻微的向上位移 */
+    animation: slideInDown 0.3s ease forwards; /* 缩短动画时间 */
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item:nth-child(1) { animation-delay: 0.05s; }
+.mobile-navigation .menu-item:nth-child(2) { animation-delay: 0.1s; }
+.mobile-navigation .menu-item:nth-child(3) { animation-delay: 0.15s; }
+.mobile-navigation .menu-item:nth-child(4) { animation-delay: 0.2s; }
+.mobile-navigation .menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes slideInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .mobile-navigation .menu-item a {
-    padding: 12px 20px;
+    padding: 0.875rem 1rem; /* 减少水平内边距 */
     color: var(--dark-color);
     font-weight: 500;
     text-decoration: none;
-    display: block;
-    border-radius: 0;
-    border-left: 3px solid transparent;
-    transition: all var(--transition-speed);
-    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem; /* 适中的圆角 */
+    border-left: 0.25rem solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 1rem; /* 16px - 标准字体大小 */
+    min-height: 3rem; /* 适中的最小高度 */
+    white-space: nowrap;
+    background: transparent;
+    margin: 0; /* 移除左右边距，因为容器已有边距 */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 轻微的分隔线 */
 }
 
 .mobile-navigation .menu-item:last-child a {
-    border-bottom: none;
+    border-bottom: none; /* 最后一项不显示分隔线 */
 }
 
 .mobile-navigation .menu-item a:hover,
 .mobile-navigation .current-menu-item a {
-    border-left: 3px solid var(--primary-color);
-    background: linear-gradient(to right, rgba(52, 152, 219, 0.1), transparent);
+    border-left: 0.25rem solid var(--primary-color);
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.05));
     color: var(--primary-color);
+    transform: translateX(5px); /* 轻微的右移效果 */
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.15);
 }
 
-/* 菜单切换按钮样式优化 */
+.mobile-navigation .menu-item a:active {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(46, 204, 113, 0.1));
+    transform: scale(0.98) translateX(5px);
+}
+
+/* 为移动端菜单项添加图标 */
+.mobile-navigation .menu-item a::before {
+    content: '';
+    width: 0.5rem; /* 8px */
+    height: 0.5rem; /* 8px */
+    border-radius: 50%;
+    background-color: var(--gray-color);
+    margin-right: 0.75rem; /* 12px */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item a:hover::before,
+.mobile-navigation .current-menu-item a::before {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+/* 菜单切换按钮样式 - 与about页面保持一致 */
 .menu-toggle {
     display: none;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: none;
     color: var(--dark-color);
-    font-size: 24px;
+    font-size: 1.25rem; /* 20px */
     cursor: pointer;
-    padding: 5px;
+    padding: 0.625rem; /* 10px */
+    border-radius: 0.5rem; /* 8px */
     transition: all 0.3s ease;
-    z-index: 100;
-    border-radius: 4px;
+    z-index: 1000;
+    width: 2.75rem; /* 44px - 符合触摸目标最小尺寸 */
+    height: 2.75rem; /* 44px */
+    position: relative;
+    margin-right: 0.9375rem; /* 15px */
 }
 
-.menu-toggle:hover, .menu-toggle.active {
+.menu-toggle:hover {
+    background: rgba(52, 152, 219, 0.1);
     color: var(--primary-color);
-    transform: scale(1.1);
-    background-color: rgba(52, 152, 219, 0.1);
+    transform: scale(1.05);
 }
 
 .menu-toggle:focus {
-    outline: none;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+    background: rgba(52, 152, 219, 0.15);
+}
+
+.menu-toggle .fa-bars {
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active .fa-bars {
+    transform: rotate(90deg);
+}
+
+/* 隐藏的屏幕阅读器文本 */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 /* 响应式调整 */
@@ -413,49 +520,68 @@
     }
 }
 
-@media (max-width: 768px) {
+/* 响应式设计 - 移动端导航优化 */
+@media (max-width: 990px) {
     .menu-toggle {
-        display: block;
-        margin-right: 0.9375rem; /* 15px */
+        display: flex !important;
+        margin-right: 1rem;
     }
     
     .main-navigation .menu {
-        display: none;
+        display: none !important;
     }
     
-    .main-navigation.toggled .menu {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        z-index: 1000;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        padding: 10px 0;
-        border-radius: 0 0 15px 15px;
+    .mobile-navigation {
+        max-height: calc(100vh - 100px); /* 调整最大高度 */
     }
     
-    .main-navigation.toggled .menu-item {
-        margin: 0;
-        width: 100%;
+    .mobile-navigation .menu {
+        padding-left: 1rem; /* 减少容器边距 */
+        padding-right: 1rem;
     }
     
-    .main-navigation.toggled .menu-item a {
-        padding: 12px 20px;
-        border-radius: 0;
-        border-left: 3px solid transparent;
-        transition: all var(--transition-speed);
-        text-align: left;
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 0.875rem; /* 调整内边距 */
+        font-size: 0.9375rem; /* 15px */
+        min-height: 2.75rem;
     }
     
-    .main-navigation.toggled .menu-item a:hover,
-    .main-navigation.toggled .current-menu-item a {
-        border-left: 3px solid var(--primary-color);
-        background: linear-gradient(to right, rgba(52, 152, 219, 0.1), transparent);
-        box-shadow: none;
-        color: var(--primary-color);
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem; /* 7px */
+        height: 0.4375rem;
+        margin-right: 0.625rem; /* 10px */
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex !important;
+        margin-right: 1rem;
+    }
+    
+    .main-navigation .menu {
+        display: none !important;
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 100px); /* 调整最大高度 */
+    }
+    
+    .mobile-navigation .menu {
+        padding-left: 1rem; /* 减少容器边距 */
+        padding-right: 1rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 0.875rem; /* 调整内边距 */
+        font-size: 0.9375rem; /* 15px */
+        min-height: 2.75rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem; /* 7px */
+        height: 0.4375rem;
+        margin-right: 0.625rem; /* 10px */
     }
 
     /* 通知样式优化 */
@@ -470,15 +596,45 @@
         z-index: 9999 !important;
     }
 
-    /* 修正滑块操作体验 */
+    /* 移动端滑块优化 */
     .slider-handle {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         border-width: 2px;
+        /* 增加触摸区域 */
+        padding: 12px;
+        margin: -12px;
+        /* 更快的响应 */
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.15s ease,
+                    border-color 0.15s ease,
+                    box-shadow 0.15s ease;
     }
     
     .handle-icon {
         font-size: 12px;
+    }
+    
+    /* 提升触摸体验 */
+    .comparison-slider {
+        width: 6px; /* 增加可触摸区域 */
+        /* 添加触摸反馈 */
+        -webkit-tap-highlight-color: rgba(52, 152, 219, 0.2);
+    }
+    
+    /* 拖动状态的移动端优化 */
+    .comparison-image-container.dragging {
+        /* 防止页面滚动 */
+        overflow: hidden;
+        /* 提升触摸响应 */
+        touch-action: none;
+    }
+    
+    .comparison-image-container.dragging .slider-handle {
+        transform: translate(-50%, -50%) scale(1.05);
+        background: linear-gradient(145deg, var(--primary-color) 0%, #2980b9 100%);
+        color: white;
+        border-color: #2980b9;
     }
     
     /* 标签优化 */
@@ -747,7 +903,7 @@
     text-align: center;
 }
 
-/* 简化的图像对比容器 */
+/* 简化的图像对比容器 - 优化响应式缩放 */
 .comparison-image-container {
     position: relative;
     width: 100%;
@@ -771,54 +927,376 @@
     margin-bottom: 25px;
     backdrop-filter: blur(10px);
     flex: 1;
+    /* 优化响应式缩放 */
+    aspect-ratio: auto; /* 允许动态宽高比 */
+    resize: none; /* 禁用手动调整大小 */
+    /* 确保容器能够适应不同屏幕 */
+    max-width: 100%;
+    box-sizing: border-box;
+    /* 添加平滑过渡效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 图片容器 - 智能适配显示 */
+/* 响应式容器尺寸优化 */
+.comparison-image-container.responsive-scaling {
+    /* 启用响应式缩放模式 */
+    width: 100% !important;
+    height: auto !important;
+    min-height: 250px;
+    max-height: 75vh;
+    /* 保持宽高比的同时适应容器 */
+    object-fit: contain;
+    /* 确保在所有设备上都能正常显示 */
+    transform: scale(1);
+    transform-origin: center center;
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1200px) {
+    .comparison-image-container {
+        min-height: 400px;
+        max-height: 70vh;
+        border-radius: 24px;
+        box-shadow: 
+            0 25px 80px rgba(52, 152, 219, 0.15),
+            0 10px 30px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    
+    .comparison-image-container.responsive-scaling {
+        max-height: 65vh;
+    }
+}
+
+/* 中等屏幕优化 */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .comparison-image-container {
+        min-height: 320px;
+        max-height: 65vh;
+        border-radius: 18px;
+    }
+    
+    .comparison-image-container.responsive-scaling {
+        max-height: 60vh;
+    }
+}
+
+/* 平板设备优化 */
+@media (min-width: 481px) and (max-width: 768px) {
+    .comparison-image-container {
+        min-height: 280px;
+        max-height: 55vh;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        box-shadow: 
+            0 15px 50px rgba(52, 152, 219, 0.12),
+            0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .comparison-image-container.responsive-scaling {
+        max-height: 50vh;
+        min-height: 240px;
+    }
+}
+
+/* 移动端优化 */
+@media (max-width: 480px) {
+    .comparison-image-container {
+        min-height: 220px;
+        max-height: 45vh;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        border-width: 1px;
+        box-shadow: 
+            0 10px 35px rgba(52, 152, 219, 0.12),
+            0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .comparison-image-container.responsive-scaling {
+        max-height: 40vh;
+        min-height: 200px;
+    }
+    
+    /* 超小屏幕进一步优化 */
+    .comparison-image-container.small-screen-optimized {
+        min-height: 180px;
+        max-height: 35vh;
+        border-radius: 8px;
+    }
+}
+
+/* 超小屏幕特殊处理 */
+@media (max-width: 360px) {
+    .comparison-image-container {
+        min-height: 160px;
+        max-height: 30vh;
+        border-radius: 8px;
+    }
+    
+    .comparison-image-container.responsive-scaling {
+        max-height: 28vh;
+        min-height: 150px;
+    }
+}
+
+/* 超紧凑模式 - 针对极小屏幕的特殊优化 */
+.comparison-image-container.ultra-compact-mode {
+    min-height: 140px !important;
+    max-height: 25vh !important;
+    border-radius: 6px;
+    border-width: 1px;
+    /* 简化阴影以提升性能 */
+    box-shadow: 
+        0 5px 20px rgba(52, 152, 219, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.06);
+    /* 优化内边距 */
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.comparison-image-container.ultra-compact-mode .comparison-image {
+    /* 强制使用contain模式确保完整显示 */
+    object-fit: contain !important;
+    object-position: center center;
+    /* 添加轻微背景避免空白 */
+    background: linear-gradient(135deg, 
+        rgba(248, 249, 250, 0.9) 0%, 
+        rgba(52, 152, 219, 0.03) 100%);
+}
+
+.comparison-image-container.ultra-compact-mode .slider-handle {
+    width: 32px !important;
+    height: 32px !important;
+    border-width: 1px !important;
+    /* 最大化触摸区域 */
+    padding: 16px !important;
+    margin: -16px !important;
+}
+
+.comparison-image-container.ultra-compact-mode .handle-icon {
+    font-size: 8px !important;
+}
+
+.comparison-image-container.ultra-compact-mode .comparison-slider {
+    width: 10px !important; /* 最大触摸区域 */
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.comparison-image-container.ultra-compact-mode .label-original,
+.comparison-image-container.ultra-compact-mode .label-result {
+    font-size: 0.7rem !important;
+    padding: 4px 8px !important;
+    border-radius: 12px;
+    /* 简化以节省空间 */
+    bottom: 5px;
+    top: auto;
+}
+
+.comparison-image-container.ultra-compact-mode .label-original {
+    left: 5px;
+}
+
+.comparison-image-container.ultra-compact-mode .label-result {
+    right: 5px;
+}
+
+/* 图片容器 - 完全重叠覆盖优化 */
 .comparison-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 恢复cover以完全覆盖容器 */
-    object-position: center center; /* 居中显示，减少重要内容被裁剪 */
+    /* 关键改进：使用contain确保图片完整显示，然后通过容器控制最终尺寸 */
+    object-fit: contain;
+    object-position: center center;
     user-select: none;
     pointer-events: none;
     display: block;
+    /* 优化图片渲染质量 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* 确保图片在缩放时保持清晰 */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* 添加平滑过渡 */
+    transition: transform 0.3s ease;
+    /* 添加背景色填充空白区域 */
+    background-color: rgba(248, 249, 250, 0.1);
+}
+
+/* 强制覆盖模式 - 确保图片完全填充容器 */
+.comparison-image.force-cover {
+    object-fit: cover !important;
+    object-position: center center;
+    /* 移除背景色 */
+    background-color: transparent;
+}
+
+/* 响应式图片优化 - 智能适配模式 */
+.comparison-image.responsive-optimized {
+    /* 根据容器尺寸智能选择显示模式 */
+    object-fit: contain;
+    object-position: center center;
+    /* 确保图片居中显示 */
+    transform: translateZ(0); /* 启用硬件加速 */
+}
+
+/* 移动端图片优化 */
+@media (max-width: 768px) {
+    .comparison-image {
+        /* 移动端优先使用contain模式确保完整显示 */
+        object-fit: contain;
+        object-position: center center;
+        /* 添加轻微的缩放优化 */
+        transform: scale(1) translateZ(0);
+        transition: transform 0.2s ease;
+    }
+    
+    .comparison-image.mobile-optimized {
+        /* 移动端可选择覆盖模式 */
+        object-fit: cover;
+        object-position: center center;
+        /* 确保移动端图片清晰度 */
+        image-rendering: auto;
+    }
+}
+
+/* 超小屏幕图片优化 */
+@media (max-width: 480px) {
+    .comparison-image {
+        /* 超小屏幕强制使用contain模式确保完整显示 */
+        object-fit: contain !important;
+        object-position: center center;
+        /* 添加背景以避免空白 */
+        background: linear-gradient(135deg, 
+            rgba(248, 249, 250, 0.8) 0%, 
+            rgba(52, 152, 219, 0.05) 100%);
+    }
 }
 
 .original-image {
     z-index: 1;
+    /* 确保原图作为背景层完全填充 */
+    object-fit: cover;
+    object-position: center center;
 }
 
-/* 遮罩层 - 左侧显示处理后图片，右侧显示原图 */
+/* 遮罩层 - 完全重叠优化 */
 .comparison-overlay {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%; /* 固定在中间位置 */
+    width: 50%; /* 初始宽度，通过滑块控制 */
     height: 100%;
     overflow: hidden;
     z-index: 2;
-    transition: none; /* 移除过渡效果 */
-    will-change: auto; /* 移除性能优化，不需要了 */
+    transition: none; /* 移除过渡效果以提升性能 */
+    will-change: width; /* 启用硬件加速 */
+    contain: layout style paint; /* CSS包含优化 */
+    /* 确保遮罩层在不同屏幕上都能正常工作 */
+    box-sizing: border-box;
+    /* 添加边界以便调试 */
+    /* border-right: 1px solid rgba(255, 255, 255, 0.3); */
 }
 
+/* 响应式遮罩层优化 */
+.comparison-overlay.responsive-optimized {
+    /* 确保遮罩层能够适应容器变化 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    /* 优化性能 */
+    will-change: width, transform;
+    contain: layout style paint;
+}
+
+/* 结果图片 - 关键优化：确保与原图完全重叠 */
 .result-image {
     position: absolute;
     top: 0;
     left: 0;
-    /* 关键修正：宽度将通过JavaScript动态设置以匹配容器宽度 */
-    width: 100%; /* 初始值，会被JavaScript覆盖 */
+    /* 关键修正：宽度必须与容器宽度完全匹配，而不是遮罩层宽度 */
+    width: 100%; /* 这个值会被JavaScript动态设置为容器的实际宽度 */
     height: 100%;
+    /* 确保结果图片与原图使用相同的显示模式 */
     object-fit: cover;
     object-position: center center;
     user-select: none;
     pointer-events: none;
     display: block;
+    /* 优化图片渲染 */
+    image-rendering: -webkit-optimize-contrast;
+    backface-visibility: hidden;
+    /* 移除过渡效果以避免重叠问题 */
+    transition: none;
+    /* 确保图片完全对齐 */
+    transform: translateZ(0); /* 硬件加速 */
 }
 
-/* 滑块控制器 - 固定位置 */
+/* 强制结果图片与原图保持一致的显示模式 */
+.result-image.force-cover {
+    object-fit: cover !important;
+    object-position: center center;
+}
+
+/* 响应式结果图片优化 */
+.result-image.responsive-optimized {
+    /* 确保结果图片能够正确缩放并与原图对齐 */
+    width: auto;
+    min-width: 100%;
+    max-width: none;
+    /* 与原图保持一致的显示模式 */
+    object-fit: cover;
+    object-position: center center;
+    /* 确保硬件加速 */
+    transform: translateZ(0);
+}
+
+/* 移动端结果图片优化 */
+@media (max-width: 768px) {
+    .result-image {
+        /* 确保移动端正确显示并与原图对齐 */
+        width: 100% !important;
+        min-width: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+    
+    .result-image.mobile-optimized {
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+/* 图片完全重叠模式 - 新增专用样式 */
+.comparison-image-container.perfect-overlap .comparison-image {
+    /* 强制两张图片使用相同的显示参数 */
+    object-fit: cover !important;
+    object-position: center center !important;
+    /* 确保像素级对齐 */
+    transform: translateZ(0);
+    /* 移除任何可能影响对齐的效果 */
+    filter: none;
+    backdrop-filter: none;
+}
+
+.comparison-image-container.perfect-overlap .result-image {
+    /* 确保结果图片与原图完全对齐 */
+    object-fit: cover !important;
+    object-position: center center !important;
+    /* 精确的像素对齐 */
+    transform: translateZ(0);
+    /* 确保宽度精确匹配容器 */
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 滑块控制器 - 移动端优化版本 */
 .comparison-slider {
     position: absolute;
     top: 0;
@@ -830,7 +1308,100 @@
     transform: translateX(-50%);
     cursor: ew-resize;
     transition: none; /* 移除过渡效果 */
-    will-change: auto; /* 移除性能优化，不需要了 */
+    will-change: transform; /* 启用硬件加速 */
+    /* 触摸优化 */
+    touch-action: pan-y; /* 允许垂直滚动但优化水平拖动 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* 确保滑块在所有屏幕上都可见 */
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+/* 响应式滑块优化 */
+.comparison-slider.responsive-optimized {
+    /* 确保滑块能够适应容器高度变化 */
+    height: 100%;
+    top: 0;
+    /* 优化触摸体验 */
+    touch-action: pan-y;
+    /* 确保滑块在缩放时保持正确位置 */
+    transform: translateX(-50%) translateZ(0);
+}
+
+/* 移动端滑块优化 */
+@media (max-width: 768px) {
+    .comparison-slider {
+        width: 6px; /* 增加触摸区域 */
+        background: rgba(255, 255, 255, 0.9);
+        /* 添加阴影提高可见性 */
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* 超小屏幕滑块优化 */
+@media (max-width: 480px) {
+    .comparison-slider {
+        width: 8px; /* 进一步增加触摸区域 */
+        background: rgba(255, 255, 255, 0.95);
+        /* 增强阴影效果 */
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* 拖动状态优化 */
+.comparison-image-container.dragging {
+    cursor: ew-resize;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* 拖动时禁用过渡效果 */
+    transition: none !important;
+}
+
+.comparison-image-container.dragging .comparison-slider,
+.comparison-image-container.dragging .comparison-overlay {
+    transition: none !important;
+    will-change: transform, width;
+}
+
+.comparison-image-container.dragging .slider-handle {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 
+        0 12px 35px rgba(52, 152, 219, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式拖动状态优化 */
+.comparison-image-container.dragging.responsive-optimized {
+    /* 确保拖动时容器保持稳定 */
+    transform: scale(1) !important;
+    transition: none !important;
+}
+
+/* 移动端拖动优化 */
+@media (max-width: 768px) {
+    .comparison-image-container.dragging {
+        /* 移动端拖动时防止页面滚动 */
+        overflow: hidden;
+        touch-action: none;
+    }
+    
+    .comparison-image-container.dragging .slider-handle {
+        transform: translate(-50%, -50%) scale(1.05);
+        background: linear-gradient(145deg, var(--primary-color) 0%, #2980b9 100%);
+        color: white;
+        border-color: #2980b9;
+    }
+}
+
+/* 重置状态优化 */
+.comparison-image-container.resetting .comparison-slider,
+.comparison-image-container.resetting .comparison-overlay {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .slider-line {/*滑动的左右分割*/
@@ -842,6 +1413,7 @@
     background: #fff;
     transform: translateX(-50%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    will-change: transform; /* 硬件加速 */
 }
 
 .slider-handle {
@@ -859,13 +1431,115 @@
         0 8px 25px rgba(52, 152, 219, 0.25),
         0 4px 15px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, border-color 0.3s ease; /* 优化过渡效果 */
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                background 0.2s ease, 
+                border-color 0.2s ease,
+                box-shadow 0.2s ease; /* 优化过渡效果 */
     display: flex;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
-    touch-action: none; /* 修复触摸事件 */
-    will-change: transform; /* 性能优化 */
+    touch-action: none; /* 禁用默认触摸行为 */
+    will-change: transform, box-shadow; /* 硬件加速 */
+    /* 增加触摸区域 */
+    padding: 8px;
+    margin: -8px;
+    /* 确保在所有屏幕上都可见 */
+    z-index: 10;
+    /* 优化响应式尺寸 */
+    min-width: 44px; /* 符合移动端最小触摸目标 */
+    min-height: 44px;
+    box-sizing: border-box;
+}
+
+/* 响应式滑块手柄优化 */
+.slider-handle.responsive-optimized {
+    /* 根据屏幕大小调整尺寸 */
+    width: clamp(40px, 5vw, 52px);
+    height: clamp(40px, 5vw, 52px);
+    /* 确保触摸区域足够大 */
+    padding: clamp(6px, 1vw, 10px);
+    margin: clamp(-6px, -1vw, -10px);
+}
+
+/* 大屏幕滑块手柄 */
+@media (min-width: 1200px) {
+    .slider-handle {
+        width: 52px;
+        height: 52px;
+        border-width: 3px;
+        box-shadow: 
+            0 10px 30px rgba(52, 152, 219, 0.3),
+            0 5px 20px rgba(0, 0, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    
+    .slider-handle:hover {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* 中等屏幕滑块手柄 */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .slider-handle {
+        width: 46px;
+        height: 46px;
+        border-width: 2px;
+    }
+    
+    .slider-handle:hover {
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+/* 平板设备滑块手柄 */
+@media (min-width: 481px) and (max-width: 768px) {
+    .slider-handle {
+        width: 42px;
+        height: 42px;
+        border-width: 2px;
+        /* 增加触摸区域 */
+        padding: 10px;
+        margin: -10px;
+    }
+    
+    .slider-handle:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* 移动端滑块手柄 */
+@media (max-width: 480px) {
+    .slider-handle {
+        width: 40px;
+        height: 40px;
+        border-width: 2px;
+        /* 进一步增加触摸区域 */
+        padding: 12px;
+        margin: -12px;
+        /* 更快的响应 */
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.15s ease,
+                    border-color 0.15s ease,
+                    box-shadow 0.15s ease;
+    }
+    
+    .slider-handle:hover,
+    .slider-handle:active {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+/* 超小屏幕滑块手柄 */
+@media (max-width: 360px) {
+    .slider-handle {
+        width: 36px;
+        height: 36px;
+        border-width: 2px;
+        /* 最大化触摸区域 */
+        padding: 14px;
+        margin: -14px;
+    }
 }
 
 .slider-handle:hover {
@@ -1575,6 +2249,31 @@
     }
 }
 
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 80px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.5rem 0;
+        padding-left: 0.5rem; /* 最小容器边距 */
+        padding-right: 0.5rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.625rem 0.75rem; /* 更紧凑的内边距 */
+        font-size: 0.875rem; /* 14px */
+        min-height: 2.5rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.375rem; /* 6px */
+        height: 0.375rem;
+        margin-right: 0.5rem; /* 8px */
+    }
+}
+
 @media (max-width: 480px) {
     .page-header {
         padding: 60px 0 40px;
@@ -1650,15 +2349,29 @@
         gap: 12px;
     }
 
-    /* 增加滑块点击区域 */
-    .comparison-slider {
-        width: 6px;
+    /* 超小屏幕滑块优化 */
+    .slider-handle {
+        width: 40px;
+        height: 40px;
+        /* 进一步增加触摸区域 */
+        padding: 15px;
+        margin: -15px;
     }
     
-    .slider-handle {
-        width: 36px;
-        height: 36px;
-        touch-action: none; /* 修复触摸操作 */
+    .comparison-slider {
+        width: 8px; /* 进一步增加可触摸区域 */
+    }
+    
+    .handle-icon {
+        font-size: 10px;
+    }
+    
+    /* 增强触摸反馈 */
+    .comparison-image-container.dragging .slider-handle {
+        transform: translate(-50%, -50%) scale(1.08);
+        box-shadow: 
+            0 8px 25px rgba(52, 152, 219, 0.4),
+            0 4px 15px rgba(0, 0, 0, 0.2);
     }
     
     /* 增强触摸响应区域 */
@@ -1995,4 +2708,179 @@
 .slider-no-animation .comparison-slider,
 .slider-no-animation .comparison-overlay {
     transition: none !important;
-} 
+}
+
+/* 高分辨率屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    .slider-line {
+        width: 1px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    }
+    
+    .slider-handle {
+        border-width: 2px;
+    }
+}
+
+/* 性能优化：减少重绘 */
+.comparison-image-container {
+    /* 启用硬件加速 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* CSS包含优化 */
+    contain: layout style paint;
+    /* 优化合成层 */
+    will-change: auto;
+}
+
+.comparison-image-container.dragging {
+    will-change: contents;
+}
+
+/* 禁用所有滑块动画类 - 确保拖动时无过渡效果 */
+.slider-animating .comparison-slider,
+.slider-animating .comparison-overlay,
+.slider-subtle-animation .comparison-slider,
+.slider-subtle-animation .comparison-overlay,
+.slider-no-animation .comparison-slider,
+.slider-no-animation .comparison-overlay,
+.comparison-image-container.dragging .comparison-slider,
+.comparison-image-container.dragging .comparison-overlay {
+    transition: none !important;
+    will-change: transform, width !important;
+}
+
+/* 滑块自适应修复状态样式 */
+.comparison-image-container.fixing-alignment {
+    /* 修复过程中禁用所有过渡效果 */
+}
+
+.comparison-image-container.fixing-alignment .comparison-slider,
+.comparison-image-container.fixing-alignment .comparison-overlay {
+    transition: none !important;
+    will-change: transform, width !important;
+}
+
+.comparison-image-container.fixing-alignment .slider-handle {
+    transition: none !important;
+}
+
+/* 自适应检测过程中的视觉反馈 */
+.comparison-image-container.adaptive-checking {
+    position: relative;
+}
+
+.comparison-image-container.adaptive-checking::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background: #28a745;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: adaptiveIndicator 2s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes adaptiveIndicator {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: scale(0.8);
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scale(1.2);
+    }
+}
+
+/* 滑块对齐验证失败时的警告样式 */
+.comparison-image-container.alignment-warning {
+    border: 2px solid #ffc107 !important;
+    box-shadow: 
+        0 0 0 3px rgba(255, 193, 7, 0.2),
+        0 20px 60px rgba(52, 152, 219, 0.12),
+        0 8px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.comparison-image-container.alignment-warning::before {
+    content: '⚠️ 正在修复对齐...';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffc107;
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 1000;
+    white-space: nowrap;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+}
+
+/* 成功修复后的确认样式 */
+.comparison-image-container.alignment-success {
+    border: 2px solid #28a745 !important;
+    box-shadow: 
+        0 0 0 3px rgba(40, 167, 69, 0.2),
+        0 20px 60px rgba(52, 152, 219, 0.12),
+        0 8px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.comparison-image-container.alignment-success::before {
+    content: '✓ 对齐修复完成';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #28a745;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 1000;
+    white-space: nowrap;
+    animation: successFade 2s ease-in-out;
+}
+
+@keyframes successFade {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    20%, 80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+/* 移动端自适应优化 */
+@media (max-width: 768px) {
+    .comparison-image-container.adaptive-checking::after {
+        width: 6px;
+        height: 6px;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .comparison-image-container.alignment-warning::before,
+    .comparison-image-container.alignment-success::before {
+        font-size: 11px;
+        padding: 3px 8px;
+        top: -25px;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+    .comparison-image-container.alignment-warning::before,
+    .comparison-image-container.alignment-success::before {
+        font-size: 10px;
+        padding: 2px 6px;
+        top: -20px;
+    }
+}

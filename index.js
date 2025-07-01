@@ -8,18 +8,6 @@ $(document).ready(function() {
     // 克隆主导航到移动导航
     $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
     
-    // 移动端导航菜单
-    $(".menu-toggle").click(function() {
-        $(".main-navigation").toggleClass("toggled");
-        $(".mobile-navigation").slideToggle();
-    });
-    
-    // 点击导航链接后自动关闭菜单（移动端）
-    $(".mobile-navigation .menu-item a").click(function() {
-        $(".mobile-navigation").slideUp();
-        $(".main-navigation").removeClass("toggled");
-    });
-    
     // 页面滚动进度条
     window.onscroll = function() {
         updateProgressBar();

@@ -5,12 +5,112 @@ $(document).ready(function() {
         once: true
     });
     
-    // 克隆主导航到移动导航
-    $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
+    // 克隆主导航到移动导航（只克隆一次，避免重复）
+    if ($(".mobile-navigation .menu").length === 0) {
+        $(".main-navigation > .menu").clone().appendTo(".mobile-navigation");
+    }
     
-    // 菜单按钮点击事件
-    $(".menu-toggle").click(function() {
-        $(".mobile-navigation").slideToggle();
+    // 移动端导航菜单优化 - 完全独立定位模式
+    let mobileMenuOpen = false;
+    
+    // 动态计算导航栏高度并设置菜单正确位置的函数
+    function updateMobileNavPosition() {
+        const $siteHeader = $('.site-header');
+        const headerHeight = $siteHeader.outerHeight() || 80; // 获取导航栏实际高度，默认80px
+        
+        $('.mobile-navigation').css({
+            'top': headerHeight + 'px' // 设置菜单在导航栏下方，而不是覆盖导航栏
+        });
+    }
+    
+    $(".menu-toggle").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const $toggle = $(this);
+        const $mobileNav = $(".mobile-navigation");
+        
+        if (!mobileMenuOpen) {
+            // 更新菜单位置，确保在导航栏下方
+            updateMobileNavPosition();
+            
+            // 打开下拉菜单
+            $toggle.addClass('active').attr('aria-expanded', 'true');
+            
+            // 显示下拉菜单
+            $mobileNav.addClass('show');
+            
+            mobileMenuOpen = true;
+            
+            // 确保所有菜单项都可见
+            $mobileNav.find('.menu-item').each(function(index) {
+                $(this).css({
+                    'display': 'block',
+                    'visibility': 'visible',
+                    'opacity': '1',
+                    'position': 'relative'
+                });
+            });
+            
+            // 为可访问性添加焦点管理
+            setTimeout(() => {
+                $mobileNav.find('.menu-item:first-child a').focus();
+            }, 300);
+            
+        } else {
+            // 关闭菜单
+            closeMobileMenu();
+        }
+    });
+    
+    // 关闭移动端菜单的函数
+    function closeMobileMenu() {
+        const $toggle = $(".menu-toggle");
+        const $mobileNav = $(".mobile-navigation");
+        
+        $toggle.removeClass('active').attr('aria-expanded', 'false');
+        $mobileNav.removeClass('show');
+        
+        mobileMenuOpen = false;
+        
+        // 返回焦点到切换按钮
+        $toggle.focus();
+    }
+    
+    // 点击导航链接后自动关闭菜单（移动端）
+    $(".mobile-navigation .menu-item a").click(function() {
+        closeMobileMenu();
+    });
+    
+    // ESC键关闭菜单
+    $(document).keydown(function(e) {
+        if (e.key === 'Escape' && mobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+    
+    // 点击菜单外部区域关闭菜单
+    $(document).click(function(e) {
+        if (mobileMenuOpen && 
+            !$(e.target).closest('.mobile-navigation').length && 
+            !$(e.target).closest('.menu-toggle').length) {
+            closeMobileMenu();
+        }
+    });
+    
+    // 窗口大小改变时处理导航菜单
+    $(window).resize(function() {
+        if ($(window).width() > 768) {
+            // 大屏幕时自动关闭移动端菜单
+            if (mobileMenuOpen) {
+                closeMobileMenu();
+            }
+        } else {
+            // 移动端时更新菜单位置，确保始终在导航栏下方
+            if (mobileMenuOpen) {
+                updateMobileNavPosition();
+            }
+        }
     });
     
     // 页面滚动进度条

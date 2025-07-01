@@ -57,6 +57,8 @@ body {
     left: 0;
     right: 0;
     overflow-x: hidden;
+    /* 确保移动端菜单能正确定位 */
+    position: relative;
 }
 
 /* 导航栏平滑过渡效果 */
@@ -106,11 +108,10 @@ body {
 }
 
 .logo {
-    width: 3.125rem; /* 50px */
-    height: 3.125rem; /* 50px */
-    margin-right: 0.9375rem; /* 15px */
-    border-radius: 0.625rem; /* 10px */
-    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* 0 2px 10px */
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: contain; /* 防止图标变形 */
 }
 
 .site-title {
@@ -138,53 +139,227 @@ body {
     flex: 1;
     padding-right: 0;
     width: auto;
+    /* 移除相对定位，让移动端菜单相对于site-header定位 */
 }
 
+/* 移动端菜单 - 完全独立定位，脱离导航栏约束，但不覆盖导航栏 */
 .mobile-navigation {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed; /* 相对于视口定位，完全脱离导航栏约束 */
+    top: 0; /* 初始位置在顶部，但会通过JavaScript动态调整 */
     left: 0;
     right: 0;
-    background: white;
-    box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.1); /* 0 5px 15px */
-    z-index: 1000;
-    border-radius: 0 0 0.9375rem 0.9375rem; /* 0 0 15px 15px */
-    max-height: 80vh;
-    overflow-y: auto;
     width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    z-index: 999; /* 降低层级，确保不覆盖导航栏 */
+    border-radius: 0 0 1rem 1rem;
+    transform: translateY(-100%); /* 初始隐藏在顶部 */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-top: 2px solid var(--primary-color);
+    /* 自适应高度，确保所有菜单项都可见 */
+    height: auto;
+    min-height: auto;
+    max-height: calc(100vh - 100px); /* 留出导航栏空间 */
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    /* 不使用padding-top，而是通过JavaScript动态设置top位置 */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mobile-navigation.show {
+    display: block;
+    transform: translateY(0); /* 滑入到导航栏下方的正确位置 */
+    opacity: 1;
 }
 
 .mobile-navigation .menu {
     display: flex;
     flex-direction: column;
-    padding: 0.625rem 0; /* 10px 0 */
+    padding: 1rem 0; /* 适中的垂直内边距 */
     margin: 0;
     list-style: none;
+    gap: 0.25rem; /* 菜单项之间的小间距 */
+    /* 添加水平容器边距，与页面内容保持一致 */
+    max-width: 100%;
+    padding-left: 1.25rem; /* 与branding的margin-left保持一致 */
+    padding-right: 1.25rem;
 }
 
 .mobile-navigation .menu-item {
     margin: 0;
     width: 100%;
+    opacity: 0;
+    transform: translateY(-10px); /* 轻微的向上位移 */
+    animation: slideInDown 0.3s ease forwards; /* 缩短动画时间 */
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item:nth-child(1) { animation-delay: 0.05s; }
+.mobile-navigation .menu-item:nth-child(2) { animation-delay: 0.1s; }
+.mobile-navigation .menu-item:nth-child(3) { animation-delay: 0.15s; }
+.mobile-navigation .menu-item:nth-child(4) { animation-delay: 0.2s; }
+.mobile-navigation .menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes slideInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .mobile-navigation .menu-item a {
-    padding: 0.75rem 1.25rem; /* 12px 20px */
+    padding: 0.875rem 1rem; /* 减少水平内边距 */
     color: var(--dark-color);
     font-weight: 500;
     text-decoration: none;
-    display: block;
-    border-radius: 0;
-    border-left: 0.1875rem solid transparent; /* 3px */
-    transition: all var(--transition-speed);
-    border-bottom: 0.0625rem solid #eee; /* 1px */
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem; /* 适中的圆角 */
+    border-left: 0.25rem solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 1rem; /* 16px - 标准字体大小 */
+    min-height: 3rem; /* 适中的最小高度 */
+    white-space: nowrap;
+    background: transparent;
+    margin: 0; /* 移除左右边距，因为容器已有边距 */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 轻微的分隔线 */
+}
+
+.mobile-navigation .menu-item:last-child a {
+    border-bottom: none; /* 最后一项不显示分隔线 */
 }
 
 .mobile-navigation .menu-item a:hover,
 .mobile-navigation .current-menu-item a {
-    border-left: 0.1875rem solid var(--primary-color); /* 3px */
-    background: linear-gradient(to right, rgba(52, 152, 219, 0.1), transparent);
+    border-left: 0.25rem solid var(--primary-color);
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.05));
     color: var(--primary-color);
+    transform: translateX(5px); /* 轻微的右移效果 */
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.15);
+}
+
+.mobile-navigation .menu-item a:active {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(46, 204, 113, 0.1));
+    transform: scale(0.98) translateX(5px);
+}
+
+/* 为移动端菜单项添加图标 */
+.mobile-navigation .menu-item a::before {
+    content: '';
+    width: 0.5rem; /* 8px */
+    height: 0.5rem; /* 8px */
+    border-radius: 50%;
+    background-color: var(--gray-color);
+    margin-right: 0.75rem; /* 12px */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item a:hover::before,
+.mobile-navigation .current-menu-item a::before {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+/* 响应式媒体查询优化 - 下拉菜单适配 */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        margin-right: 1rem;
+    }
+    
+    .main-navigation .menu {
+        display: none;
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 100px); /* 调整最大高度 */
+    }
+    
+    .mobile-navigation .menu {
+        padding-left: 1rem; /* 减少容器边距 */
+        padding-right: 1rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 0.875rem; /* 调整内边距 */
+        font-size: 0.9375rem; /* 15px */
+        min-height: 2.75rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem; /* 7px */
+        height: 0.4375rem;
+        margin-right: 0.625rem; /* 10px */
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 90px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.75rem 0;
+        padding-left: 0.75rem; /* 进一步减少容器边距 */
+        padding-right: 0.75rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.625rem 0.75rem; /* 调整内边距 */
+        font-size: 0.875rem; /* 14px */
+        min-height: 2.5rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.375rem; /* 6px */
+        height: 0.375rem;
+        margin-right: 0.5rem; /* 8px */
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 80px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.5rem 0;
+        padding-left: 0.5rem; /* 最小容器边距 */
+        padding-right: 0.5rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.5rem 0.625rem; /* 调整内边距 */
+        font-size: 0.8125rem; /* 13px */
+        min-height: 2.25rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.3125rem; /* 5px */
+        height: 0.3125rem;
+        margin-right: 0.375rem; /* 6px */
+    }
+}
+
+/* 确保全屏菜单在所有情况下都正确显示 */
+.mobile-navigation {
+    position: fixed !important;
+    z-index: 9999 !important;
+}
+
+/* 防止菜单被其他元素遮挡 */
+.site-header {
+    position: relative;
+    z-index: 1000;
 }
 
 .main-navigation .menu {
@@ -278,18 +453,40 @@ body {
     color: var(--dark-color);
     font-size: 1.5rem; /* 24px */
     cursor: pointer;
-    padding: 0.3125rem; /* 5px */
+    padding: 0.5rem; /* 8px */
     transition: all 0.3s ease;
-    z-index: 100;
+    z-index: 1001;
+    border-radius: 0.25rem; /* 4px */
+    position: relative;
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu-toggle:hover {
     color: var(--primary-color);
-    transform: scale(1.1);
+    background-color: rgba(52, 152, 219, 0.1);
+    transform: scale(1.05);
 }
 
 .menu-toggle:focus {
-    outline: none;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* 汉堡菜单图标动画 */
+.menu-toggle .fa-bars {
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active .fa-bars {
+    transform: rotate(90deg);
 }
 
 /* 进度阅读滚动条 */
@@ -607,8 +804,8 @@ body {
     }
     
     .menu-toggle {
-        display: block;
-        margin-right: 0.9375rem; /* 15px */
+        display: flex;
+        margin-right: 1rem; /* 16px */
     }
     
     .main-navigation .menu {
@@ -1186,9 +1383,10 @@ img, video, iframe {
     }
     
     .logo {
-        width: 35px;
-        height: 35px;
+        width: 50px;
+        height: 50px;
         margin-right: 10px;
+        object-fit: contain; /* 防止图标变形 */
     }
     
     .news-title {
@@ -1447,4 +1645,88 @@ a {
         background: white;
         color: black;
     }
+}
+
+/* 屏幕阅读器专用样式 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Body状态样式已移除，因为直接展示菜单不需要锁定页面滚动 */
+
+/* 紧凑模式 - 当菜单项较多时自动启用 */
+.mobile-navigation.compact-mode .menu {
+    padding: 0.25rem 0; /* 进一步减小垂直内边距 */
+}
+
+.mobile-navigation.compact-mode .menu-item a {
+    padding: 0.4rem 1rem; /* 紧凑的内边距 */
+    font-size: 0.8125rem; /* 13px */
+    min-height: 2rem; /* 紧凑的高度 */
+}
+
+.mobile-navigation.compact-mode .menu-item a:hover,
+.mobile-navigation.compact-mode .current-menu-item a {
+    padding-left: 1.25rem; /* 20px */
+}
+
+.mobile-navigation.compact-mode .menu-item a::before {
+    width: 0.375rem; /* 6px */
+    height: 0.375rem; /* 6px */
+    margin-right: 0.5rem; /* 8px */
+}
+
+/* 确保紧凑模式下的边框也相应调整 */
+.mobile-navigation.compact-mode .menu-item a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.mobile-navigation.compact-mode .menu-item:last-child a {
+    border-bottom: none;
+}
+
+/* 超紧凑模式 - 针对极小屏幕 */
+@media (max-width: 320px) {
+    .mobile-navigation .menu-item a {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.7rem; /* 11px */
+        min-height: 1.8rem;
+    }
+    
+    .mobile-navigation .menu-item a:hover,
+    .mobile-navigation .current-menu-item a {
+        padding-left: 0.75rem; /* 12px */
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.25rem; /* 4px */
+        height: 0.25rem; /* 4px */
+        margin-right: 0.375rem; /* 6px */
+    }
+}
+
+/* 确保菜单在所有情况下都完全可见的额外保障 */
+.mobile-navigation {
+    position: absolute !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+}
+
+/* 防止菜单被截断 */
+.site-header {
+    position: relative;
+    z-index: 1000;
+}
+
+.mobile-navigation {
+    z-index: 1001;
 } 
