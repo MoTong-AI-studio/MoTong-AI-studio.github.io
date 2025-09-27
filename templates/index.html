@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="icon" href="../static/decorate/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="../static/decorate/favicon.ico" type="image/x-icon" />
+		<title>墨瞳AI工作室</title>
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- AOS Animation -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+		<!-- Loading main css files -->
+		<link rel="stylesheet" href="../static/css/style.css">
+		<link rel="stylesheet" href="../static/css/custom.css">
+		<link rel="stylesheet" href="../static/css/index.css">
+		
+		<!--[if lt IE 9]>
+        <script src="../static/js/ie-support/html5.js"></script>
+        <script src="../static/js/ie-support/respond.js"></script>
+        <![endif]-->
+	</head>
+
+
+	<body>
+		<!-- 进度条 -->
+		<div class="progress-container">
+			<div class="progress-bar" id="progressBar"></div>
+		</div>
+		
+		<div class="site-content">
+			<header class="site-header collapsed-nav">
+				<div class="container">
+					<div class="header-bar">	
+						<a href="index.html" class="branding">
+							<img src="../static/decorate/favicon.ico" alt="" class="logo">
+							<div class="logo-type">
+								<h1 class="site-title">墨瞳AI工作室</h1>
+								<small class="site-description">Computer Vision Research</small>
+							</div>
+						</a>
+
+						<nav class="main-navigation">
+							<button class="menu-toggle" aria-label="切换导航菜单" aria-expanded="false" aria-controls="mobile-navigation">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+								<span class="sr-only">菜单</span>
+							</button>
+							<ul class="menu">
+								<li class="menu-item current-menu-item"><a href="index.html">主页</a></li>
+								<li class="menu-item"><a href="about.html">关于我们</a></li>
+								<li class="menu-item"><a href="paper.html">论文成果</a></li>
+								<li class="menu-item"><a href="Contest.html">竞赛成果</a></li>
+								<li class="menu-item"><a href="contact.html">联系我们</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+
+			<!-- 移动端菜单完全独立，放在导航栏外部 -->
+			<div class="mobile-navigation" id="mobile-navigation" role="navigation" aria-label="移动端导航菜单">
+			</div>
+
+			<div class="hero">
+				<ul class="slides">
+					<li data-bg-image="../static/decorate/slider-1.png">
+						<div class="container">
+							<div class="slide-content">
+								<h2 class="slide-title">墨瞳AI工作室</h2>
+								<p>由学院江爱文教授早期本科生团队扩建而成。<br>工作室近年来以科研项目为依托，以"头脑风暴"式的讨论为特色。在学院领导的大力支持下，在江爱文教授的亲自指导下，坚持"科研+竞赛"模式，着重培养本科生学术科研能力。</p>
+							</div>
+						</div>
+					</li>
+					<li data-bg-image="../static/decorate/slider-2.png">
+						<div class="container">
+							<div class="slide-content">
+								<h2 class="slide-title">墨瞳AI工作室</h2>
+								<p>由学院江爱文教授早期本科生团队扩建而成。<br>工作室近年来以科研项目为依托，以"头脑风暴"式的讨论为特色。在学院领导的大力支持下，在江爱文教授的亲自指导下，坚持"科研+竞赛"模式，着重培养本科生学术科研能力。</p>
+							</div>
+						</div>
+					</li>
+					<li data-bg-image="../static/decorate/slider-3.png">
+						<div class="container">
+							<div class="slide-content">
+								<h2 class="slide-title">墨瞳AI工作室</h2>
+								<p>由学院江爱文教授早期本科生团队扩建而成。<br>工作室近年来以科研项目为依托，以"头脑风暴"式的讨论为特色。在学院领导的大力支持下，在江爱文教授的亲自指导下，坚持"科研+竞赛"模式，着重培养本科生学术科研能力。</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<main class="main-content">
+				<div class="fullwidth-block" id="base1">
+					<div class="container">
+						<h1 class="section-heading">目前主要的研究方向</h1>
+						<div class="research-grid">
+							<div class="research-item">
+<!--								<a href="rain-fog-removal.html" class="research-card-link">-->
+									<a href="" class="research-card-link">
+									<div class="research-card">
+										<div class="research-image-container">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project1.jpg" alt="雨雾去除" class="research-image lazy">
+											<div class="research-badge">计算机视觉</div>
+										</div>
+										<div class="research-content">
+											<h2 class="research-title">雨纹去除</h2>
+											<p class="research-desc">通过雨纹去除算法减轻或消除图像中由于雨雾、霾等天气条件引起的视觉模糊和对比度降低</p>
+											<div class="research-footer">
+												<span class="research-tag">图像恢复</span>
+<!--												<span class="research-more">了解更多</span>-->
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="research-item">
+<!--								<a href="low-light-enhancement.html" class="research-card-link">-->
+									<a href="" class="research-card-link">
+									<div class="research-card">
+										<div class="research-image-container">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project2.jpg" alt="低光增强" class="research-image lazy">
+											<div class="research-badge">计算机视觉</div>
+										</div>
+										<div class="research-content">
+											<h2 class="research-title">低光增强</h2>
+											<p class="research-desc">对原低光照度的图像进行光照增强，以达到光照增强并均匀分布，恢复正常光亮的效果</p>
+											<div class="research-footer">
+												<span class="research-tag">图像增强</span>
+<!--												<span class="research-more">了解更多</span>-->
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="research-item">
+<!--								<a href="bokeh-blur.html" class="research-card-link">-->
+								<a href="" class="research-card-link">
+									<div class="research-card">
+										<div class="research-image-container">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project3.jpg" alt="散景虚化" class="research-image lazy">
+											<div class="research-badge">计算机视觉</div>
+										</div>
+										<div class="research-content">
+											<h2 class="research-title">散景虚化</h2>
+											<p class="research-desc">通过图像处理技术实现背景模糊化的效果，模糊化不重要的背景，使得主体能更加突出</p>
+											<div class="research-footer">
+												<span class="research-tag">图像处理</span>
+<!--												<span class="research-more">了解更多</span>-->
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="research-item">
+<!--								<a href="dehaze.html" class="research-card-link">-->
+								<a href="" class="research-card-link">
+									<div class="research-card">
+										<div class="research-image-container">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/slide2.png" alt="3D点云" class="research-image lazy">
+											<div class="research-badge">计算机视觉</div>
+										</div>
+										<div class="research-content">
+											<h2 class="research-title">图像去雾</h2>
+											<p class="research-desc">图像去雾根据大气光散射和深度学习模型对图像进行去雾，便于下游任务进行处理</p>
+											<div class="research-footer">
+												<span class="research-tag">图像恢复</span>
+<!--												<span class="research-more">了解更多</span>-->
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 新闻动态模块 -->
+				<div class="fullwidth-block" id="news-section">
+					<div class="container">
+						<h1 class="section-heading">新闻动态</h1>
+						<div class="news-container">
+							<div class="news-list">
+								<!-- 第1页新闻项 -->
+								<!-- 新闻项 1 -->
+								<div class="news-item page-1">
+									<div class="news-image">
+										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/contest/CVPRW2025.jpg" alt="新闻图片" class="lazy">
+									</div>
+									<div class="news-content">
+										<h3 class="news-title">工作室在CVPR2025workshop取得优异成绩</h3>
+										<div class="news-meta">
+											<span class="news-date">2025-3-28</span>
+											<span class="news-category">竞赛成果</span>
+										</div>
+										<p class="news-excerpt">在CVPR2025散景渲染挑战赛中获得冠军，并在低光增强赛道取得优异成绩</p>
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+									</div>
+								</div>
+								
+								<!-- 新闻项 2 -->
+								<div class="news-item page-1">
+									<div class="news-image">
+										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/paper/yqh1.png" alt="新闻图片" class="lazy">
+									</div>
+									<div class="news-content">
+										<h3 class="news-title">最新研究成果被sci一区top期刊EAAI接收</h3>
+										<div class="news-meta">
+											<span class="news-date">2025-05-07</span>
+											<span class="news-category">学术成果</span>
+										</div>
+										<p class="news-excerpt">工作室在All-in-one图像恢复领域的最新研究成果《Textual Prompt Guided Image Restoration》被计算机视觉期刊EAAI接收...</p>
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+									</div>
+								</div>
+								
+								<!-- 新闻项 3 -->
+								<div class="news-item page-1">
+									<div class="news-image">
+										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/paper/IJCNN2025.png" alt="新闻图片" class="lazy">
+									</div>
+									<div class="news-content">
+										<h3 class="news-title">工作室成员在CCF推荐会议上发表最新研究成果</h3>
+										<div class="news-meta">
+											<span class="news-date">2025-04-01</span>
+											<span class="news-category">活动信息</span>
+										</div>
+										<p class="news-excerpt">工作室成员在IJCNN上发表最新研究成果《DA-Mamba: A Dual-domain Attention Mamba-based Image Deraining Network》...</p>
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+									</div>
+								</div>
+								
+<!--								&lt;!&ndash; 新闻项 4 &ndash;&gt;-->
+<!--								<div class="news-item page-1">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project4.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室新增多项国家级科研项目立项</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2023-07-05</span>-->
+<!--											<span class="news-category">项目信息</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室新增多项国家级科研项目立项，包括国家自然科学基金、国家重点研发计划等，总经费达300余万元，将进一步推动工作室在计算机视觉领域的研究...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+								<!-- 新闻项 5 -->
+								<div class="news-item page-1">
+									<div class="news-image">
+										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/photos/VALSE2025.jpg" alt="新闻图片" class="lazy">
+									</div>
+									<div class="news-content">
+										<h3 class="news-title">工作室成员参加2025年VALSE会议</h3>
+										<div class="news-meta">
+											<span class="news-date">2025-06-07</span>
+											<span class="news-category">学术交流</span>
+										</div>
+										<p class="news-excerpt">工作室多名成员赴珠海参加2025年VALSE会议，学习和了解当前计算机视觉各领域最新研究成果...</p>
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+									</div>
+								</div>
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 6 &ndash;&gt;-->
+<!--								<div class="news-item page-1">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project2.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室与多家企业签署产学研合作协议</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2023-05-22</span>-->
+<!--											<span class="news-category">合作信息</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室与华为、腾讯、字节跳动等多家知名企业签署产学研合作协议，将在智能视觉分析、增强现实等领域开展深度合作，加速科研成果的产业化转化...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 第2页新闻项 &ndash;&gt;-->
+<!--								&lt;!&ndash; 新闻项 7 &ndash;&gt;-->
+<!--								<div class="news-item page-2" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/slider-3.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室举办2023年春季学术研讨会</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2023-04-15</span>-->
+<!--											<span class="news-category">活动信息</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室成功举办2023年春季学术研讨会，邀请了多位国内外知名学者做学术报告，就人工智能和计算机视觉领域的前沿问题进行了深入交流和探讨...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 8 &ndash;&gt;-->
+<!--								<div class="news-item page-2" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/slider-1.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室2023年招新工作圆满完成</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2023-03-10</span>-->
+<!--											<span class="news-category">招新信息</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室2023年招新工作圆满完成，共有15名优秀本科生通过层层选拔加入工作室，他们将在导师和高年级学长学姐的指导下，开展计算机视觉相关研究...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 9 &ndash;&gt;-->
+<!--								<div class="news-item page-2" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project3.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室开发的智能图像处理APP上线运营</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2023-02-25</span>-->
+<!--											<span class="news-category">项目成果</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室基于自主研发的图像增强算法，开发的智能图像处理APP正式上线各大应用商店，该APP集成了低光增强、雨雾去除等多种功能，受到用户广泛好评...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 10 &ndash;&gt;-->
+<!--								<div class="news-item page-2" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project4.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室首届校友学术交流活动成功举办</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2023-01-15</span>-->
+<!--											<span class="news-category">校友活动</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室首届校友学术交流活动成功举办，多位在国内外知名高校和企业工作的校友返回母校，分享了他们在学术和工业界的最新研究和工作经验...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 11 &ndash;&gt;-->
+<!--								<div class="news-item page-2" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project1.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室获批省级重点实验室建设项目</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-12-20</span>-->
+<!--											<span class="news-category">项目信息</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室获批省级智能视觉分析重点实验室建设项目，将获得500万元建设经费支持，进一步提升工作室的科研条件和研究水平...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 12 &ndash;&gt;-->
+<!--								<div class="news-item page-2" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project2.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室举办2022年冬季技术培训班</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-11-30</span>-->
+<!--											<span class="news-category">培训活动</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室面向全校学生举办为期两周的冬季技术培训班，内容涵盖计算机视觉基础、深度学习框架使用和前沿算法实践等，吸引了200余名学生参加...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 添加更多新闻项以满足第3页 &ndash;&gt;-->
+<!--								&lt;!&ndash; 新闻项 13 &ndash;&gt;-->
+<!--								<div class="news-item page-3" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/slider-2.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室开展人工智能与医疗健康研究合作</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-10-18</span>-->
+<!--											<span class="news-category">合作项目</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室与省级人民医院建立合作关系，将计算机视觉技术应用于医学影像分析，助力医疗诊断智能化，目前已在肺部CT图像分析项目上取得初步成果...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 14 &ndash;&gt;-->
+<!--								<div class="news-item page-3" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project4.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室成员参加全国大学生人工智能创新大赛</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-09-25</span>-->
+<!--											<span class="news-category">竞赛活动</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室多位成员组队参加2022年全国大学生人工智能创新大赛，凭借"基于深度学习的农作物病虫害识别系统"项目获得全国三等奖的优异成绩...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 15 &ndash;&gt;-->
+<!--								<div class="news-item page-3" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project1.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室举办计算机视觉与增强现实技术讲座</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-08-15</span>-->
+<!--											<span class="news-category">学术讲座</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室邀请国内知名AR领域专家举办计算机视觉与增强现实技术讲座，详细介绍了计算机视觉在增强现实中的应用，以及最新的技术发展趋势与挑战...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 16 &ndash;&gt;-->
+<!--								<div class="news-item page-3" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project3.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室推出开源计算机视觉算法库</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-07-20</span>-->
+<!--											<span class="news-category">开源项目</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室将多年研究积累的计算机视觉算法整合发布为开源算法库"MoTongCV"，包含图像增强、目标检测等多个模块，旨在促进学术交流与技术共享...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 17 &ndash;&gt;-->
+<!--								<div class="news-item page-3" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/slider-1.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室举办第二届计算机视觉挑战赛</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-06-10</span>-->
+<!--											<span class="news-category">竞赛活动</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室面向全校学生举办第二届计算机视觉挑战赛，设置图像分类、目标检测两个赛道，吸引了来自多个学院的50余支队伍参与，比赛氛围热烈...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								-->
+<!--								&lt;!&ndash; 新闻项 18 &ndash;&gt;-->
+<!--								<div class="news-item page-3" style="display: none;">-->
+<!--									<div class="news-image">-->
+<!--										<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../static/decorate/project2.jpg" alt="新闻图片" class="lazy">-->
+<!--									</div>-->
+<!--									<div class="news-content">-->
+<!--										<h3 class="news-title">工作室完成智慧校园视觉系统部署</h3>-->
+<!--										<div class="news-meta">-->
+<!--											<span class="news-date">2022-05-15</span>-->
+<!--											<span class="news-category">应用项目</span>-->
+<!--										</div>-->
+<!--										<p class="news-excerpt">工作室研发的智慧校园视觉系统在校内多个区域完成部署，该系统集成了人流量统计、异常行为检测等功能，为校园管理和安全提供了有力支持...</p>-->
+<!--										<a href="#" class="news-more">阅读更多</a>-->
+<!--									</div>-->
+<!--								</div>-->
+							</div>
+							
+							<!-- 分页控件 -->
+							<div class="pagination">
+								<a href="#" class="page-link active" data-page="1">1</a>
+								<a href="#" class="page-link" data-page="2">2</a>
+								<a href="#" class="page-link" data-page="3">3</a>
+								<a href="#" class="page-link next" data-page="next">></a>
+								<a href="#" class="page-link last" data-page="last">>></a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</main> <!-- .main-content -->
+
+		</div>
+
+		<!-- 回到顶部按钮 -->
+		<div class="scroll-top" id="scrollTop">
+			<i class="fas fa-arrow-up"></i>
+		</div>
+
+		<!-- Bootstrap (无需jQuery) -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- AOS Animation Library -->
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		
+		<!-- 纯ES6脚本 -->
+		<script src="../static/js/plugins.js"></script>
+		<script src="../static/js/app.js"></script>
+		<script src="../static/js/custom-effects.js"></script>
+		
+		<!-- 自定义JS -->
+		<script src="../static/js/index.js"></script>
+	</body>
+</html>

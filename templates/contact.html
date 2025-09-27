@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<link rel="icon" href="../static/decorate/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="../static/decorate/favicon.ico" type="image/x-icon" />
+		<title>联系我们 - 墨瞳AI工作室</title>
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- AOS Animation -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+		<!-- Loading CSS files -->
+		<link rel="stylesheet" href="../static/css/style.css">
+		<link rel="stylesheet" href="../static/css/contact.css">
+	</head>
+
+	<body>
+		<!-- 进度条 -->
+		<div class="progress-container">
+			<div class="progress-bar" id="progressBar"></div>
+		</div>
+		
+		<div class="site-content">
+			<header class="site-header collapsed-nav">
+				<div class="container">
+					<div class="header-bar">
+						<a href="index.html" class="branding">
+							<img src="../static/decorate/favicon.ico" alt="" class="logo">
+							<div class="logo-type">
+								<h1 class="site-title">墨瞳AI工作室</h1>
+								<small class="site-description">Computer Vision Research</small>
+							</div>
+						</a>
+						<nav class="main-navigation">
+							<button class="menu-toggle" aria-label="切换导航菜单" aria-expanded="false" aria-controls="mobile-navigation">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+								<span class="sr-only">菜单</span>
+							</button>
+							<ul class="menu">
+								<li class="menu-item"><a href="index.html">主页</a></li>
+								<li class="menu-item"><a href="about.html">关于我们</a></li>
+								<li class="menu-item"><a href="paper.html">论文成果</a></li>
+								<li class="menu-item"><a href="Contest.html">竞赛成果</a></li>
+								<li class="menu-item current-menu-item"><a href="contact.html">联系我们</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+			
+			<!-- 移动端菜单完全独立，放在导航栏外部 -->
+			<div class="mobile-navigation" id="mobile-navigation" role="navigation" aria-label="移动端导航菜单">
+			</div>
+
+			<div class="page-head">
+				<div class="container" style="padding-top: 50px;">
+					<h2 class="page-title">联系我们</h2>
+					<p data-aos="fade-up" data-aos-delay="300">欢迎与墨瞳AI工作室取得联系，我们期待您的反馈和合作机会</p>
+				</div>
+			</div>
+
+			<main class="main-content">
+				<section class="contact-section">
+					<div class="container">
+						<div class="contact-heading" data-aos="fade-up">
+							<h2>我们期待听到您的声音</h2>
+							<p>无论是项目合作、学术交流还是加入我们，请随时联系墨瞳AI工作室</p>
+						</div>
+						
+
+						
+						<div class="row">
+							<div class="col-md-7">
+								<div class="contact-form-container" data-aos="fade-up">
+									<h2>发送消息</h2>
+									<form class="contact-form" id="contactForm" action="mailto:chinatownwhiteck@jxnu.edu.cn" method="post">
+										<div class="form-group">
+											<label for="name">您的姓名</label>
+											<input type="text" class="form-control" id="name" name="name" placeholder="请输入您的姓名">
+										</div>
+										
+										<div class="form-group">
+											<label for="email">电子邮箱</label>
+											<input type="email" class="form-control" id="email" name="email" placeholder="请输入您的邮箱地址">
+										</div>
+										
+										<div class="form-group">
+											<label for="subject">主题</label>
+											<input type="text" class="form-control" id="subject" name="subject" placeholder="请输入消息主题">
+										</div>
+										
+										<div class="form-group">
+											<label for="message">消息内容</label>
+											<textarea class="form-control" id="message" name="message" placeholder="请输入您想要咨询或了解的内容"></textarea>
+										</div>
+										
+										<div class="form-group">
+											<button type="submit" class="submit-btn">发送消息 <i class="fas fa-paper-plane"></i></button>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+							<div class="col-md-5">
+								<div class="map-container" data-aos="fade-up" data-aos-delay="100" title="点击放大查看地图">
+									<img src="../static/decorate/map.png" alt="墨瞳AI工作室地图位置">
+									<div class="map-overlay">
+										<i class="fas fa-search-plus"></i>
+										<span>放大查看</span>
+									</div>
+								</div>
+								
+
+							</div>
+						</div>
+						
+<!--						<div class="social-links" data-aos="fade-up"> -->
+<!--							<a href="https://github.com/MoTong-AI-studio" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>-->
+<!--							<a href="#" title="微信"><i class="fab fa-weixin"></i></a>-->
+<!--							<a href="#" title="QQ"><i class="fab fa-qq"></i></a>-->
+<!--							<a href="#" title="知乎"><i class="fab fa-zhihu"></i></a>-->
+<!--						</div>-->
+					</div>
+				</section>
+			</main>
+
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="widget">
+								<h3 class="widget-title">Our address</h3>
+								<strong>墨瞳AI工作室<br>江西师范大学瑶湖校区</strong>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="widget">
+								<h3 class="widget-title">Contest</h3>
+								<ul class="arrow-list">
+									<li><a href="contest.html">view our Contest</a></li> 
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="widget">
+								<h3 class="widget-title">Research</h3>
+								<ul class="arrow-list">
+									<li><a href="paper.html">view our paper</a></li> 
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3" id="base">
+							<div class="widget">
+								<h3 class="widget-title">our github</h3>
+								<div>
+									<a href="https://github.com/MoTong-AI-studio" target="_blank"><img src="../static/decorate/github.png" alt="" width="150px"> </a>
+								</div>
+							</div>
+						</div>
+					</div> 
+
+					<p class="colophon">Designed by <a href="https://github.com/MoTong-AI-studio" title="#" target="_blank">motong AI studio</a>. All rights reserved</p>
+				</div> 
+			</footer>
+			
+			<!-- 回到顶部按钮 -->
+			<div class="scroll-top" id="scrollTop">
+				<i class="fas fa-arrow-up"></i>
+			</div>
+			
+			<!-- 地图模态框 -->
+			<div class="map-modal" id="mapModal">
+				<div class="map-modal-content">
+					<div class="map-modal-header">
+						<h3>墨瞳AI工作室位置地图</h3>
+						<button class="close-modal" id="closeMapModal"><i class="fas fa-times"></i></button>
+					</div>
+					<div class="map-modal-body">
+						<div class="map-image-container">
+							<img id="modalMapImage" src="../static/decorate/map.png" alt="墨瞳AI工作室详细地图位置" class="modal-map-image">
+							<div class="map-controls">
+								<button class="map-control-btn" id="zoomIn" title="放大">
+									<i class="fas fa-plus"></i>
+								</button>
+								<button class="map-control-btn" id="zoomOut" title="缩小">
+									<i class="fas fa-minus"></i>
+								</button>
+								<button class="map-control-btn" id="resetZoom" title="重置">
+									<i class="fas fa-undo"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="map-modal-footer">
+						<div class="map-info">
+							<p><i class="fas fa-map-marker-alt"></i> 江西师范大学瑶湖校区信息工程学院</p>
+							<p><i class="fas fa-location-arrow"></i> 江西省南昌市紫阳大道99号</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery & Bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- AOS Animation Library -->
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		
+		<!-- Other Scripts -->
+		<script src="../static/js/plugins.js"></script>
+		<script src="../static/js/app.js"></script>
+		<script src="../static/js/contact.js"></script>
+	</body>
+</html>

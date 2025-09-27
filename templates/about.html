@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<link rel="icon" href="../static/decorate/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="../static/decorate/favicon.ico" type="image/x-icon" />
+		<title>关于我们 - 墨瞳AI工作室</title>
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- AOS Animation -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+		<!-- Loading main css files -->
+		<link rel="stylesheet" href="../static/css/style.css">
+		<link rel="stylesheet" href="../static/css/about.css">
+		
+		<!--[if lt IE 9]>
+        <script src="../static/js/ie-support/html5.js"></script>
+        <script src="../static/js/ie-support/respond.js"></script>
+        <![endif]-->
+	</head>
+
+	<body>
+		<!-- 进度条 -->
+		<div class="progress-container">
+			<div class="progress-bar" id="progressBar"></div>
+		</div>
+		
+		<div class="site-content">
+			<header class="site-header collapsed-nav">
+				<div class="container">
+					<div class="header-bar">
+						<a href="index.html" class="branding">
+							<img src="../static/decorate/favicon.ico" alt="" class="logo">
+							<div class="logo-type">
+								<h1 class="site-title">墨瞳AI工作室</h1>
+								<small class="site-description">Computer Vision Research</small>
+							</div>
+						</a>
+
+						<nav class="main-navigation">
+							<button class="menu-toggle" aria-label="切换导航菜单" aria-expanded="false" aria-controls="mobile-navigation">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+								<span class="sr-only">菜单</span>
+							</button>
+							<ul class="menu">
+								<li class="menu-item"><a href="index.html">主页</a></li>
+								<li class="menu-item current-menu-item"><a href="about.html">关于我们</a></li>
+								<li class="menu-item"><a href="paper.html">论文成果</a></li>
+								<li class="menu-item"><a href="Contest.html">竞赛成果</a></li>
+								<li class="menu-item"><a href="contact.html">联系我们</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+
+			<!-- 移动端菜单完全独立，放在导航栏外部 -->
+			<div class="mobile-navigation" id="mobile-navigation" role="navigation" aria-label="移动端导航菜单">
+			</div>
+
+			<div class="page-head">
+				<div class="container" style="padding-top: 50px;">
+					<h2 class="page-title">关于我们</h2>
+					
+					<p data-aos="fade-up" data-aos-delay="300">探索计算机视觉的奇妙世界，共同开创AI研究新篇章</p>
+				</div>
+			</div>
+			
+			<!-- 浮动导航栏 -->
+			<div class="floating-nav">
+				<ul class="floating-nav-list">
+					<li class="floating-nav-item active" data-target="teacher-section">
+						<a href="#teacher-section"><i class="fas fa-user-tie"></i> 指导老师</a>
+					</li>
+					<li class="floating-nav-item" data-target="student-section">
+						<a href="#student-section"><i class="fas fa-user-graduate"></i> 在校生</a>
+					</li>
+					<li class="floating-nav-item" data-target="graduate-section">
+						<a href="#graduate-section"><i class="fas fa-graduation-cap"></i> 毕业生</a>
+					</li>
+					<li class="floating-nav-item" data-target="photos-section">
+						<a href="#photos-section"><i class="fas fa-images"></i> 活动照片</a>
+					</li>
+				</ul>
+			</div>
+
+				<div class="fullwidth-block" data-bg-color="#edf2f4">
+					<div class="container">
+						<h2 class="section-title" id="teacher-section" data-aos="fade-up">指导老师</h2>
+						<div class="row">
+							<div class="col-md-12" data-aos="fade-up">
+								<div class="teacher-card">
+									<div class="teacher-header">
+										<img src="../static/about_us/aiwenjiang.jpg" alt="" class="teacher-image">
+										<div class="teacher-basic-info">
+											<h3 class="teacher-name">江爱文</h3>
+											<p class="teacher-title"><i class="fas fa-graduation-cap"></i> 博士，教授，现任江西师范大学人工智能学院院长，硕士生导师</p>
+											<a href="mailto:jiangaiwen@jxnu.edu.cn" class="teacher-email"><i class="fas fa-envelope"></i> jiangaiwen@jxnu.edu.cn</a>
+										</div>
+									</div>
+									
+									<div class="teacher-details">
+										<div class="teacher-section">
+											<h4><i class="fas fa-user-tie"></i> 教育与工作经历</h4>
+											<ul>
+												<li>2005年毕业于南京邮电大学电子工程系，获工学学士</li>
+												<li>2010年毕业于中国科学院自动化研究所，获模式识别与智能系统工学博士学位（硕博连读）</li>
+												<li>2015年公派澳大利亚国立大学/澳大利亚国家信息技术与通讯研究中心堪培拉实验室（ANU/NICTA）作访问研究员一年</li>
+											</ul>
+										</div>
+										
+										<div class="teacher-section">
+											<h4><i class="fas fa-award"></i> 科研与学术成果</h4>
+											<ul>
+												<li>主持（完成）国家自然科学基金3项、江西省自然科学基金3项，以及多项产学研横向课题</li>
+												<li>在中国科学、计算机学报、中文信息学报、Neurocomputing、TMM、ACCV等中国计算机学会推荐SCI期刊和学术会议上发表论文60余篇</li>
+												<li>已授权发明专利3项（成果转化1项）</li>
+												<li>以第一指导老师指导大学生参加"挑战杯"等重要课外学术科技竞赛获省部级二等奖以上奖励20余次，其中含"挑战杯"省赛二等奖2项、国赛二等奖1项</li>
+												<li>作为成果主要完成人，获2018年度江西省科学技术进步奖三等奖1项，2021年第十七批江西省教学成果奖（本科层次）一等奖1项</li>
+												<li>作为成果持有人，获江西师范大学校级教学成果奖二等奖2项、一等奖1项</li>
+												<li>2022年度"江西师范大学青年五四奖章"获得者</li>
+											</ul>
+										</div>
+										
+										<div class="teacher-section">
+											<h4><i class="fas fa-users"></i> 学术与社会任职</h4>
+											<ul>
+												<li>中国自动化学会模式识别与机器智能专委会委员</li>
+												<li>中国人工智能学会模式识别专委会委员</li>
+												<li>中国计算机学会高级会员</li>
+												<li>CCF NOI全国青少年信息学奥林匹克竞赛江西省特派员</li>
+												<li>江西省互联网信息学会副秘书长</li>
+												<li>江西省城市安全信息化学会常务理事</li>
+												<li>江西省工信厅软件与虚拟现实领域专家库专家</li>
+											</ul>
+										</div>
+										
+										<div class="teacher-section">
+											<h4><i class="fas fa-microscope"></i> 主要研究方向与兴趣</h4>
+											<p>多模态智能信息理解、计算机视觉、图像增强、视觉与自然语言交叉（如图像描述、视觉问答对话、视觉导航）、增强现实AR</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<h2 class="section-title" id="student-section" data-aos="fade-up">在校生</h2>
+						<div class="row">
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/ck.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">陈康</h3>
+									<p><i class="fas fa-user-graduate"></i> 22级数据科学与大数据技术</p>
+									<a href="mailto:chinatownwhiteck@gmail.com" class="btn-email"><i class="fas fa-envelope"></i> chinatownwhiteck@gmail.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="team">
+									<img src="../static/about_us/pengshuwei.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">彭庶伟</h3>
+									<p><i class="fas fa-user-graduate"></i> 22级人工智能</p>
+									<a href="mailto:S.W.Peng@foxmail.com" class="btn-email"><i class="fas fa-envelope"></i> S.W.Peng@foxmail.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/dengrunhua.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">邓润华</h3>
+									<p><i class="fas fa-user-graduate"></i> 22级计算机科学与技术</p>
+									<a href="mailto:2312666252@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 2312666252@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/yanshijun.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">严世军</h3>
+									<p><i class="fas fa-user-graduate"></i> 22级计算机科学与技术</p>
+									<a href="mailto:2220352568@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 2220352568@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="team">
+									<img src="../static/about_us/chenxuanhyu.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">陈炫宇</h3>
+									<p><i class="fas fa-user-graduate"></i> 23级人工智能</p>
+									<a href="mailto:2928132650@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 2928132650@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/xiaoguojie.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">肖国杰</h3>
+									<p><i class="fas fa-user-graduate"></i> 23级人工智能</p>
+									<a href="mailto:813429213@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 813429213@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/zhangzhefu.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">张哲溥</h3>
+									<p><i class="fas fa-user-graduate"></i> 23级计算机科学与技术</p>
+									<a href="mailto:1481580613@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1481580613@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="team">
+									<img src="../static/about_us/xieshuhui.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">谢树荟</h3>
+									<p><i class="fas fa-user-graduate"></i> 23级数据科学与大数据技术</p>
+									<a href="mailto:muna96@qq.com" class="btn-email"><i class="fas fa-envelope"></i> muna96@qq.com</a>
+								</div>
+							</div>
+<!--							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">-->
+<!--								<div class="team">-->
+<!--									<img src="../static/about_us/caicheng.jpg" alt="" class="team-image_student">-->
+<!--									<h3 class="team-name">蔡程</h3>-->
+<!--									<p><i class="fas fa-user-graduate"></i> 23级计算机科学与技术</p>-->
+<!--									<a href="mailto:3307807216@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 3307807216@qq.com</a>-->
+<!--								</div>-->
+<!--							</div>-->
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/wangruochuan.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">王若川</h3>
+									<p><i class="fas fa-user-graduate"></i> 24级计算机科学与技术</p>
+									<a href="mailto:3328785228@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1225994616@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/luhaoyu.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">鲁浩宇</h3>
+									<p><i class="fas fa-user-graduate"></i> 24级人工智能</p>
+									<a href="mailto:813429213@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1225994616@qq.com</a>
+								</div>
+							</div>
+
+						</div>
+						
+						<h2 class="section-title" id="graduate-section" data-aos="fade-up">毕业生</h2>
+						<div class="row">
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/Kangfu.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">梅康夫</h3>
+									<span class="badge bg-primary rounded-pill mb-2">15级计算机科学与技术</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 香港中文大学硕士</p>
+										<p><i class="fas fa-graduation-cap"></i> 约翰霍普金斯大学博士</p>
+										<p><i class="fas fa-briefcase"></i> Google Research研究员</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/qiaosiyi.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">易侨斯</h3>
+									<span class="badge bg-primary rounded-pill mb-2">16级物联网工程</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 华东师范大学硕士</p>
+										<p><i class="fas fa-graduation-cap"></i> 香港理工大学博士在读</p>
+										<a href="mailto:2505140297@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 2505140297@qq.com</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="team">
+									<img src="../static/about_us/penglong.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">彭龙</h3>
+									<span class="badge bg-primary rounded-pill mb-2">18级数据科学与大数据技术</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 中国科学技术大学硕士</p>
+										<p><i class="fas fa-graduation-cap"></i> 中国科学技术大学博士在读</p>
+<!--										<p><i class="fas fa-briefcase"></i> 腾讯混元</p>-->
+										<a href="mailto:longp2001@mail.ustc.edu.cn" class="btn-email"><i class="fas fa-envelope"></i> longp2001@mail.ustc.edu.cn</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/panjiancheng.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">潘建成</h3>
+									<span class="badge bg-primary rounded-pill mb-2">18级数据科学与大数据技术</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 浙江工业大学硕士</p>
+										<p><i class="fas fa-graduation-cap"></i> 清华大学博士在读</p>
+										<a href="mailto:jiancheng.pan.plus@gmail.com" class="btn-email"><i class="fas fa-envelope"></i> jiancheng.pan.plus@gmail.com</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/wangmin.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">王敏</h3>
+									<span class="badge bg-primary rounded-pill mb-2">18级物联网工程</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 西北工业大学硕士</p>
+										<a href="mailto:1509239256@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1509239256@qq.com</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="team">
+									<img src="../static/about_us/heyuhong.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">何宇虹</h3>
+									<span class="badge bg-primary rounded-pill mb-2">18级数据科学与大数据技术</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 东北大学硕士</p>
+<!--										<p><i class="fas fa-exchange-alt"></i> 中科院交流访问</p>-->
+										<p><i class="fas fa-briefcase"></i> 北京小米算法岗</p>
+										<a href="mailto:1623330349@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1623330349@qq.com</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/wangzhifeng.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">汪智峰</h3>
+									<span class="badge bg-primary rounded-pill mb-2">19级数据科学与大数据技术</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 国防科技大学硕士在读</p>
+<!--										<p><i class="fas fa-briefcase"></i> 阿里达摩院算法岗</p>-->
+										<a href="mailto:zhifengwang686@gmail.com" class="btn-email"><i class="fas fa-envelope"></i> zhifengwang686@gmail.com</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/langyingqi.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">郎瑛琪</h3>
+									<span class="badge bg-primary rounded-pill mb-2">19级计算机科学与技术</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 东华大学硕士</p>
+										<a href="mailto:1509239256@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1509239256@qq.com</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="team">
+									<img src="../static/about_us/yanqiuhai.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">严秋海</h3>
+									<span class="badge bg-primary rounded-pill mb-2">21级数据科学与大数据技术</span>
+									<p><i class="fas fa-graduation-cap"></i> 华东师范大学硕士在读</p>
+									<a href="mailto:2629359019@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 2629359019@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/lihan.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">李晗</h3>
+									<span class="badge bg-primary rounded-pill mb-2">21级计算机科学与技术(师范类)</span>
+									<p><i class="fas fa-graduation-cap"></i> 香港理工大学硕士在读</p>
+									<a href="mailto:2496774601@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 2496774601@qq.com</a>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="team">
+									<img src="../static/about_us/zhangxu.jpg" alt="" class="team-image_student">
+									<h3 class="team-name">张旭</h3>
+									<span class="badge bg-primary rounded-pill mb-2">21计算机科学与技术(师范类)</span>
+									<div class="mt-2">
+										<p><i class="fas fa-graduation-cap"></i> 西北工业大学硕士在读</p>
+										<a href="mailto:1509239256@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1209978808@qq.com</a>
+									</div>
+								</div>
+							</div>
+<!--							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">-->
+<!--								<div class="team">-->
+<!--									<img src="../static/about_us/oyyb.jpg" alt="" class="team-image_student">-->
+<!--									<h3 class="team-name">欧阳钰彬</h3>-->
+<!--									<span class="badge bg-primary rounded-pill mb-2">21级计算机科学与技术</span>-->
+<!--&lt;!&ndash;									<p><i class="fas fa-graduation-cap"></i> 21级计算机科学与技术</p>&ndash;&gt;-->
+<!--									<a href="mailto:1226922287@qq.com" class="btn-email"><i class="fas fa-envelope"></i> 1226922287@qq.com</a>-->
+<!--								</div>-->
+<!--							</div>-->
+						</div>
+					</div>
+				</div>
+
+				<!-- 活动照片部分 -->
+				<div class="fullwidth-block" data-bg-color="#edf2f4" id="photos-section">
+					<div class="container">
+						<h2 class="section-title" data-aos="fade-up">活动照片</h2>
+						<div class="row">
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image1.jpg" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image2.jpg" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image3.jpg" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image4.jpg" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image5.jpg" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image6.jpeg" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image7.png" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image8.png" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+								<div class="post">
+									<figure class="featured-image">
+										<img src="../static/photos/image9.png" alt="">
+										<div class="image-overlay"></div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 回到顶部按钮 -->
+		<div class="scroll-top" id="scrollTop">
+			<i class="fas fa-arrow-up"></i>
+		</div>
+
+		<!-- jQuery & Bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- AOS Animation Library -->
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		
+		<!-- Other Scripts -->
+		<script src="../static/js/plugins.js"></script>
+		<script src="../static/js/app.js"></script>
+		
+		<!-- 自定义JS -->
+		<script src="../static/js/about.js"></script>
+	</body>
+
+</html>
