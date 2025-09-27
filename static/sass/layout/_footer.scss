@@ -1,0 +1,70 @@
+/*
+ * Footer Styles
+ */
+
+
+.site-footer{
+	padding: 50px 0;
+	
+}
+
+.widget{
+	margin-bottom: 30px;
+	.widget-title{
+		@include em(19);
+		font-weight: 300;
+		margin-bottom: 20px;
+	}
+
+	address{
+		margin: 20px 0;
+	}
+}
+
+.social-links{
+	a{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: 1px solid darken($secondary-color,10%);
+		text-align: center;
+		color: $accent-color;
+		display: inline-block;
+		padding-top: 8px;
+		transition: .3s ease;
+
+		&:hover{
+			background: $accent-color;
+			border-color: $accent-color;
+			color: white;
+		}
+	}
+}
+
+.arrow-list{
+	list-style: none;
+	list-style-image: url(images/arrow.png);
+	margin-left: 20px;
+	margin-bottom: 30px;
+	li{
+		padding: 10px 0 10px 10px;
+		a{
+			color: $body-color;
+			transition: .3s ease;
+
+			&:hover{
+				color: $accent-color;
+			}
+		}
+
+	}
+
+	&.has-border{
+		li{
+			border-bottom: 1px solid $secondary-color;
+
+
+			&:last-child{border-bottom: none}
+		}
+	}
+}
