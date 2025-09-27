@@ -1,0 +1,1330 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --gray-color: #95a5a6;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+body {
+    font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* 导航栏样式优化 */
+.site-header {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-speed) ease;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+}
+
+.header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    width: 100%;
+    margin: 0;
+}
+
+.site-header .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform var(--transition-speed);
+}
+
+.branding:hover {
+    transform: scale(1.05);
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: contain; /* 防止图标变形 */
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.site-description {
+    font-size: 14px;
+    color: var(--gray-color);
+}
+
+/* 导航菜单 */
+.main-navigation {
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    padding-right: 0;
+    width: auto;
+}
+
+.main-navigation .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+.main-navigation .menu-item:last-child a {
+    margin-right: 0;
+    padding-right: 10px !important;
+    position: relative;
+    right: 0;
+}
+
+.main-navigation .menu-item {
+    margin: 0 10px;
+    position: relative;
+}
+
+.main-navigation .menu-item a {
+    padding: 10px 20px;
+    color: var(--dark-color);
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    border-radius: 30px;
+    transition: all var(--transition-speed);
+    min-width: 80px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.main-navigation .menu-item a:hover,
+.main-navigation .current-menu-item a {
+    background: var(--gradient-bg);
+    color: white;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 为当前选中的菜单项添加特殊样式 */
+.main-navigation .current-menu-item a {
+    position: relative;
+    font-weight: 600;
+}
+
+/* 为当前选中的菜单项添加标记 */
+.main-navigation .current-menu-item a::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 增强导航菜单项悬停效果 */
+.main-navigation .menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.main-navigation .menu-item a:hover::after,
+.main-navigation .current-menu-item a::after {
+    width: 70%;
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* 页面头部 */
+.page-head {
+    position: relative;
+    padding: 100px 0;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.page-head::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../decorate/cta-bg.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.page-head::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(46, 204, 113, 0.9));
+    z-index: 1;
+    opacity: 0.85;
+}
+
+.page-head .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-title {
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 1s forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 进度阅读滚动条 */
+.progress-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 1001;
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--gradient-bg);
+    width: 0%;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+/* 回到顶部按钮 */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-bg);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed);
+    box-shadow: 0 3px 15px rgba(52, 152, 219, 0.3);
+    z-index: 1000;
+}
+
+.scroll-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(52, 152, 219, 0.5);
+}
+
+/* 竞赛展示 */
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 40px;
+    width: 100%;
+}
+
+/* 年份分隔标题 */
+.year-divider {
+    margin: 60px 0 30px;
+    position: relative;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.year-divider h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+    padding-right: 25px;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline;
+}
+
+.year-divider::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary-color), rgba(52, 152, 219, 0.1));
+}
+
+.container {  /*外侧容器大小*/
+    max-width: 1650px; /* 增加50px */
+    width: 98%;
+    padding: 0 15px;
+}
+
+.project {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 32%;
+    margin-bottom: 18px;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+}
+
+.project-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.project-content a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.project-image {  /* 图片大小 */
+    margin: 0;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+    filter: brightness(0.95);
+}
+
+.project:hover .project-image img {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+}
+
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3), transparent);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(10px);
+}
+
+.project-overlay h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.project-overlay p {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.project:hover .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 奖项标签 */
+.award-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    z-index: 5;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.award-badge.national {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.award-badge.provincial {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.award-badge.international {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+/* 奖项含金量提示 */
+.award-prestige {
+    display: inline-block;
+    margin-top: 3px;
+    padding: 2px 5px;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 30px;
+}
+
+.award-prestige i {
+    margin-right: 3px;
+    color: #f1c40f;
+}
+
+.project-zoom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-bg);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project:hover .project-zoom {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* 竞赛标准介绍 */
+.award-standards {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 40px;
+    box-shadow: var(--box-shadow);
+}
+
+.award-standards h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.award-standards p {
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.award-types {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.award-type {
+    width: 32%;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.award-type.national {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.award-type.provincial {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.award-type.international {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.award-type h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.award-type h4 i {
+    margin-right: 8px;
+}
+
+.award-type p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+    color: white;
+}
+
+/* 响应式调整 - 适应不同屏幕 */
+@media (max-width: 1200px) {
+    .project {
+        flex: 0 0 calc(33.333% - 20px);
+    }
+    
+    .project-image {
+        height: 200px;
+    }
+    
+    .award-type {
+        flex: 0 0 calc(33.333% - 20px);
+    }
+    
+    /* 竞赛统计响应式调整 */
+    .stat-number {
+        font-size: 36px;
+    }
+    
+    .stat-label {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 95%;
+    }
+    
+    .project {
+        flex: 0 0 calc(50% - 15px);
+    }
+    
+    .main-navigation .menu-item a {
+        min-width: 70px;
+    }
+    
+    /* 奖项说明响应式调整 - 改为单列布局 */
+    .award-standards {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .award-standards h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .award-standards p {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    
+    .award-types {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .award-type {
+        width: 100%;
+        padding: 18px;
+        margin-bottom: 0;
+    }
+    
+    .award-type h4 {
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+    
+    .award-type p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    /* 竞赛统计响应式调整 */
+    .contest-stats {
+        padding: 20px 15px;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        flex: 0 0 calc(50% - 10px);
+        margin-bottom: 15px;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+    
+    .stat-number {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 990px) {
+    .menu-toggle {
+        display: flex !important;
+        margin-right: 1rem;
+    }
+    
+    .main-navigation .menu {
+        display: none !important;
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 100px); /* 调整最大高度 */
+    }
+    
+    .mobile-navigation .menu {
+        padding-left: 1rem; /* 减少容器边距 */
+        padding-right: 1rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 0.875rem; /* 调整内边距 */
+        font-size: 0.9375rem; /* 15px */
+        min-height: 2.75rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem; /* 7px */
+        height: 0.4375rem;
+        margin-right: 0.625rem; /* 10px */
+    }
+}
+
+@media (max-width: 768px) {
+    .project {
+        flex: 0 0 100%;
+    }
+    
+    .year-divider h2 {
+        font-size: 20px;
+    }
+    
+    .main-navigation .menu-item a {
+        min-width: auto;
+        text-align: left;
+    }
+    
+    /* 调整竞赛卡片布局 */
+    .project {
+        margin-bottom: 20px;
+    }
+    
+    .project-image {
+        height: 180px;
+    }
+    
+    /* 奖项标准说明移动端布局优化 */
+    .award-standards {
+        padding: 15px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+    }
+    
+    .award-standards h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .award-standards p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        text-align: center;
+        line-height: 1.5;
+    }
+    
+    .award-types {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 15px;
+    }
+    
+    .award-type {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 0;
+        border-radius: 8px;
+    }
+    
+    .award-type h4 {
+        font-size: 16px;
+        margin-bottom: 6px;
+        text-align: center;
+    }
+    
+    .award-type h4 i {
+        margin-right: 6px;
+        font-size: 14px;
+    }
+    
+    .award-type p {
+        font-size: 13px;
+        line-height: 1.4;
+        text-align: left;
+        margin: 0;
+    }
+    
+    /* 竞赛统计移动端布局 */
+    .contest-stats {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px 10px;
+    }
+    
+    .stat-item {
+        flex: 0 0 calc(50% - 10px);
+        padding: 10px 5px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+        margin-bottom: 5px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+    }
+    
+    /* 确保图片内容居中 */
+    .project-image img {
+        object-position: center;
+    }
+    
+    /* 缩小徽章大小 */
+    .award-badge {
+        font-size: 11px;
+        padding: 5px 10px;
+        right: 10px;
+        top: 10px;
+    }
+    
+    /* 提高覆盖层可读性 */
+    .project-overlay {
+        padding: 12px;
+    }
+    
+    .project-overlay h4 {
+        font-size: 16px;
+    }
+    
+    .menu-toggle {
+        display: flex !important;
+        margin-right: 1rem;
+    }
+    
+    .main-navigation .menu {
+        display: none !important;
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 90px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 2.5rem 1rem 1rem;
+        gap: 0.375rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 1rem;
+        font-size: 0.9375rem;
+        min-height: 2.5rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem;
+        height: 0.4375rem;
+        margin-right: 0.625rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+        max-width: 100%;
+    }
+    
+    .project {
+        margin-bottom: 15px;
+    }
+    
+    .project-image {
+        height: 160px;
+    }
+    
+    .year-divider {
+        margin: 30px 0 20px;
+    }
+    
+    /* 超小屏幕奖项说明优化 */
+    .award-standards {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .award-standards h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .award-standards p {
+        font-size: 13px;
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+    
+    .award-types {
+        gap: 10px;
+        margin-top: 12px;
+    }
+    
+    .award-type {
+        padding: 12px;
+        border-radius: 6px;
+    }
+    
+    .award-type h4 {
+        font-size: 15px;
+        margin-bottom: 5px;
+        display: block;
+        text-align: left;
+    }
+    
+    .award-type h4 i {
+        margin-right: 5px;
+        font-size: 13px;
+        display: inline-block;
+        width: 16px;
+        text-align: center;
+    }
+    
+    .award-type p {
+        font-size: 12px;
+        line-height: 1.3;
+        text-align: left;
+    }
+    
+    /* 竞赛统计在小屏幕上单列显示 */
+    .contest-stats {
+        padding: 15px 10px;
+    }
+    
+    .stat-item {
+        flex: 0 0 100%;
+        margin-bottom: 15px;
+        padding: 8px 5px;
+    }
+    
+    .stat-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+        margin-bottom: 3px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+    }
+    
+    /* 提高图片加载速度 */
+    .project-image img {
+        object-fit: cover;
+        will-change: transform;
+    }
+    
+    /* 简化悬停效果，提高性能 */
+    .project:hover .project-image img {
+        transform: scale(1.05);
+    }
+    
+    /* 为触摸设备优化 */
+    .project-zoom {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .project:hover .project-zoom {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    /* 确保覆盖层文字在小屏幕上可读 */
+    .project-overlay h4 {
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .project-overlay p {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    
+    .award-prestige {
+        font-size: 11px;
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 90px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.75rem 0;
+        padding-left: 0.75rem; /* 进一步减少容器边距 */
+        padding-right: 0.75rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.625rem 0.75rem; /* 调整内边距 */
+        font-size: 0.875rem; /* 14px */
+        min-height: 2.5rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.375rem; /* 6px */
+        height: 0.375rem;
+        margin-right: 0.5rem; /* 8px */
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .project-image {
+        height: 140px;
+    }
+    
+    .award-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+    
+    .year-divider h2 {
+        font-size: 18px;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+    }
+    
+    /* 极小屏幕奖项说明进一步优化 */
+    .award-standards {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .award-standards h3 {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+    
+    .award-standards p {
+        font-size: 12px;
+        margin-bottom: 6px;
+        line-height: 1.3;
+    }
+    
+    .award-types {
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .award-type {
+        padding: 10px;
+    }
+    
+    .award-type h4 {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    
+    .award-type h4 i {
+        font-size: 12px;
+        width: 14px;
+    }
+    
+    .award-type p {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+}
+
+/* 确保内容不会溢出 */
+.site-content {
+    overflow-x: hidden;
+}
+
+/* 改进加载性能 */
+img {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* 导航菜单包装器样式 */
+.main-navigation > div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-right: 0;
+}
+
+/* 菜单切换按钮 */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--dark-color);
+    font-size: 1.5rem; /* 24px */
+    cursor: pointer;
+    padding: 0.5rem; /* 8px */
+    transition: all 0.3s ease;
+    z-index: 1001;
+    border-radius: 0.25rem; /* 4px */
+    position: relative;
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle:hover {
+    color: var(--primary-color);
+    background-color: rgba(52, 152, 219, 0.1);
+    transform: scale(1.05);
+}
+
+.menu-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* 汉堡菜单图标动画 */
+.menu-toggle .fa-bars {
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active .fa-bars {
+    transform: rotate(90deg);
+}
+
+/* 屏幕阅读器专用文本 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 移动端导航菜单样式 - 与about页面完全一致 */
+.mobile-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow-y: auto;
+    display: none;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 1rem 1rem;
+    border-top: 2px solid var(--primary-color);
+    max-height: calc(100vh - 100px);
+}
+
+.mobile-navigation.show {
+    display: block;
+    transform: translateY(0);
+}
+
+.mobile-navigation .menu {
+    list-style: none;
+    padding: 2rem 1.5rem 1rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.mobile-navigation .menu-item {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideInDown 0.4s ease forwards;
+}
+
+.mobile-navigation .menu-item:nth-child(1) { animation-delay: 0.05s; }
+.mobile-navigation .menu-item:nth-child(2) { animation-delay: 0.1s; }
+.mobile-navigation .menu-item:nth-child(3) { animation-delay: 0.15s; }
+.mobile-navigation .menu-item:nth-child(4) { animation-delay: 0.2s; }
+.mobile-navigation .menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes slideInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-navigation .menu-item a {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1rem;
+    color: var(--dark-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    border-left: 3px solid transparent;
+    min-height: 3rem;
+}
+
+.mobile-navigation .menu-item:last-child a {
+    border-bottom: none;
+}
+
+.mobile-navigation .menu-item a:hover,
+.mobile-navigation .menu-item a:focus {
+    background-color: rgba(52, 152, 219, 0.05);
+    color: var(--primary-color);
+    border-left: 3px solid var(--primary-color);
+}
+
+.mobile-navigation .menu-item a:active {
+    background-color: rgba(52, 152, 219, 0.1);
+    transform: scale(0.98);
+}
+
+.mobile-navigation .menu-item a::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--gray-color);
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-navigation .menu-item a:hover::before,
+.mobile-navigation .menu-item a:focus::before {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* 移动端导航打开时禁止页面滚动 */
+body.mobile-nav-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* 竞赛统计样式 */
+.contest-stats {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.contest-stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-bg);
+    animation: slidein 2s ease-in-out forwards;
+}
+
+@keyframes slidein {
+    to {
+        left: 0;
+    }
+}
+
+.stat-item {
+    flex: 1;
+    padding: 15px;
+    position: relative;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.3s; }
+.stat-item:nth-child(2) { animation-delay: 0.5s; }
+.stat-item:nth-child(3) { animation-delay: 0.7s; }
+.stat-item:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes fadeUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+.stat-number {
+    font-size: 42px;
+    font-weight: 700;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    display: inline-block;
+    position: relative;
+}
+
+.stat-number::after {
+    content: attr(data-suffix);
+    font-size: 60%;
+    position: absolute;
+    top: 5px;
+    right: -15px;
+}
+
+.stat-label {
+    font-size: 16px;
+    color: var(--gray-color);
+    font-weight: 500;
+    position: relative;
+} 

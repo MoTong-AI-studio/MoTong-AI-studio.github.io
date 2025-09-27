@@ -1,0 +1,1956 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --gray-color: #95a5a6;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
+    --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    /* 基础字体大小，用于rem计算 */
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem; /* 16px */
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 0.625rem; /* 10px */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.3125rem; /* 5px */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* 导航栏样式优化 */
+.site-header {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0.125rem 0.9375rem rgba(0, 0, 0, 0.1); /* 0 2px 15px */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(0.625rem); /* 10px */
+    transition: all var(--transition-speed) ease;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    /* 确保移动端菜单能正确定位 */
+    position: relative;
+}
+
+/* 导航栏平滑过渡效果 */
+.site-header, .header-bar {
+    transition: all 0.3s ease-in-out;
+}
+
+/* collapsed-nav 样式，确保在首页正确显示 */
+.site-header.collapsed-nav {
+    position: absolute;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    z-index: 999;
+}
+
+.header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3125rem 0; /* 5px 0 */
+    width: 100%;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 0;
+    box-shadow: 0 0.0625rem 0.3125rem rgba(0, 0, 0, 0.15); /* 0 1px 5px */
+}
+
+.site-header .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform var(--transition-speed);
+    flex: 0 0 auto;
+    margin-left: 1.25rem; /* 20px */
+}
+
+.branding:hover {
+    transform: scale(1.05);
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: contain; /* 防止图标变形 */
+}
+
+.site-title {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0.0625rem 0.125rem rgba(255, 255, 255, 0.5); /* 0 1px 2px */
+}
+
+.site-description {
+    font-size: 0.875rem; /* 14px */
+    color: var(--gray-color);
+    text-shadow: 0 0.0625rem 0.0625rem rgba(255, 255, 255, 0.8); /* 0 1px 1px */
+}
+
+/* 导航菜单 */
+.main-navigation {
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    padding-right: 0;
+    width: auto;
+    /* 移除相对定位，让移动端菜单相对于site-header定位 */
+}
+
+/* 移动端菜单 - 完全独立定位，脱离导航栏约束，但不覆盖导航栏 */
+.mobile-navigation {
+    display: none;
+    position: fixed;
+    top: var(--header-height); /* 使用动态计算的导航栏高度 */
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    border-radius: 0 0 1rem 1rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-top: 2px solid var(--primary-color);
+    height: auto;
+    min-height: auto;
+    max-height: calc(100vh - var(--header-height)); /* 使用动态高度 */
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mobile-navigation.show {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-navigation .menu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0; /* 适中的垂直内边距 */
+    margin: 0;
+    list-style: none;
+    gap: 0.25rem; /* 菜单项之间的小间距 */
+    /* 添加水平容器边距，与页面内容保持一致 */
+    max-width: 100%;
+    padding-left: 1.25rem; /* 与branding的margin-left保持一致 */
+    padding-right: 1.25rem;
+}
+
+.mobile-navigation .menu-item {
+    margin: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-10px); /* 轻微的向上位移 */
+    animation: slideInDown 0.3s ease forwards; /* 缩短动画时间 */
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item:nth-child(1) { animation-delay: 0.05s; }
+.mobile-navigation .menu-item:nth-child(2) { animation-delay: 0.1s; }
+.mobile-navigation .menu-item:nth-child(3) { animation-delay: 0.15s; }
+.mobile-navigation .menu-item:nth-child(4) { animation-delay: 0.2s; }
+.mobile-navigation .menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes slideInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-navigation .menu-item a {
+    padding: 0.875rem 1rem; /* 减少水平内边距 */
+    color: var(--dark-color);
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem; /* 适中的圆角 */
+    border-left: 0.25rem solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 1rem; /* 16px - 标准字体大小 */
+    min-height: 3rem; /* 适中的最小高度 */
+    white-space: nowrap;
+    background: transparent;
+    margin: 0; /* 移除左右边距，因为容器已有边距 */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 轻微的分隔线 */
+}
+
+.mobile-navigation .menu-item:last-child a {
+    border-bottom: none; /* 最后一项不显示分隔线 */
+}
+
+.mobile-navigation .menu-item a:hover,
+.mobile-navigation .current-menu-item a {
+    border-left: 0.25rem solid var(--primary-color);
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.05));
+    color: var(--primary-color);
+    transform: translateX(5px); /* 轻微的右移效果 */
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.15);
+}
+
+.mobile-navigation .menu-item a:active {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(46, 204, 113, 0.1));
+    transform: scale(0.98) translateX(5px);
+}
+
+/* 为移动端菜单项添加图标 */
+.mobile-navigation .menu-item a::before {
+    content: '';
+    width: 0.5rem; /* 8px */
+    height: 0.5rem; /* 8px */
+    border-radius: 50%;
+    background-color: var(--gray-color);
+    margin-right: 0.75rem; /* 12px */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item a:hover::before,
+.mobile-navigation .current-menu-item a::before {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+/* 响应式媒体查询优化 - 下拉菜单适配 */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        margin-right: 1rem;
+    }
+    
+    .main-navigation .menu {
+        display: none !important; /* 强制隐藏主导航菜单 */
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 100px);
+    }
+    
+    .mobile-navigation .menu {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        display: block !important; /* 确保移动端菜单可见 */
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.9375rem;
+        min-height: 2.75rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem;
+        height: 0.4375rem;
+        margin-right: 0.625rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 90px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.75rem 0;
+        padding-left: 0.75rem; /* 进一步减少容器边距 */
+        padding-right: 0.75rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.625rem 0.75rem; /* 调整内边距 */
+        font-size: 0.875rem; /* 14px */
+        min-height: 2.5rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.375rem; /* 6px */
+        height: 0.375rem;
+        margin-right: 0.5rem; /* 8px */
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 80px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.5rem 0;
+        padding-left: 0.5rem; /* 最小容器边距 */
+        padding-right: 0.5rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.5rem 0.625rem; /* 调整内边距 */
+        font-size: 0.8125rem; /* 13px */
+        min-height: 2.25rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.3125rem; /* 5px */
+        height: 0.3125rem;
+        margin-right: 0.375rem; /* 6px */
+    }
+}
+
+/* 确保全屏菜单在所有情况下都正确显示 */
+.mobile-navigation {
+    position: fixed !important;
+    z-index: 9999 !important;
+}
+
+/* 防止菜单被其他元素遮挡 */
+.site-header {
+    position: relative;
+    z-index: 1000;
+}
+
+.main-navigation .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.main-navigation .menu-item:last-child a {
+    margin-right: 0;
+    padding-right: 10px !important;
+    position: relative;
+    right: 0;
+}
+
+.main-navigation .menu-item {
+    margin: 0 10px;
+    position: relative;
+}
+
+.main-navigation .menu-item a {
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    color: var(--dark-color);
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    border-radius: 1.875rem; /* 30px */
+    transition: all var(--transition-speed);
+    min-width: 5rem; /* 80px */
+    text-align: center;
+    white-space: nowrap;
+}
+
+.main-navigation .menu-item a:hover,
+.main-navigation .current-menu-item a {
+    background: var(--gradient-bg);
+    color: white;
+    box-shadow: 0 0.25rem 0.625rem rgba(52, 152, 219, 0.3); /* 0 4px 10px */
+    transform: translateY(-0.125rem); /* -2px */
+}
+
+/* 为当前选中的菜单项添加特殊样式 */
+.main-navigation .current-menu-item a {
+    position: relative;
+    font-weight: 600;
+}
+
+/* 为当前选中的菜单项添加标记 */
+.main-navigation .current-menu-item a::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 增强导航菜单项悬停效果 */
+.main-navigation .menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0.125rem; /* 2px */
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.main-navigation .menu-item a:hover::after,
+.main-navigation .current-menu-item a::after {
+    width: 70%;
+    opacity: 1;
+    box-shadow: 0 0 0.3125rem rgba(255, 255, 255, 0.5); /* 0 0 5px */
+}
+
+/* 菜单切换按钮 */
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;         /* 建议与导航高度一致 */
+    height: 44px;
+    padding: 0;          /* 去除多余内边距 */
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    position: relative;
+    font-size: 24px;     /* 让图标大小适中 */
+    line-height: 1;      /* 避免行高影响垂直居中 */
+}
+
+.menu-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* 汉堡菜单图标动画 */
+.menu-toggle .fa-bars {
+    font-size: 24px;     /* 明确指定图标大小 */
+    line-height: 1;      /* 避免字体行高影响 */
+    margin: 0;           /* 去除默认外边距 */
+    display: block;      /* 保证flex下居中 */
+}
+
+.menu-toggle.active .fa-bars {
+    transform: rotate(90deg);
+}
+
+/* 进度阅读滚动条 */
+.progress-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 0.25rem; /* 4px */
+    z-index: 1001;
+}
+
+.progress-bar {
+    height: 0.25rem; /* 4px */
+    background: var(--gradient-bg);
+    width: 0%;
+    box-shadow: 0 0 0.625rem rgba(52, 152, 219, 0.5); /* 0 0 10px */
+}
+
+/* 回到顶部按钮 */
+.scroll-top {
+    position: fixed;
+    bottom: 1.875rem; /* 30px */
+    right: 1.875rem; /* 30px */
+    width: 3.125rem; /* 50px */
+    height: 3.125rem; /* 50px */
+    background: var(--gradient-bg);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed);
+    box-shadow: 0 0.1875rem 0.9375rem rgba(52, 152, 219, 0.3); /* 0 3px 15px */
+    z-index: 1000;
+}
+
+.scroll-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    transform: translateY(-0.3125rem); /* -5px */
+    box-shadow: 0 0.3125rem 1.25rem rgba(52, 152, 219, 0.5); /* 0 5px 20px */
+}
+
+/* 容器样式 */
+.container {
+    width: 90%;
+    max-width: 75rem; /* 1200px */
+    margin: 0 auto;
+    padding: 0 0.625rem; /* 0 10px */
+}
+
+/* 轮播图/hero区域 */
+.hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3.125rem; /* 50px */
+    height: 800px; /* 默认高度 500px + 300px */
+}
+
+.slides {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 100%;
+}
+
+.slides li {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 遮罩层样式 */
+.slides li:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+    z-index: 1;
+}
+
+/* 轮播图文字内容 */
+.slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 50rem; /* 800px */
+    padding: 2rem;
+    margin: 0 auto;
+    opacity: 1 !important;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-title {
+    font-size: 3rem; /* 48px */
+    font-weight: 700;
+    margin-bottom: 1.25rem; /* 20px */
+    line-height: 1.2;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slide-content p {
+    font-size: 1.25rem; /* 20px */
+    margin-bottom: 1.875rem; /* 30px */
+    line-height: 1.6;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+}
+
+/* 研究方向卡片 */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.875rem; /* 30px */
+    margin-bottom: 3.125rem; /* 50px */
+}
+
+.research-item {
+    position: relative;
+}
+
+.research-card {
+    display: block;
+    border-radius: 0.9375rem; /* 15px */
+    overflow: hidden;
+    background: white;
+    box-shadow: var(--box-shadow);
+    height: 100%;
+    transition: all var(--transition-speed);
+}
+
+.research-card:hover {
+    transform: translateY(-0.3125rem); /* -5px */
+    box-shadow: 0 0.9375rem 2.1875rem rgba(0, 0, 0, 0.15); /* 0 15px 35px */
+}
+
+.research-image-container {
+    position: relative;
+    width: 100%;
+    height: 12.5rem; /* 200px */
+    overflow: hidden;
+}
+
+.research-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.research-card:hover .research-image {
+    transform: scale(1.1);
+}
+
+.research-badge {
+    position: absolute;
+    top: 0.9375rem; /* 15px */
+    right: 0.9375rem; /* 15px */
+    background: var(--gradient-bg);
+    color: white;
+    padding: 0.3125rem 0.625rem; /* 5px 10px */
+    border-radius: 1.25rem; /* 20px */
+    font-size: 0.75rem; /* 12px */
+    font-weight: 500;
+    box-shadow: 0 0.25rem 0.625rem rgba(52, 152, 219, 0.3); /* 0 4px 10px */
+}
+
+.research-content {
+    padding: 1.25rem; /* 20px */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.research-title {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    margin-bottom: 0.625rem; /* 10px */
+}
+
+.research-desc {
+    color: var(--gray-color);
+    margin-bottom: 1.25rem; /* 20px */
+    font-size: 0.9375rem; /* 15px */
+    flex-grow: 1;
+}
+
+.research-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.research-tag {
+    color: var(--primary-color);
+    font-size: 0.8125rem; /* 13px */
+    font-weight: 500;
+}
+
+.research-more {
+    color: var(--dark-color);
+    font-weight: 500;
+    font-size: 0.875rem; /* 14px */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all var(--transition-speed);
+    border-bottom: 0.0625rem solid transparent; /* 1px */
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .hero {
+        height: 700px; /* 400px + 300px */
+    }
+    
+    .slide-content {
+        padding: 1.5rem;
+    }
+    
+    .slide-title {
+        font-size: 2.5rem; /* 40px */
+        margin-bottom: 1rem;
+    }
+    
+    .slide-content p {
+        font-size: 1.125rem; /* 18px */
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 650px; /* 350px + 300px */
+    }
+    
+    .slide-content {
+        padding: 1.25rem;
+        width: 95%;
+    }
+    
+    .slide-title {
+        font-size: 2rem; /* 32px */
+        margin-bottom: 0.875rem;
+    }
+    
+    .slide-content p {
+        font-size: 1rem; /* 16px */
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: 600px; /* 300px + 300px */
+        margin-bottom: 2rem;
+    }
+    
+    .slide-content {
+        padding: 1rem;
+        padding-bottom: 3rem; /* 为导航点留出空间 */
+    }
+    
+    .slide-title {
+        font-size: 1.5rem; /* 24px */
+        margin-bottom: 0.75rem;
+    }
+    
+    .slide-content p {
+        font-size: 0.875rem; /* 14px */
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    /* 调整导航点位置 */
+    .hero .flex-control-nav {
+        bottom: 10px;
+    }
+    
+    /* 调整箭头按钮位置 */
+    .hero .flex-direction-nav {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero {
+        height: 550px; /* 250px + 300px */
+    }
+    
+    .slide-content {
+        padding: 0.75rem;
+        padding-bottom: 2.5rem;
+    }
+    
+    .slide-title {
+        font-size: 1.25rem; /* 20px */
+        margin-bottom: 0.5rem;
+    }
+    
+    .slide-content p {
+        font-size: 0.8125rem; /* 13px */
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+    
+    /* 进一步调整导航点 */
+    .hero .flex-control-nav {
+        bottom: 5px;
+        padding: 3px 10px;
+    }
+    
+    .hero .flex-control-nav li a {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* 通用响应式图片 */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 确保内容不会溢出 */
+.site-content {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* 增强触摸设备体验 */
+@media (hover: none) {
+    .research-card:hover {
+        transform: none;
+    }
+    
+    .research-card:active {
+        transform: translateY(-0.3125rem); /* -5px */
+    }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* 新闻列表样式 */
+.news-section {
+    padding: 50px 0;
+}
+
+.news-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每行显示2篇新闻 */
+    grid-gap: 30px;
+    margin-bottom: 40px;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed);
+    height: 100%;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.news-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px; /* 固定图片高度 */
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.news-item:hover .news-image img {
+    transform: scale(1.1);
+}
+
+.news-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+    line-height: 1.4;
+}
+
+.news-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+    color: var(--gray-color);
+    font-size: 14px;
+}
+
+.news-date {
+    display: flex;
+    align-items: center;
+}
+
+.news-date:before {
+    content: '\f073';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+.news-category {
+    display: flex;
+    align-items: center;
+}
+
+.news-category:before {
+    content: '\f02b';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+.news-excerpt {
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.6;
+    flex-grow: 1; /* 让摘要占据剩余空间 */
+}
+
+.news-more {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-speed);
+    position: relative;
+    align-self: flex-start; /* 保持在底部 */
+    margin-top: auto; /* 推到底部 */
+}
+
+.news-more:after {
+    content: '\f061';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.news-more:hover {
+    color: var(--secondary-color);
+}
+
+.news-more:hover:after {
+    transform: translateX(5px);
+}
+
+/* 分页控件样式 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 40px;
+}
+
+.pagination .page-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    color: var(--dark-color);
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed);
+}
+
+.pagination .page-link:hover {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.1));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.pagination .page-link.active {
+    background: var(--gradient-bg);
+    color: white;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.pagination .next,
+.pagination .last {
+    font-weight: bold;
+}
+
+/* 研究方向卡片链接样式 */
+.research-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.research-card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.research-card-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+    border-radius: 12px;
+}
+
+/* 研究方向卡片布局 */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 修改为2列布局 */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.research-item {
+    transition: all 0.3s ease;
+}
+
+.research-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.research-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.research-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+}
+
+.research-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.research-card:hover .research-image {
+    transform: scale(1.1);
+}
+
+.research-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gradient-bg);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+}
+
+.research-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.research-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.research-desc {
+    color: #555;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.research-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.research-tag {
+    background: rgba(52, 152, 219, 0.1);
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.research-more {
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+/* 媒体查询 - 研究方向卡片响应式布局 */
+@media (max-width: 992px) {
+    .research-grid {
+        grid-template-columns: repeat(2, 1fr); /* 保持2列布局 */
+        gap: 20px;
+    }
+    
+    .news-list {
+        grid-template-columns: 1fr; /* 平板设备上单列显示 */
+    }
+    
+    .news-title {
+        font-size: 16px;
+    }
+    
+    .news-image {
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .research-grid {
+        grid-template-columns: 1fr; /* 单列布局 */
+        gap: 15px;
+    }
+    
+    .research-image-container {
+        height: 160px; /* 减小图片高度 */
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+    .news-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    /* 页面边距优化 */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* 页头部分更紧凑 */
+    .header-bar {
+        padding: 3px 0;
+    }
+    
+    /* 轮播图内容进一步适配 */
+    .slide-content {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .slide-content h2 {
+        font-size: 20px;
+    }
+    
+    /* 回到顶部按钮缩小 */
+    .scroll-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    /* 研究方向卡片标题适配 */
+    .research-title {
+        font-size: 16px;
+    }
+    
+    .research-desc {
+        font-size: 14px;
+    }
+    
+    /* 新闻项更紧凑 */
+    .news-content {
+        padding: 15px;
+    }
+    
+    .news-excerpt {
+        font-size: 14px;
+    }
+}
+
+/* 适配超小屏幕设备 */
+@media (max-width: 375px) {
+    .site-title {
+        font-size: 18px;
+    }
+    
+    .site-description {
+        display: none; /* 隐藏描述文字 */
+    }
+    
+    .logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        object-fit: contain; /* 防止图标变形 */
+    }
+    
+    .news-title {
+        font-size: 15px;
+    }
+    
+    /* 更紧凑的标题 */
+    .section-heading {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    /* 分页按钮缩小 */
+    .pagination .page-link {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+/* 确保内容不超出容器 */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 添加视口控制，防止缩放问题 */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* 幻灯片和轮播图样式 */
+.hero {
+    position: relative;
+    margin-top: 0; /* 保持为0，避免负margin导致内容被导航栏遮挡 */
+    margin-bottom: 50px;
+}
+
+.slides {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.slides li {
+    position: relative;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding-top: 90px; /* 添加顶部内边距，为导航栏留出空间 */
+}
+
+.slides li:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slide-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.slide-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* 媒体查询 - 针对轮播图的响应式适配 */
+@media (max-width: 992px) {
+    .slides li {
+        height: 400px;
+    }
+    
+    .slide-title {
+        font-size: 32px;
+    }
+    
+    .slide-content p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slides li {
+        height: 350px;
+    }
+    
+    .slide-title {
+        font-size: 28px;
+    }
+    
+    .slide-content p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .slides li {
+        height: 300px;
+    }
+    
+    .slide-title {
+        font-size: 24px;
+    }
+    
+    .slide-content p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .hero {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 375px) {
+    .slides li {
+        height: 250px;
+    }
+    
+    .slide-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .slide-content p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+/* 页面加载动画 */
+.site-content {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+    animation-delay: 0.1s; /* 减少延迟时间，让页面更快显示 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 图片延迟加载效果 */
+.lazy {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+img.lazy.loaded {
+    opacity: 1;
+}
+
+/* 页面平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 新闻项和研究方向卡片悬停效果优化 */
+.news-item, .research-card {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, box-shadow;
+}
+
+/* 响应式图片 */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 移动设备上的触摸优化 */
+@media (hover: none) {
+    .news-item:hover, .research-card:hover {
+        transform: none;
+    }
+    
+    .news-item:active, .research-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* 确保内容不超出容器 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* 防止移动设备上的字体过小 */
+@media (max-width: 576px) {
+    html {
+        font-size: 16px; /* 确保基础字体大小合适 */
+    }
+    
+    .container {
+        padding: 0 10px; /* 减少边距以增加内容空间 */
+    }
+}
+
+/* 修复浏览器兼容性问题 */
+* {
+    -webkit-tap-highlight-color: transparent; /* 移除移动设备上点击时的高亮 */
+}
+
+input, 
+textarea, 
+button, 
+select, 
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 添加打印媒体查询 */
+@media print {
+    .site-header, 
+    .progress-container, 
+    .scroll-top, 
+    .mobile-navigation {
+        display: none !important;
+    }
+    
+    .site-content {
+        opacity: 1;
+        animation: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* 屏幕阅读器专用样式 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Body状态样式已移除，因为直接展示菜单不需要锁定页面滚动 */
+
+/* 紧凑模式 - 当菜单项较多时自动启用 */
+.mobile-navigation.compact-mode .menu {
+    padding: 0.25rem 0; /* 进一步减小垂直内边距 */
+}
+
+.mobile-navigation.compact-mode .menu-item a {
+    padding: 0.4rem 1rem; /* 紧凑的内边距 */
+    font-size: 0.8125rem; /* 13px */
+    min-height: 2rem; /* 紧凑的高度 */
+}
+
+.mobile-navigation.compact-mode .menu-item a:hover,
+.mobile-navigation.compact-mode .current-menu-item a {
+    padding-left: 1.25rem; /* 20px */
+}
+
+.mobile-navigation.compact-mode .menu-item a::before {
+    width: 0.375rem; /* 6px */
+    height: 0.375rem; /* 6px */
+    margin-right: 0.5rem; /* 8px */
+}
+
+/* 确保紧凑模式下的边框也相应调整 */
+.mobile-navigation.compact-mode .menu-item a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.mobile-navigation.compact-mode .menu-item:last-child a {
+    border-bottom: none;
+}
+
+/* 超紧凑模式 - 针对极小屏幕 */
+@media (max-width: 320px) {
+    .mobile-navigation .menu-item a {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.7rem; /* 11px */
+        min-height: 1.8rem;
+    }
+    
+    .mobile-navigation .menu-item a:hover,
+    .mobile-navigation .current-menu-item a {
+        padding-left: 0.75rem; /* 12px */
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.25rem; /* 4px */
+        height: 0.25rem; /* 4px */
+        margin-right: 0.375rem; /* 6px */
+    }
+}
+
+/* 确保菜单在所有情况下都完全可见的额外保障 */
+.mobile-navigation {
+    position: absolute !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+}
+
+/* 防止菜单被截断 */
+.site-header {
+    position: relative;
+    z-index: 1000;
+}
+
+.mobile-navigation {
+    z-index: 1001;
+}
+
+/* 轮播图样式增强 - 确保与SimpleSlider插件兼容 */
+.hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+    height: 500px; /* 默认高度 */
+}
+
+.hero .slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hero .slides li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.hero .slides li:first-child {
+    opacity: 1;
+}
+
+/* 轮播图遮罩层 */
+.hero .slides li:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0));
+    z-index: 1;
+}
+
+/* 轮播图内容 */
+.hero .slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;   
+    max-width: 800px;
+    padding: 0 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero .slide-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero .slide-content p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* 导航点样式 */
+.hero .flex-control-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 5px 15px;
+    z-index: 3;
+    background: none; /* 移除背景色 */
+    border-radius: 20px;
+}
+
+.hero .flex-control-nav li {
+    margin: 0;
+}
+
+.hero .flex-control-nav li a {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    text-indent: -9999px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* 添加轻微阴影 */
+}
+
+.hero .flex-control-nav li a:hover,
+.hero .flex-control-nav li a.flex-active {
+    background: white;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* 左右箭头样式 */
+.hero .flex-direction-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0 30px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0; /* 默认隐藏 */
+    transition: opacity 0.3s ease; /* 添加过渡效果 */
+}
+
+.hero:hover .flex-direction-nav {
+    opacity: 1; /* 鼠标悬停时显示 */
+}
+
+.hero .flex-direction-nav li {
+    pointer-events: auto;
+}
+
+.hero .flex-direction-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.hero .flex-direction-nav a:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    position: absolute;
+}
+
+.hero .flex-direction-nav a.flex-prev:before {
+    transform: rotate(-135deg);
+    margin-left: 4px;
+}
+
+.hero .flex-direction-nav a.flex-next:before {
+    transform: rotate(45deg);
+    margin-right: 4px;
+}
+
+.hero .flex-direction-nav a:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: scale(1.1);
+}
+
+.hero .flex-direction-nav a:active {
+    transform: scale(0.95);
+}
+
+/* 响应式轮播图样式 */
+@media (max-width: 992px) {
+    .hero {
+        height: 700px; /* 400px + 300px */
+    }
+    
+    .hero .slide-title {
+        font-size: 36px;
+    }
+    
+    .hero .slide-content p {
+        font-size: 18px;
+    }
+    
+    .hero .flex-direction-nav a {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 650px; /* 350px + 300px */
+    }
+    
+    .hero .slide-title {
+        font-size: 28px;
+    }
+    
+    .hero .slide-content p {
+        font-size: 16px;
+    }
+    
+    .hero .flex-direction-nav {
+        padding: 0 15px;
+    }
+    
+    .hero .flex-direction-nav a {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .hero .flex-direction-nav a:before {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: 600px; /* 300px + 300px */
+    }
+    
+    .hero .slide-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .hero .slide-content p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
+    .hero .flex-control-nav {
+        bottom: 10px;
+        padding: 3px 10px;
+    }
+    
+    .hero .flex-control-nav li a {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .hero .flex-direction-nav {
+        padding: 0 10px;
+    }
+    
+    .hero .flex-direction-nav a {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .hero .flex-direction-nav a:before {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero {
+        height: 550px; /* 250px + 300px */
+    }
+    
+    .hero .slide-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .hero .slide-content p {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+}
+
+/* 轮播图加载动画 */
+.hero .slides li {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.hero .slides li.active {
+    opacity: 1;
+}
+
+/* 防止轮播图在加载时闪烁 */
+.hero.loading .slides li:not(:first-child) {
+    display: none;
+}
+
+/* 轮播图性能优化 */
+.hero .slides li {
+    will-change: opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* 确保轮播图在所有设备上正确显示 */
+.hero {
+    min-height: 250px;
+    max-height: 600px;
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+    .hero .flex-direction-nav a:hover {
+        transform: none;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero .flex-direction-nav a:active {
+        background: rgba(0, 0, 0, 0.8);
+        transform: scale(0.95);
+    }
+}
+
+/* 确保文字内容始终可见 */
+.slide-content .slide-title,
+.slide-content p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    opacity: 1 !important;
+}
+
+@media (max-width: 576px) {
+    .menu-toggle {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+    .menu-toggle .fa-bars {
+        font-size: 20px;
+    }
+} 

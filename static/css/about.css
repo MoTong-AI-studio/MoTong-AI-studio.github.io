@@ -1,0 +1,1779 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --gray-color: #95a5a6;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+body {
+    font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* 导航栏样式优化 */
+.site-header {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-speed) ease;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+}
+
+.header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    width: 100%;
+    margin: 0;
+}
+
+.site-header .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform var(--transition-speed);
+}
+
+.branding:hover {
+    transform: scale(1.05);
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: contain; /* 防止图标变形 */
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.site-description {
+    font-size: 14px;
+    color: var(--gray-color);
+}
+
+/* 导航菜单 */
+.main-navigation {
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    padding-right: 0;
+    width: auto;
+}
+
+.main-navigation .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+.main-navigation .menu-item:last-child a {
+    margin-right: 0;
+    padding-right: 10px !important;
+    position: relative;
+    right: 0;
+}
+
+.main-navigation .menu-item {
+    margin: 0 10px;
+    position: relative;
+}
+
+.main-navigation .menu-item a {
+    padding: 10px 20px;
+    color: var(--dark-color);
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    border-radius: 30px;
+    transition: all var(--transition-speed);
+    min-width: 80px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.main-navigation .menu-item a:hover,
+.main-navigation .current-menu-item a {
+    background: var(--gradient-bg);
+    color: white;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 为当前选中的菜单项添加特殊样式 */
+.main-navigation .current-menu-item a {
+    position: relative;
+    font-weight: 600;
+}
+
+/* 为当前选中的菜单项添加标记 */
+.main-navigation .current-menu-item a::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 添加页面头部渐变遮罩效果 */
+.page-head::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(46, 204, 113, 0.9));
+    z-index: 1;
+    opacity: 0.85;
+}
+
+/* 增强导航菜单项悬停效果 */
+.main-navigation .menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.main-navigation .menu-item a:hover::after,
+.main-navigation .current-menu-item a::after {
+    width: 70%;
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* 页面头部 */
+.page-head {
+    position: relative;
+    padding: 100px 0;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.page-head::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../decorate/cta-bg.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.page-head .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-title {
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 1s forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 进度阅读滚动条 */
+.progress-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 1001;
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--gradient-bg);
+    width: 0%;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+/* 回到顶部按钮 */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-bg);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed);
+    box-shadow: 0 3px 15px rgba(52, 152, 219, 0.3);
+    z-index: 1000;
+}
+
+.scroll-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(52, 152, 219, 0.5);
+}
+
+/* 浮动导航样式更新 */
+.floating-nav {
+    position: fixed;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    transition: all var(--transition-speed);
+    margin-top: 120px;
+}
+
+.floating-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.floating-nav-item a {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: 1px solid #eee;
+    display: block;
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.floating-nav-item a:hover,
+.floating-nav-item.active a {
+    background: var(--gradient-bg);
+    color: white;
+    box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+}
+
+@media (max-width: 1200px) {
+    .floating-nav {
+        display: none;
+    }
+}
+
+/* 团队卡片样式 */
+.team {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed);
+    transform: translateY(0);
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 为指导老师卡片增加特殊样式 */
+#teacher-section .team {
+    height: auto;
+    min-height: 780px;
+    padding-bottom: 70px;
+}
+
+.team:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.team-image_teacher {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid rgba(52, 152, 219, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.team-image_student {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid rgba(46, 204, 113, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.team-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.team .mt-2 {
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding-right: 5px;
+    max-height: 120px;
+}
+
+.team .badge {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.team p {
+    margin-bottom: 8px;
+}
+
+/* 邮箱按钮样式优化 */
+.team .btn-email {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 6px 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.team .btn-email i {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+.team .btn-email:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.5);
+    transform: translateX(-50%) translateY(-3px);
+}
+
+.team .btn-email:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+.wrap-text {
+    word-wrap: break-word;
+    word-break: normal;
+    width: 90%;
+    margin: 0 auto 20px;
+    text-align: justify;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    overflow-y: auto;
+    max-height: 200px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(52, 152, 219, 0.5) rgba(237, 242, 244, 0.7);
+}
+
+/* 为指导老师卡片的wrap-text容器增加样式 */
+#teacher-section .wrap-text {
+    max-height: 150px;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: rgba(237, 242, 244, 0.5);
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#teacher-section .wrap-text:hover {
+    background-color: rgba(237, 242, 244, 0.8);
+}
+
+/* 添加滚动提示样式 */
+#teacher-section .wrap-text.has-more-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background: linear-gradient(to top, rgba(237, 242, 244, 0.9), transparent);
+    pointer-events: none;
+    border-radius: 0 0 8px 8px;
+}
+
+#teacher-section .wrap-text.has-more-content::before {
+    content: '\f078'; /* 下箭头图标 */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    color: rgba(52, 152, 219, 0.7);
+    font-size: 12px;
+    z-index: 1;
+    animation: bounce 1.5s infinite;
+    pointer-events: none;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* 自定义滚动条样式 */
+.wrap-text::-webkit-scrollbar {
+    width: 6px;
+}
+
+.wrap-text::-webkit-scrollbar-track {
+    background: rgba(237, 242, 244, 0.7);
+    border-radius: 10px;
+}
+
+.wrap-text::-webkit-scrollbar-thumb {
+    background: rgba(52, 152, 219, 0.5);
+    border-radius: 10px;
+}
+
+.wrap-text::-webkit-scrollbar-thumb:hover {
+    background: rgba(52, 152, 219, 0.7);
+}
+
+/* 针对毕业生卡片的特殊样式 */
+#graduate-section .team {
+    height: 380px;
+}
+
+/* 在小屏幕上调整卡片高度和按钮样式 */
+@media (max-width: 768px) {
+    .team, #graduate-section .team {
+        height: auto;
+        min-height: 380px;
+        padding: 20px 15px 60px;
+        margin-bottom: 20px;
+    }
+    
+    /* 为指导老师卡片在小屏幕上增加特殊样式 */
+    #teacher-section .team {
+        min-height: 680px;
+    }
+    
+    .team .btn-email {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85%;
+    }
+    
+    /* 改进卡片内容布局 */
+    .team-image_teacher, .team-image_student {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    .team-name {
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    
+    /* 提高文本容器可用性 */
+    .wrap-text {
+        width: 100%;
+        max-height: 150px;
+        font-size: 13px;
+        line-height: 1.5;
+        padding-right: 5px;
+    }
+    
+    #teacher-section .wrap-text {
+        max-height: 120px;
+        padding: 8px;
+    }
+    
+    .wrap-text ul {
+        padding-left: 20px;
+    }
+    
+    .wrap-text li {
+        margin-bottom: 5px;
+    }
+    
+    .team .btn-email {
+        font-size: 13px;
+    }
+    
+    /* 调整页面标题 */
+    .page-title {
+        font-size: 36px;
+    }
+    
+    /* 调整分段标题 */
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    /* 调整照片展示区域 */
+    .featured-image img {
+        height: 200px;
+    }
+    
+    /* 确保内容不溢出 */
+    .site-content {
+        overflow-x: hidden;
+    }
+    
+    /* 主导航菜单调整 */
+    .main-navigation .menu-item a {
+        min-width: auto;
+        text-align: left;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 90px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.75rem 0;
+        padding-left: 0.75rem; /* 进一步减少容器边距 */
+        padding-right: 0.75rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.625rem 0.75rem; /* 调整内边距 */
+        font-size: 0.875rem; /* 14px */
+        min-height: 2.5rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.375rem; /* 6px */
+        height: 0.375rem;
+        margin-right: 0.5rem; /* 8px */
+    }
+    
+    /* 小屏幕手机优化 */
+    .team, #graduate-section .team {
+        padding: 15px 12px 60px;
+        min-height: 350px;
+        margin-bottom: 15px;
+    }
+    
+    /* 特别为指导老师卡片优化 */
+    #teacher-section .team {
+        min-height: 650px;
+        padding: 15px 12px 60px;
+    }
+    
+    .team-image_teacher, .team-image_student {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+    
+    /* 指导老师照片特殊处理 */
+    #teacher-section .team-image_teacher {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .wrap-text {
+        font-size: 12px;
+        line-height: 1.4;
+        max-height: 120px;
+    }
+    
+    #teacher-section .wrap-text {
+        max-height: 100px;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    /* 更新滚动提示样式适应小屏幕 */
+    #teacher-section .wrap-text.has-more-content::after {
+        height: 20px;
+    }
+    
+    #teacher-section .wrap-text.has-more-content::before {
+        bottom: 3px;
+        right: 5px;
+        font-size: 10px;
+    }
+    
+    /* 调整页面头部 */
+    .page-head {
+        padding: 80px 0;
+    }
+    
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+    
+    .section-title:after {
+        width: 60px;
+        margin-top: 10px;
+    }
+    
+    /* 调整照片展示区域 */
+    .featured-image img {
+        height: 180px;
+    }
+    
+    /* 减小容器内边距 */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* 调整邮箱按钮 */
+    .team .btn-email {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    /* 调整滚动到顶部按钮 */
+    .scroll-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .team-image_teacher, .team-image_student {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .team-name {
+        font-size: 15px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .featured-image img {
+        height: 160px;
+    }
+    
+    /* 优化导航栏 */
+    .site-title {
+        font-size: 18px;
+    }
+    
+    .site-description {
+        font-size: 11px;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* 增强触摸设备体验 */
+@media (hover: none) {
+    .team:hover,
+    .post:hover {
+        transform: none;
+    }
+    
+    .team:active,
+    .post:active {
+        transform: translateY(-5px);
+    }
+}
+
+/* 照片展示样式 */
+.post {
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed);
+}
+
+.post:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.featured-image {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.post:hover .featured-image img {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.post:hover .image-overlay {
+    opacity: 1;
+}
+
+/* 分段标题样式 */
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    position: relative;
+    color: var(--dark-color);
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-bg);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+@media screen and (min-width: 992px) {
+    .branding {
+        flex: 0 0 auto;
+    }
+    
+    .main-navigation {
+        flex: 1;
+    }
+}
+
+/* 导航菜单包装器样式 */
+.main-navigation > div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 990px) {
+    .main-navigation > div {
+        display: none;
+    }
+    
+    .mobile-navigation .menu {
+        display: block;
+    }
+    
+    /* 移动端导航菜单样式 */
+    .main-navigation .menu-item {
+        margin: 0 3px;
+    }
+    
+    .main-navigation .menu-item a {
+        padding: 8px 12px;
+        min-width: auto;
+    }
+    
+    /* 禁用下划线动画效果和标记 */
+    .main-navigation .menu-item a::after,
+    .main-navigation .current-menu-item a::before {
+        display: none;
+    }
+    
+    /* 取消移动端的上浮效果 */
+    .main-navigation .menu-item a:hover,
+    .main-navigation .current-menu-item a {
+        transform: none;
+    }
+    
+    /* 优化移动端展开菜单 */
+    .mobile-navigation .menu .menu-item a {
+        padding: 12px 15px;
+        border-radius: 0;
+        border-left: 3px solid transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-navigation .menu .menu-item a:hover,
+    .mobile-navigation .menu .current-menu-item a {
+        background: rgba(52, 152, 219, 0.1);
+        color: var(--primary-color);
+        border-left: 3px solid var(--primary-color);
+    }
+}
+
+@media (max-width: 992px) {
+    .main-navigation .menu-item a {
+        min-width: 70px;
+        padding: 8px 15px; /* 缩小内边距 */
+    }
+
+    .main-navigation .menu-item {
+        margin: 0 5px; /* 减小间距 */
+    }
+
+    /* 确保平板设备上的卡片布局合理 */
+    .team {
+        padding: 20px 15px;
+        height: auto;
+        min-height: 380px;
+    }
+    
+    /* 调整指导老师照片大小 */
+    .team-image_teacher {
+        width: 150px;
+        height: 150px;
+    }
+    
+    /* 调整浮动导航 */
+    .floating-nav {
+        padding: 12px;
+        left: 10px;
+    }
+    
+    .floating-nav-item a {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    /* 优化文本容器 */
+    .wrap-text {
+        max-height: 180px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    /* 确保容器宽度适应屏幕 */
+    .container {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .team, #graduate-section .team {
+        height: auto;
+        min-height: 380px;
+        padding: 20px 15px 60px;
+        margin-bottom: 20px;
+    }
+    
+    .team .btn-email {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85%;
+    }
+    
+    /* 改进卡片内容布局 */
+    .team-image_teacher, .team-image_student {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    .team-name {
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    
+    /* 提高文本容器可用性 */
+    .wrap-text {
+        width: 100%;
+        max-height: 150px;
+        font-size: 13px;
+        line-height: 1.5;
+        padding-right: 5px;
+    }
+    
+    .wrap-text ul {
+        padding-left: 20px;
+    }
+    
+    .wrap-text li {
+        margin-bottom: 5px;
+    }
+    
+    .team .btn-email {
+        font-size: 13px;
+    }
+    
+    /* 调整页面标题 */
+    .page-title {
+        font-size: 36px;
+    }
+    
+    /* 调整分段标题 */
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    /* 调整照片展示区域 */
+    .featured-image img {
+        height: 200px;
+    }
+    
+    /* 确保内容不溢出 */
+    .site-content {
+        overflow-x: hidden;
+    }
+    
+    /* 主导航菜单调整 */
+    .main-navigation .menu-item a {
+        min-width: auto;
+        text-align: left;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 90px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.75rem 0;
+        padding-left: 0.75rem; /* 进一步减少容器边距 */
+        padding-right: 0.75rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.625rem 0.75rem; /* 调整内边距 */
+        font-size: 0.875rem; /* 14px */
+        min-height: 2.5rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.375rem; /* 6px */
+        height: 0.375rem;
+        margin-right: 0.5rem; /* 8px */
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .team-image_teacher, .team-image_student {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .team-name {
+        font-size: 15px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .featured-image img {
+        height: 160px;
+    }
+    
+    /* 优化导航栏 */
+    .site-title {
+        font-size: 18px;
+    }
+    
+    .site-description {
+        font-size: 11px;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* 增强触摸设备体验 */
+@media (hover: none) {
+    .team:hover,
+    .post:hover {
+        transform: none;
+    }
+    
+    .team:active,
+    .post:active {
+        transform: translateY(-5px);
+    }
+}
+
+/* 照片展示样式 */
+.post {
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed);
+}
+
+.post:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.featured-image {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.post:hover .featured-image img {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.post:hover .image-overlay {
+    opacity: 1;
+}
+
+/* 分段标题样式 */
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    position: relative;
+    color: var(--dark-color);
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-bg);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+@media screen and (min-width: 992px) {
+    .branding {
+        flex: 0 0 auto;
+    }
+    
+    .main-navigation {
+        flex: 1;
+    }
+}
+
+/* 导航菜单包装器样式 */
+.main-navigation > div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 990px) {
+    .main-navigation > div {
+        display: none;
+    }
+    
+    .mobile-navigation .menu {
+        display: block;
+    }
+}
+
+/* 指导老师卡片新样式 */
+.teacher-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+}
+
+.teacher-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.teacher-header {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #eee;
+}
+
+.teacher-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    flex-shrink: 0;
+}
+
+.teacher-basic-info {
+    flex: 1;
+}
+
+.teacher-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.teacher-title {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.teacher-email {
+    display: inline-block;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.teacher-email:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.5);
+    transform: translateY(-3px);
+    color: white;
+}
+
+.teacher-email i {
+    margin-right: 8px;
+}
+
+.teacher-details {
+    padding: 30px;
+}
+
+.teacher-section {
+    margin-bottom: 25px;
+}
+
+.teacher-section:last-child {
+    margin-bottom: 0;
+}
+
+.teacher-section h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3498db;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.teacher-section h4 i {
+    margin-right: 10px;
+}
+
+.teacher-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.teacher-section ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.teacher-section ul li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.teacher-section p {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .teacher-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 15px;
+    }
+    
+    .teacher-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 150px;
+        height: 150px;
+    }
+    
+    .teacher-name {
+        font-size: 24px;
+    }
+    
+    .teacher-details {
+        padding: 20px 15px;
+    }
+    
+    .teacher-section h4 {
+        font-size: 17px;
+    }
+    
+    .teacher-section ul li {
+        font-size: 14px;
+    }
+    
+    .teacher-section p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .teacher-card {
+        border-radius: 12px;
+    }
+    
+    .teacher-header {
+        padding: 20px 10px;
+    }
+    
+    .teacher-image {
+        width: 120px;
+        height: 120px;
+        border-width: 3px;
+    }
+    
+    .teacher-name {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    
+    .teacher-title {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .teacher-email {
+        padding: 6px 15px;
+        font-size: 13px;
+    }
+    
+    .teacher-details {
+        padding: 15px 12px;
+    }
+    
+    .teacher-section {
+        margin-bottom: 20px;
+    }
+    
+    .teacher-section h4 {
+        font-size: 16px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+    
+    .teacher-section ul li {
+        font-size: 13px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    .teacher-section p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 375px) {
+    .teacher-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .teacher-name {
+        font-size: 20px;
+    }
+    
+    .teacher-title {
+        font-size: 13px;
+    }
+    
+    .teacher-email {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    
+    .teacher-section h4 {
+        font-size: 15px;
+    }
+    
+    .teacher-section ul li, 
+    .teacher-section p {
+        font-size: 12px;
+    }
+}
+
+/* 菜单切换按钮 */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--dark-color);
+    font-size: 1.5rem; /* 24px */
+    cursor: pointer;
+    padding: 0.5rem; /* 8px */
+    transition: all 0.3s ease;
+    z-index: 1001;
+    border-radius: 0.25rem; /* 4px */
+    position: relative;
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle:hover {
+    color: var(--primary-color);
+    background-color: rgba(52, 152, 219, 0.1);
+    transform: scale(1.05);
+}
+
+.menu-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* 汉堡菜单图标动画 */
+.menu-toggle .fa-bars {
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active .fa-bars {
+    transform: rotate(90deg);
+}
+
+/* 移动端菜单 - 完全独立定位，脱离导航栏约束，但不覆盖导航栏 */
+.mobile-navigation {
+    display: none;
+    position: fixed; /* 相对于视口定位，完全脱离导航栏约束 */
+    top: 0; /* 初始位置，会通过JavaScript动态调整 */
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    z-index: 999; /* 降低层级，确保不覆盖导航栏 */
+    border-radius: 0 0 1rem 1rem;
+    transform: translateY(-100%); /* 初始隐藏在顶部 */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-top: 2px solid var(--primary-color);
+    /* 自适应高度，确保所有菜单项都可见 */
+    height: auto;
+    min-height: auto;
+    max-height: calc(100vh - 100px); /* 留出导航栏空间 */
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    /* 不使用padding-top，而是通过JavaScript动态设置top位置 */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mobile-navigation.show {
+    display: block;
+    transform: translateY(0); /* 滑入到导航栏下方的正确位置 */
+    opacity: 1;
+}
+
+.mobile-navigation .menu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0; /* 适中的垂直内边距 */
+    margin: 0;
+    list-style: none;
+    gap: 0.25rem; /* 菜单项之间的小间距 */
+    /* 添加水平容器边距，与页面内容保持一致 */
+    max-width: 100%;
+    padding-left: 1.25rem; /* 与branding的margin-left保持一致 */
+    padding-right: 1.25rem;
+}
+
+.mobile-navigation .menu-item {
+    margin: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-10px); /* 轻微的向上位移 */
+    animation: slideInDown 0.3s ease forwards; /* 缩短动画时间 */
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item:nth-child(1) { animation-delay: 0.05s; }
+.mobile-navigation .menu-item:nth-child(2) { animation-delay: 0.1s; }
+.mobile-navigation .menu-item:nth-child(3) { animation-delay: 0.15s; }
+.mobile-navigation .menu-item:nth-child(4) { animation-delay: 0.2s; }
+.mobile-navigation .menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes slideInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-navigation .menu-item a {
+    padding: 0.875rem 1rem; /* 减少水平内边距 */
+    color: var(--dark-color);
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem; /* 适中的圆角 */
+    border-left: 0.25rem solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 1rem; /* 16px - 标准字体大小 */
+    min-height: 3rem; /* 适中的最小高度 */
+    white-space: nowrap;
+    background: transparent;
+    margin: 0; /* 移除左右边距，因为容器已有边距 */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 轻微的分隔线 */
+}
+
+.mobile-navigation .menu-item:last-child a {
+    border-bottom: none; /* 最后一项不显示分隔线 */
+}
+
+.mobile-navigation .menu-item a:hover,
+.mobile-navigation .current-menu-item a {
+    border-left: 0.25rem solid var(--primary-color);
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.05));
+    color: var(--primary-color);
+    transform: translateX(5px); /* 轻微的右移效果 */
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.15);
+}
+
+.mobile-navigation .menu-item a:active {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(46, 204, 113, 0.1));
+    transform: scale(0.98) translateX(5px);
+}
+
+/* 为移动端菜单项添加图标 */
+.mobile-navigation .menu-item a::before {
+    content: '';
+    width: 0.5rem; /* 8px */
+    height: 0.5rem; /* 8px */
+    border-radius: 50%;
+    background-color: var(--gray-color);
+    margin-right: 0.75rem; /* 12px */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.mobile-navigation .menu-item a:hover::before,
+.mobile-navigation .current-menu-item a::before {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+/* 响应式媒体查询优化 - 下拉菜单适配 */
+@media (max-width: 990px) {
+    .menu-toggle {
+        display: flex !important;
+        margin-right: 1rem;
+    }
+    
+    .main-navigation .menu {
+        display: none !important;
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 100px); /* 调整最大高度 */
+    }
+    
+    .mobile-navigation .menu {
+        padding-left: 1rem; /* 减少容器边距 */
+        padding-right: 1rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 0.875rem; /* 调整内边距 */
+        font-size: 0.9375rem; /* 15px */
+        min-height: 2.75rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem; /* 7px */
+        height: 0.4375rem;
+        margin-right: 0.625rem; /* 10px */
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex !important;
+        margin-right: 1rem;
+    }
+    
+    .main-navigation .menu {
+        display: none !important;
+    }
+    
+    .mobile-navigation {
+        max-height: calc(100vh - 100px); /* 调整最大高度 */
+    }
+    
+    .mobile-navigation .menu {
+        padding-left: 1rem; /* 减少容器边距 */
+        padding-right: 1rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.75rem 0.875rem; /* 调整内边距 */
+        font-size: 0.9375rem; /* 15px */
+        min-height: 2.75rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.4375rem; /* 7px */
+        height: 0.4375rem;
+        margin-right: 0.625rem; /* 10px */
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 375px) {
+    .mobile-navigation {
+        max-height: calc(100vh - 80px);
+    }
+    
+    .mobile-navigation .menu {
+        padding: 0.5rem 0;
+        padding-left: 0.5rem; /* 最小容器边距 */
+        padding-right: 0.5rem;
+    }
+    
+    .mobile-navigation .menu-item a {
+        padding: 0.5rem 0.625rem; /* 调整内边距 */
+        font-size: 0.8125rem; /* 13px */
+        min-height: 2.25rem;
+    }
+    
+    .mobile-navigation .menu-item a::before {
+        width: 0.3125rem; /* 5px */
+        height: 0.3125rem;
+        margin-right: 0.375rem; /* 6px */
+    }
+}
+
+/* 确保全屏菜单在所有情况下都正确显示 */
+.mobile-navigation {
+    position: fixed !important;
+    z-index: 9999 !important;
+}
+
+/* 防止菜单被其他元素遮挡 */
+.site-header {
+    position: relative;
+    z-index: 1000;
+}
+
+/* 屏幕阅读器专用样式 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+ 
